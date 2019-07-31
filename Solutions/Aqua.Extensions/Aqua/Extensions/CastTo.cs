@@ -11,7 +11,7 @@ namespace System
     /// </summary>
     /// <typeparam name="T">Target type.</typeparam>
     /// <remarks>
-    /// The original code was derived from a StackOverlow answer here https://stackoverflow.com/a/23391746
+    /// The original code was derived from a StackOverlow answer here https://stackoverflow.com/a/23391746.
     /// </remarks>
     public static class CastTo<T>
     {
