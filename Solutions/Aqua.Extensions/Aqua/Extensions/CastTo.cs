@@ -18,7 +18,7 @@ namespace System
         /// <summary>
         /// Casts from the source type to the target type.
         /// </summary>
-        /// <param name="s">An instance of teh source type to be case to the target type.</param>
+        /// <param name="s">An instance of the source type to be case to the target type.</param>
         /// <typeparam name="TSource">Source type to cast from. Usually a generic type.</typeparam>
         /// <returns>An instance of the target type, cast from the source type.</returns>
         /// <remarks>
