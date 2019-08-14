@@ -1,4 +1,4 @@
-# Aqua.Extensions
+# Corvus.Extensions
 
 This provides a library of useful extensions to dotnet types.
 
@@ -87,7 +87,7 @@ Various `ForEach` extensions, including:
 
 ## Licenses
 
-Aqua.Extensions is available under the Microsoft Public License (MS-PL) open source license. The Aqua.Extensions open source license is ideal for use cases such as open source projects with open source distribution, student/academic purposes, hobby projects, internal research projects without external distribution, or other projects where all Microsoft Public License obligations can be met. 
+Corvus.Extensions is available under the Microsoft Public License (MS-PL) open source license. The Corvus.Extensions open source license is ideal for use cases such as open source projects with open source distribution, student/academic purposes, hobby projects, internal research projects without external distribution, or other projects where all Microsoft Public License obligations can be met. 
 
 For any licensing questions, please email [&#108;&#105;&#99;&#101;&#110;&#115;&#105;&#110;&#103;&#64;&#101;&#110;&#100;&#106;&#105;&#110;&#46;&#99;&#111;&#109;](&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#99;&#101;&#110;&#115;&#105;&#110;&#103;&#64;&#101;&#110;&#100;&#106;&#105;&#110;&#46;&#99;&#111;&#109;)
 

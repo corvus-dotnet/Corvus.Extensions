@@ -1,0 +1,11 @@
+﻿// <copyright file="GlobalSuppressions.cs" company="Corvus">
+// Copyright (c) Corvus. All rights reserved.
+// </copyright>
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeExtensions.FromUnixTime(System.Int64)~System.DateTime")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeExtensions.RoundTime(System.Double)~System.String")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeOffsetExtensions.Maximum(System.DateTimeOffset,System.DateTimeOffset)~System.DateTimeOffset")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeOffsetExtensions.Maximum(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})~System.Nullable{System.DateTimeOffset}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeOffsetExtensions.Minimum(System.DateTimeOffset,System.DateTimeOffset)~System.DateTimeOffset")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeOffsetExtensions.Minimum(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})~System.Nullable{System.DateTimeOffset}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeOffsetExtensions.ToDateTimeOffset(System.DateTimeOffset,System.String,System.String)~System.Nullable{System.DateTimeOffset}")]
