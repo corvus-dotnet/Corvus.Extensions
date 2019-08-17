@@ -129,7 +129,7 @@ Scenario: Replace an xml tag for an empty string
 	Then the result should equal the empty string
 
 Scenario: Format a double as a string in French
-	Given the current culture is fr-F
+	Given the current culture is fr-FR
 	And the string "{0:0.00}"
 	When I format the double 1.23456
 	Then the result should equal "1,23"

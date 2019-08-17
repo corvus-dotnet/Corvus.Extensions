@@ -534,7 +534,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 132
- testRunner.Given("the current culture is fr-F", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the current culture is fr-FR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 133
  testRunner.And("the string \"{0:0.00}\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 134
