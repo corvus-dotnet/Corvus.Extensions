@@ -12,11 +12,13 @@ pool:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: Build
   inputs:
     command: 'build'
     projects: 'Solutions/Corvus.Extensions.sln'
 
 - task: DotNetCoreCLI@2
+  displayName: Executable Specifications
   inputs:
     command: 'test'
     projects: 'Solutions/Corvus.Extensions.sln'
