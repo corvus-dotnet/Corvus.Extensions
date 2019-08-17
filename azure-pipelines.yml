@@ -22,3 +22,9 @@ steps:
   inputs:
     command: 'test'
     projects: 'Solutions/Corvus.Extensions.sln'
+
+- task: DotNetCoreCLI@2
+  displayName: Create Nuget Packages
+  inputs:
+    command: 'pack'
+    projects: 'Solutions/Corvus.Extensions.sln'
