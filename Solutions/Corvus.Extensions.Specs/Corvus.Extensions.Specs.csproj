@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
     <RootNamespace>Corvus.Extensions.Specs</RootNamespace>
   </PropertyGroup>
+
+  <Import Project="..\Common.netstandard2_0.proj" />
 
   <ItemGroup>
     <PackageReference Include="SpecFlow" Version="3.0.225" />
@@ -49,11 +49,34 @@
       <DependentUpon>TraversalExtensions.feature</DependentUpon>
     </Compile>
   </ItemGroup>
-
  
   <ItemGroup>
     <None Update="specflow.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="DateTimeFeatures\DateTimeExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="DateTimeFeatures\DateTimeOffsetExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="EnumerableExtensionsFeatures\EnumerableExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="StreamExtensionsFeatures\StreamExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="StringExtensionsFeatures\StringExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="TaskExtensionsFeatures\TaskExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="TraversalExtensionsFeatures\TraversalExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+    </SpecFlowFeatureFiles>
   </ItemGroup> 
 </Project>
