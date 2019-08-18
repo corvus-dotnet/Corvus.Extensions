@@ -1,5 +1,5 @@
-﻿// <copyright file="GlobalSuppressions.cs" company="Corvus">
-// Copyright (c) Corvus. All rights reserved.
+﻿// <copyright file="GlobalSuppressions.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
 // </copyright>
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1224:Make method an extension method.", Justification = "It would be clumsy as an extension", Scope = "member", Target = "~M:System.DateTimeExtensions.FromUnixTime(System.Int64)~System.DateTime")]

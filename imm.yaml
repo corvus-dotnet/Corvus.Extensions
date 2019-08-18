@@ -24,8 +24,8 @@
     Id: 0449cadc-0078-4094-b019-520d75cc6cbb
     Measures:
         -
-            Score: 0
-            Description: '0-25'
+            Score: 1
+            Description: '26-50'
 -
     Name: Benchmarks
     Id: 64ed80dc-d354-45a9-9a56-c32437306afa
@@ -81,8 +81,8 @@
     Id: 30e1b40b-b27d-4631-b38d-3172426593ca
     Measures:
         -
-            Score: 0
-            Description: None
+            Score: 3
+            Description: 'Public OSS'
 -
     Name: License
     Id: d96b5bdc-62c7-47b6-bcc4-de31127c08b7

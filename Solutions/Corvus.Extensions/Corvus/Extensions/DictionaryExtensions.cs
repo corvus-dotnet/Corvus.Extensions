@@ -1,5 +1,5 @@
-﻿// <copyright file="DictionaryExtensions.cs" company="Corvus">
-// Copyright (c) Corvus. All rights reserved.
+﻿// <copyright file="DictionaryExtensions.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
 // </copyright>
 
 namespace System.Collections.Generic

@@ -18,7 +18,7 @@ variables:
 steps:
 
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.2.401'
+  displayName: 'Install .NET Core SDK 2.2.401 (Global Tools error workaround)'
   inputs:
     version: 2.2.401
 
@@ -35,7 +35,7 @@ steps:
     arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration) '
 
 - task: DotNetCoreCLI@2
-  displayName: Executable Specifications
+  displayName: Run Executable Specifications
   inputs:
     command: 'test'
     projects: 'Solutions/Corvus.Extensions.sln'

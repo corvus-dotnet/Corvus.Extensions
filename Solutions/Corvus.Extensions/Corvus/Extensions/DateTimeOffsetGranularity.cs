@@ -1,5 +1,5 @@
-﻿// <copyright file="DateTimeOffsetGranularity.cs" company="Corvus">
-// Copyright (c) Corvus. All rights reserved.
+﻿// <copyright file="DateTimeOffsetGranularity.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
 // </copyright>
 
 namespace System
