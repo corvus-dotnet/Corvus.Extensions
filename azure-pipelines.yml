@@ -8,6 +8,7 @@ variables:
 
   BuildConfiguration: 'Release'
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  SolutionToBuild: 'Solutions/Corvus.Extensions.sln'
 
 steps:
 
@@ -25,14 +26,14 @@ steps:
   displayName: 'Restore & Build'
   inputs:
     command: 'build'
-    projects: 'Solutions/Corvus.Extensions.sln'
+    projects: $(SolutionToBuild)
     arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration) '
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Executable Specifications'
   inputs:
     command: 'test'
-    projects: 'Solutions/Corvus.Extensions.sln'
+    projects: $(SolutionToBuild)
     arguments: '-c $(BuildConfiguration) --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
     nobuild: true
 
@@ -52,7 +53,7 @@ steps:
   displayName: 'Create NuGet Packages'
   inputs:
     command: 'pack'
-    projects: 'Solutions/Corvus.Extensions.sln'
+    projects: $(SolutionToBuild)
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)'
     nobuild: true
     buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
