@@ -62,3 +62,8 @@ steps:
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)'
     nobuild: true
     buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: Drop'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
