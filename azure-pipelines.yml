@@ -32,7 +32,7 @@ steps:
   inputs:
     command: 'build'
     projects: 'Solutions/Corvus.Extensions.sln'
-    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration) '
+    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)+$(Build.SourceVersion)" --configuration $(BuildConfiguration) '
 
 - task: DotNetCoreCLI@2
   displayName: Run Executable Specifications
