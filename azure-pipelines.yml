@@ -17,6 +17,11 @@ variables:
 
 steps:
 
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 2.2.401'
+  inputs:
+    version: 2.2.401
+
 - task: gittools.gitversion.gitversion-task.GitVersion@5
   displayName: GitVersion
   inputs:
