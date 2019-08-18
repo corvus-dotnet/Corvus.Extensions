@@ -17,6 +17,10 @@ variables:
 
 steps:
 
+- powershell: |
+      Write-Host "##vso[task.setvariable variable=GitShortHash;]'${{ Build.SourceVersion }}'.Substring(0, 7)"
+  displayName: Get Git Short Hash
+
 - task: DotNetCoreInstaller@0
   displayName: 'Install .NET Core SDK 2.2.401 (Global Tools error workaround)'
   inputs:
@@ -32,14 +36,14 @@ steps:
   inputs:
     command: 'build'
     projects: 'Solutions/Corvus.Extensions.sln'
-    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)$(Build.SourceVersion.Substring(0,7))" --configuration $(BuildConfiguration) '
+    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration) '
 
 - task: DotNetCoreCLI@2
   displayName: Run Executable Specifications
   inputs:
     command: 'test'
     projects: 'Solutions/Corvus.Extensions.sln'
-    arguments: '-c $(BuildConfiguration) --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+    arguments: '-c $(BuildConfiguration) --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)$(GitShortHash)" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
     nobuild: true
 
 - script: |
