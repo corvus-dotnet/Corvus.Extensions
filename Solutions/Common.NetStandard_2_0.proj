@@ -18,7 +18,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DebugType>Full</DebugType>
+    <DebugType>portable</DebugType>
+    <ci>true</ci>
   </PropertyGroup>
 
   <ItemGroup>
