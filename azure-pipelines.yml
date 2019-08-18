@@ -36,7 +36,7 @@ steps:
   inputs:
     command: 'build'
     projects: 'Solutions/Corvus.Extensions.sln'
-    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration) '
+    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)$(GitShortHash)" --configuration $(BuildConfiguration) '
 
 - task: DotNetCoreCLI@2
   displayName: Run Executable Specifications
@@ -65,7 +65,7 @@ steps:
     projects: 'Solutions/Corvus.Extensions.sln'
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)'
     nobuild: true
-    buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
+    buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)$(GitShortHash)"'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: Drop'
