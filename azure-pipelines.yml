@@ -18,7 +18,7 @@ variables:
 steps:
 
 - powershell: |
-      Write-Host "##vso[task.setvariable variable=GitShortHash;]'${{ Build.SourceVersion }}'.Substring(0, 7)"
+      Write-Host "##vso[task.setvariable variable=GitShortHash;]$($(Build.SourceVersion).Substring(0, 7))"
   displayName: Get Git Short Hash
 
 - task: DotNetCoreInstaller@0
