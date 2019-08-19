@@ -1,9 +1,9 @@
-﻿namespace Endjin.Extensions.Specs.TaskExtensionsFeatures
+﻿namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
 {
     using System;
     using System.Threading.Tasks;
-    using Endjin.Extensions.Specs.TaskExtensionsFeatures.Context;
-    using FluentAssertions;
+    using Corvus.Extensions.SpecsTaskExtensionsFeatures.Context;
+    using NUnit.Framework;
     using TechTalk.SpecFlow;
 
     [Binding]
@@ -51,7 +51,7 @@
         {
             Task<int> task = this.context.Get<Task<int>>("Result");
             int result = await task;
-            result.Should().Be(p0);
+            Assert.AreEqual(p0, result);
         }
 
         [When(@"I cast the task to a double")]
@@ -75,8 +75,8 @@
         [Then(@"an InvalidCastException should be thrown")]
         public void ThenAnInvalidCastExceptionShouldBeThrown()
         {
-            this.context.ContainsKey("Exception").Should().BeTrue();
-            this.context.Get<InvalidCastException>("Exception").Should().NotBeNull();
+            Assert.IsTrue(this.context.ContainsKey("Exception"));
+            Assert.IsNotNull(this.context.Get<InvalidCastException>("Exception"));
         }
 
         [Given(@"I start a task which generates a SimpleChild")]
@@ -171,7 +171,7 @@
             {
                 Task<SimpleParent> task = this.context.Get<Task<SimpleParent>>("Result");
                 SimpleParent result = await task;
-                result.Should().BeAssignableTo<SimpleParent>();
+                Assert.IsInstanceOf<SimpleParent>(result);
             }
         }
     }

@@ -2,8 +2,9 @@
 // Copyright (c) Endjin Limited. All rights reserved.
 // </copyright>
 
-namespace System
+namespace Corvus.Extensions
 {
+    using System;
     using System.Linq.Expressions;
 
     /// <summary>
@@ -37,7 +38,7 @@ namespace System
 
             if (!(expression.Body is MemberExpression memberExpression))
             {
-                throw new ArgumentException("The expression is not a member access expression.", nameof(expression));
+                throw new ArgumentException(ExceptionMessages.LambdaExpressionExtensions_TheExpressionIsNotAMemberAccessExpression, nameof(expression));
             }
 
             return memberExpression;

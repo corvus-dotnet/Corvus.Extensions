@@ -2,8 +2,9 @@
 // Copyright (c) Endjin Limited. All rights reserved.
 // </copyright>
 
-namespace System
+namespace Corvus.Extensions
 {
+    using System;
     using System.Linq.Expressions;
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Endjin.Extensions.Specs.TaskExtensionsFeatures.Context
+﻿namespace Corvus.Extensions.SpecsTaskExtensionsFeatures.Context
 {
     internal class SimpleParent
     {

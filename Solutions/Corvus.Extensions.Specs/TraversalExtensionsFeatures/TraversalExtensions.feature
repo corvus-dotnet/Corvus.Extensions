@@ -93,17 +93,6 @@ Scenario: A null collection is enumerated with foreachatindex
 	When I enumerate a null collection with foreachatindex
 	Then a NullReferenceException should be thrown
 
-Scenario: An integer range is generated
-	Given the following integer collections
-	| Collection | Value       |
-	| 1          | 1           |
-	| 1          | 2           |
-	| 1          | 3           |
-	| 1          | 4           |
-	| 1          | 5           |
-	When I generate a range from 1 to 5
-	Then The range should match collection 1
-
 Scenario: A collection is enumerated with foreachasync
 	Given the following collections
 	| Collection | Value       |

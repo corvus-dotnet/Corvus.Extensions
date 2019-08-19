@@ -79,26 +79,26 @@ namespace Corvus.Extensions.Specs.TraversalExtensionsFeatures
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table71 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table71.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "1",
                         "1"});
-            table71.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "1",
                         "2"});
-            table71.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "1",
                         "3"});
-            table71.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "1",
                         "4"});
-            table71.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "1",
                         "5"});
 #line 7
- testRunner.Given("the following collections", ((string)(null)), table71, "Given ");
+ testRunner.Given("the following collections", ((string)(null)), table1, "Given ");
 #line 14
  testRunner.When("I enumerate collection 1 with foreach add to another collection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
@@ -116,26 +116,26 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table72 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table72.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "1",
                         "1"});
-            table72.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "1",
                         "2"});
-            table72.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "1",
                         "3"});
-            table72.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "1",
                         "4"});
-            table72.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "1",
                         "5"});
 #line 18
- testRunner.Given("the following collections", ((string)(null)), table72, "Given ");
+ testRunner.Given("the following collections", ((string)(null)), table2, "Given ");
 #line 25
  testRunner.When("I enumerate collection 1 with foreach with no action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 26
@@ -153,26 +153,26 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table73 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table73.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "1",
                         "1"});
-            table73.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "1",
                         "2"});
-            table73.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "1",
                         "3"});
-            table73.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "1",
                         "4"});
-            table73.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "1",
                         "5"});
 #line 29
- testRunner.Given("the following collections", ((string)(null)), table73, "Given ");
+ testRunner.Given("the following collections", ((string)(null)), table3, "Given ");
 #line 36
  testRunner.When("I enumerate collection 1 with foreachatindex add to another collection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 37
@@ -192,26 +192,26 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table74 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table74.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "1",
                         "1"});
-            table74.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "1",
                         "2"});
-            table74.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "1",
                         "3"});
-            table74.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "1",
                         "4"});
-            table74.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "1",
                         "5"});
 #line 41
- testRunner.Given("the following collections", ((string)(null)), table74, "Given ");
+ testRunner.Given("the following collections", ((string)(null)), table4, "Given ");
 #line 48
  testRunner.When("I enumerate collection 1 with foreachatindex with no action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 49
@@ -229,26 +229,26 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table75 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table75.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "1",
                         "1"});
-            table75.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "1",
                         "2"});
-            table75.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "1",
                         "3"});
-            table75.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "1",
                         "4"});
-            table75.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "1",
                         "5"});
 #line 52
- testRunner.Given("the following collections", ((string)(null)), table75, "Given ");
+ testRunner.Given("the following collections", ((string)(null)), table5, "Given ");
 #line 59
  testRunner.When("I enumerate collection 1 with foreachfailend add to another collection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 60
@@ -266,26 +266,26 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table76 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table76.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "1",
                         "1"});
-            table76.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "1",
                         "2"});
-            table76.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "1",
                         "3"});
-            table76.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "1",
                         "4"});
-            table76.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "1",
                         "5"});
 #line 63
- testRunner.Given("the following collections", ((string)(null)), table76, "Given ");
+ testRunner.Given("the following collections", ((string)(null)), table6, "Given ");
 #line 70
  testRunner.When("I enumerate collection 1 with foreachfailend with a failing action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 71
@@ -304,26 +304,26 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table77 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table77.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "1",
                         "1"});
-            table77.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "1",
                         "2"});
-            table77.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "1",
                         "3"});
-            table77.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "1",
                         "4"});
-            table77.AddRow(new string[] {
+            table7.AddRow(new string[] {
                         "1",
                         "5"});
 #line 74
- testRunner.Given("the following collections", ((string)(null)), table77, "Given ");
+ testRunner.Given("the following collections", ((string)(null)), table7, "Given ");
 #line 81
  testRunner.When("I enumerate collection 1 with foreachfailend with no action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 82
@@ -381,74 +381,37 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("An integer range is generated")]
-        public virtual void AnIntegerRangeIsGenerated()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("An integer range is generated", null, ((string[])(null)));
-#line 96
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line hidden
-            TechTalk.SpecFlow.Table table78 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Collection",
-                        "Value"});
-            table78.AddRow(new string[] {
-                        "1",
-                        "1"});
-            table78.AddRow(new string[] {
-                        "1",
-                        "2"});
-            table78.AddRow(new string[] {
-                        "1",
-                        "3"});
-            table78.AddRow(new string[] {
-                        "1",
-                        "4"});
-            table78.AddRow(new string[] {
-                        "1",
-                        "5"});
-#line 97
- testRunner.Given("the following integer collections", ((string)(null)), table78, "Given ");
-#line 104
- testRunner.When("I generate a range from 1 to 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 105
- testRunner.Then("The range should match collection 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("A collection is enumerated with foreachasync")]
         public virtual void ACollectionIsEnumeratedWithForeachasync()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A collection is enumerated with foreachasync", null, ((string[])(null)));
-#line 107
+#line 96
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table79 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table79.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "1",
                         "1"});
-            table79.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "1",
                         "2"});
-            table79.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "1",
                         "3"});
-            table79.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "1",
                         "4"});
-            table79.AddRow(new string[] {
+            table8.AddRow(new string[] {
                         "1",
                         "5"});
-#line 108
- testRunner.Given("the following collections", ((string)(null)), table79, "Given ");
-#line 115
+#line 97
+ testRunner.Given("the following collections", ((string)(null)), table8, "Given ");
+#line 104
  testRunner.When("I enumerate collection 1 with foreachasync add to another collection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 116
+#line 105
  testRunner.Then("Collection 2 should match Collection 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -459,33 +422,33 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ACollectionIsEnumeratedWithForeachasyncWithNoAction()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A collection is enumerated with foreachasync with no action", null, ((string[])(null)));
-#line 118
+#line 107
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table80 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table80.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "1",
                         "1"});
-            table80.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "1",
                         "2"});
-            table80.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "1",
                         "3"});
-            table80.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "1",
                         "4"});
-            table80.AddRow(new string[] {
+            table9.AddRow(new string[] {
                         "1",
                         "5"});
-#line 119
- testRunner.Given("the following collections", ((string)(null)), table80, "Given ");
-#line 126
+#line 108
+ testRunner.Given("the following collections", ((string)(null)), table9, "Given ");
+#line 115
  testRunner.When("I enumerate collection 1 with foreachasync with no action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 127
+#line 116
  testRunner.Then("an ArgumentNullException should be thrown for parameter \"action\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -496,12 +459,12 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ANullCollectionIsEnumeratedWithForeachasync()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A null collection is enumerated with foreachasync", null, ((string[])(null)));
-#line 129
+#line 118
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 130
+#line 119
  testRunner.When("I enumerate a null collection with foreachasync", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 131
+#line 120
  testRunner.Then("a NullReferenceException should be thrown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -512,33 +475,33 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ACollectionIsEnumeratedWithForeachfailendasync()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A collection is enumerated with foreachfailendasync", null, ((string[])(null)));
-#line 133
+#line 122
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table81 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table81.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "1",
                         "1"});
-            table81.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "1",
                         "2"});
-            table81.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "1",
                         "3"});
-            table81.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "1",
                         "4"});
-            table81.AddRow(new string[] {
+            table10.AddRow(new string[] {
                         "1",
                         "5"});
-#line 134
- testRunner.Given("the following collections", ((string)(null)), table81, "Given ");
-#line 141
+#line 123
+ testRunner.Given("the following collections", ((string)(null)), table10, "Given ");
+#line 130
  testRunner.When("I enumerate collection 1 with foreachfailendasync add to another collection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 142
+#line 131
  testRunner.Then("Collection 2 should match Collection 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -549,33 +512,33 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ACollectionIsEnumeratedWithForeachfailendasyncWithAFailingAction()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A collection is enumerated with foreachfailendasync with a failing action", null, ((string[])(null)));
-#line 144
+#line 133
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table82 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table82.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "1",
                         "1"});
-            table82.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "1",
                         "2"});
-            table82.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "1",
                         "3"});
-            table82.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "1",
                         "4"});
-            table82.AddRow(new string[] {
+            table11.AddRow(new string[] {
                         "1",
                         "5"});
-#line 145
- testRunner.Given("the following collections", ((string)(null)), table82, "Given ");
-#line 152
+#line 134
+ testRunner.Given("the following collections", ((string)(null)), table11, "Given ");
+#line 141
  testRunner.When("I enumerate collection 1 with foreachfailendasync with a failing action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 153
+#line 142
  testRunner.Then("an Aggregate exception should be thrown containing 5 \"InvalidOperationException\" " +
                     "instances", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -587,33 +550,33 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ACollectionIsEnumeratedWithForeachfailendasyncWithNoAction()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A collection is enumerated with foreachfailendasync with no action", null, ((string[])(null)));
-#line 155
+#line 144
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table83 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table83.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "1",
                         "1"});
-            table83.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "1",
                         "2"});
-            table83.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "1",
                         "3"});
-            table83.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "1",
                         "4"});
-            table83.AddRow(new string[] {
+            table12.AddRow(new string[] {
                         "1",
                         "5"});
-#line 156
- testRunner.Given("the following collections", ((string)(null)), table83, "Given ");
-#line 163
+#line 145
+ testRunner.Given("the following collections", ((string)(null)), table12, "Given ");
+#line 152
  testRunner.When("I enumerate collection 1 with foreachfailendasync with no action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 164
+#line 153
  testRunner.Then("an ArgumentNullException should be thrown for parameter \"action\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -624,12 +587,12 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ANullCollectionIsEnumeratedWithForeachfailendasync()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A null collection is enumerated with foreachfailendasync", null, ((string[])(null)));
-#line 166
+#line 155
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 167
+#line 156
  testRunner.When("I enumerate a null collection with foreachfailendasync", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 168
+#line 157
  testRunner.Then("a NullReferenceException should be thrown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -640,35 +603,35 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ACollectionIsEnumeratedWithForeachatindexasync()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A collection is enumerated with foreachatindexasync", null, ((string[])(null)));
-#line 171
+#line 160
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table84 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table84.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "1",
                         "1"});
-            table84.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "1",
                         "2"});
-            table84.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "1",
                         "3"});
-            table84.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "1",
                         "4"});
-            table84.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "1",
                         "5"});
-#line 172
- testRunner.Given("the following collections", ((string)(null)), table84, "Given ");
-#line 179
+#line 161
+ testRunner.Given("the following collections", ((string)(null)), table13, "Given ");
+#line 168
  testRunner.When("I enumerate collection 1 with foreachatindexasync add to another collection", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 180
+#line 169
  testRunner.Then("Collection 2 should match Collection 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 181
+#line 170
  testRunner.And("each index should be passed in order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -679,33 +642,33 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ACollectionIsEnumeratedWithForeachatindexasyncWithNoAction()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A collection is enumerated with foreachatindexasync with no action", null, ((string[])(null)));
-#line 183
+#line 172
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table85 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                         "Collection",
                         "Value"});
-            table85.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "1",
                         "1"});
-            table85.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "1",
                         "2"});
-            table85.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "1",
                         "3"});
-            table85.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "1",
                         "4"});
-            table85.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "1",
                         "5"});
-#line 184
- testRunner.Given("the following collections", ((string)(null)), table85, "Given ");
-#line 191
+#line 173
+ testRunner.Given("the following collections", ((string)(null)), table14, "Given ");
+#line 180
  testRunner.When("I enumerate collection 1 with foreachatindexasync with no action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 192
+#line 181
  testRunner.Then("an ArgumentNullException should be thrown for parameter \"action\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -716,12 +679,12 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ANullCollectionIsEnumeratedWithForeachatindexasync()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A null collection is enumerated with foreachatindexasync", null, ((string[])(null)));
-#line 194
+#line 183
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 195
+#line 184
  testRunner.When("I enumerate a null collection with foreachatindexasync", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 196
+#line 185
  testRunner.Then("a NullReferenceException should be thrown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -732,67 +695,67 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void WhenYouMergeTwoDictionaries()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("When you merge two dictionaries", null, ((string[])(null)));
-#line 199
+#line 188
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
-            TechTalk.SpecFlow.Table table86 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                         "Dictionary",
                         "Key",
                         "Value"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "1",
                         "1",
                         "3"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "1",
                         "4",
                         "1"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "1",
                         "5",
                         "2"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "2",
                         "1",
                         "1"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "2",
                         "2",
                         "3"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "2",
                         "3",
                         "5"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "2",
                         "4",
                         "3"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "3",
                         "1",
                         "1"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "3",
                         "2",
                         "3"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "3",
                         "3",
                         "5"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "3",
                         "4",
                         "3"});
-            table86.AddRow(new string[] {
+            table15.AddRow(new string[] {
                         "3",
                         "5",
                         "2"});
-#line 200
- testRunner.Given("the following dictionaries", ((string)(null)), table86, "Given ");
-#line 214
+#line 189
+ testRunner.Given("the following dictionaries", ((string)(null)), table15, "Given ");
+#line 203
  testRunner.When("I merge Dictionary 1 with Dictionary 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 215
+#line 204
  testRunner.Then("Dictionary 2 should equal Dictionary 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

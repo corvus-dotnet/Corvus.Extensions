@@ -70,20 +70,11 @@ namespace Corvus.Extensions {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified type must be an enumeration..
+        ///   Looks up a localized string similar to The expression is not a member access expression..
         /// </summary>
-        internal static string StringExtensions_SpecifiedTypeMustBeAnEnumeration {
+        internal static string LambdaExpressionExtensions_TheExpressionIsNotAMemberAccessExpression {
             get {
-                return ResourceManager.GetString("StringExtensions_SpecifiedTypeMustBeAnEnumeration", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The string must be longer than the index value..
-        /// </summary>
-        internal static string StringExtensions_TheStringMustBeLongerThanTheIndexValue {
-            get {
-                return ResourceManager.GetString("StringExtensions_TheStringMustBeLongerThanTheIndexValue", resourceCulture);
+                return ResourceManager.GetString("LambdaExpressionExtensions_TheExpressionIsNotAMemberAccessExpression", resourceCulture);
             }
         }
     }

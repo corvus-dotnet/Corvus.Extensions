@@ -1,4 +1,4 @@
-﻿namespace Corvus.Core.Specs.StringExtensionsFeature.Context
+﻿namespace Corvus.Extensions.Specs.StringExtensionsFeature.Context
 {
     internal enum ExampleEnum
     {

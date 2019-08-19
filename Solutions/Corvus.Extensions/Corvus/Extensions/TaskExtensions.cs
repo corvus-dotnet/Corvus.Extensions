@@ -2,10 +2,11 @@
 // Copyright (c) Endjin Limited. All rights reserved.
 // </copyright>
 
-namespace System.Threading.Tasks
+namespace Corvus.Extensions
 {
     using System;
     using System.Reflection;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Extension methods for <see cref="Task"/>s.

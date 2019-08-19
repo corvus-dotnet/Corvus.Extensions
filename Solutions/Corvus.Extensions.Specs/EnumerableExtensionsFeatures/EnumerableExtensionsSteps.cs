@@ -1,4 +1,4 @@
-﻿namespace Corvus.Core.Specs.EnumerableExtensionsFeatures
+﻿namespace Corvus.Extensions.Specs.EnumerableExtensionsFeatures
 {
     #region Using Directives
 
@@ -23,14 +23,14 @@
         [Given(@"I have a collection with (.*) items")]
         public void GivenIHaveACollectionWithItems(int numberOfItemsInCollection)
         {
-            IEnumerable<int> collection = 1.To(numberOfItemsInCollection);
+            IEnumerable<int> collection = Enumerable.Range(1, numberOfItemsInCollection);
             this.context.Set(collection, "Collection");
         }
 
         [Given(@"I have a list with (.*) items")]
         public void GivenIHaveAListWithItems(int numberOfItemsInCollection)
         {
-            var collection = 1.To(numberOfItemsInCollection).ToList();
+            var collection = Enumerable.Range(1, numberOfItemsInCollection).ToList();
             this.context.Set(collection, "Collection");
         }
 
