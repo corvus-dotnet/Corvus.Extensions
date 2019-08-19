@@ -16,19 +16,6 @@ There is an efficient `Cast<>` which avoids boxing for value types.
 
 An `AddRange()` extension for `ICollection<T>`
 
-### DateTime and DateTimeOffset
-
-- create time ranged enumerables (e.g. by day)
-- `Math.Min()` and `Math.Max()` equivalents for time
-- comparison functions with optional granularity (e.g. year, month, week, decade)
-- approximate time differences (typically for display purposes)
-- sortable chronological and reverse-chronological timestamp strings with and without prefixes
-- end of day, last day of month
-- quick week number calculation for the current `DateTimeInfo`
-- UNIX time conversion
-- `DateTimeWithTimezone` type which stores actual time zone information alongside a `DateTime`
-
-If you have more complex date time requirements, we strongly recommend you look at [NodaTime](https://nodatime.org/)
 
 ### Dictionary
 
@@ -42,14 +29,6 @@ If you have more complex date time requirements, we strongly recommend you look 
 - Minimum count
 - An efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice
 
-### FileStream
-
-- Read all bytes in a file into a buffer (of up to 2GB)
-
-### Integer
-
-- Create an integer range from a start value to an end value (like `Enumerable.Range()` but where you know the desired start and end values)
-
 ### LambdaExpression
 
 - Extract a `MemberExpression` from a lambda expression
@@ -59,21 +38,12 @@ If you have more complex date time requirements, we strongly recommend you look 
 
 - Remove all items from the list that match a predicate
 
-### Stream
-
-- Flush and rewind the stream
-- Read as bytes
-- Read as a string in various encodings
-
 ### String
 
 - Get as a stream in various encodings
-- Get the first n characters/words with optional ellipsis
 - Base64 encode/decode (with or without URL safety)
 - Reverse
 - To camel case
-- Add/remove prefix or suffix
-- Replace XML tags in a string (safely; requires valid XML)
 
 ### Task
 
