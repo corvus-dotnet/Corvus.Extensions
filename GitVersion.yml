@@ -2,7 +2,7 @@ mode: ContinuousDeployment
 next-version: 0.3.0
 branches:
   feature:
-    tag: alpha
+    tag: 
   master:
     tag: ''
 ignore:
