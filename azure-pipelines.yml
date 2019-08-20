@@ -24,11 +24,16 @@ steps:
 #    preferBundledVersion: false
 #    additionalArguments: /diag
 
+# NB - In the future the GitVersion commands should be replaced with the GitVersion Azure DevOps task. However that task is currently unstable on Linux build agents.
+
 - task: NuGetCommand@2
   inputs:
     command: custom
     arguments: install GitVersion.CommandLine -Version 4.0.0 -OutputDirectory $(Build.BinariesDirectory)/tools -ExcludeVersion
   displayName: 'Install GitVersion'
+
+- script: mono $(Build.BinariesDirectory)/tools/GitVersion.CommandLine/tools/GitVersion.exe /output buildserver /nofetch
+  displayName: 'Determine Version'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
