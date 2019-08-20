@@ -28,7 +28,7 @@ steps:
 - script: 'dotnet-gitversion /output buildserver /nofetch' 
   displayName: 'Run GitVersion'
 
-- task: GitHubTag@0
+- task: GitHubTag@1
   displayName: 'Tag Git'
   inputs:
     githubEndpoint: 'corvus-dotnet-github'
