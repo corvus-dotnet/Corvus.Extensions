@@ -1,6 +1,11 @@
 trigger:
-- master
-- feature/*
+  branches:
+    include:
+    - master
+    - feature/*
+  tags:
+    include:
+    - *
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -76,3 +81,24 @@ steps:
   displayName: 'Publish Artifact: Drop'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+
+# Having tagged master, this will now be triggered to run and then publish to nuget.org
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet nuget push'
+  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
+  inputs:
+    command: push
+    publishVstsFeed: ''
+    versioningScheme: byBuildNumber
+
+- task: GithubRelease@0 
+  displayName: 'Create GitHub Release'      
+  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
+  inputs:
+    gitHubConnection: ""
+    repositoryName: ""
+    tagSource: manual
+    tag: $(GitVersion.SemVer) 
+    assets: 
+    - $(Build.ArtifactStagingDirectory)/*.nupkg
+    - $(Build.ArtifactStagingDirectory)/*.snupkg

@@ -1,0 +1,36 @@
+# Step 1 (Scenario C)
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+
+steps:
+
+- task: DotNetCoreInstaller@0
+  displayName: 'Install .NET Core SDK 2.2.401 (Global Tools error workaround)'
+  inputs:
+    version: 2.2.401
+
+# NB - In the future the GitVersion commands should be replaced with the GitVersion Azure DevOps task. However that task is currently unstable on Linux build agents.
+#- task: gittools.gitversion.gitversion-task.GitVersion@5
+#  displayName: 'GitVersion'
+#  inputs:
+#    preferBundledVersion: false
+
+- task: DotNetCoreCLI@2
+  displayName: 'Install GitVersion (Global Tools Linux Build Agent Workaround)'
+  inputs:
+    command: custom
+    custom: 'tool'
+    arguments: 'install -g GitVersion.Tool'
+
+- script: 'dotnet-gitversion /output buildserver /nofetch' 
+  displayName: 'Run GitVersion'
+
+- task: ATP.ATP-GitTag.GitTag.GitTag@5
+  displayName: 'GitTag '
+  inputs:
+    tagEmail: 'Build.Agent@endjin.com'
+    tag: '$(GitVersion.MajorMinorPatch)'
+    tagMessage: 'Release v$(GitVersion.MajorMinorPatch)'
