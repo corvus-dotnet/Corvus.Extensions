@@ -1,9 +1,5 @@
-mode: ContinuousDeployment
-next-version: 0.3.0
-branches:
-  feature:
-    tag: 
-  master:
-    tag: ''
-ignore:
-  sha: []
+branches: {
+  feature: {
+    mode: "ContinuousDeployment",
+  }
+}
