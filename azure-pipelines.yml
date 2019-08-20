@@ -1,5 +1,11 @@
 trigger:
-- master
+  branches:
+    include:
+    - master
+    - feature/*
+  tags:
+    include:
+    - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -8,6 +14,7 @@ variables:
 
   BuildConfiguration: 'Release'
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  IsPreRelease: ${{ ne(variables['GitVersion.PreReleaseTag'], '') }}
   SolutionToBuild: 'Solutions/Corvus.Extensions.sln'
 
 steps:
@@ -17,24 +24,36 @@ steps:
   inputs:
     version: 2.2.401
 
-- task: gittools.gitversion.gitversion-task.GitVersion@5
-  displayName: 'GitVersion'
+# NB - In the future the GitVersion commands should be replaced with the GitVersion Azure DevOps task. However that task is currently unstable on Linux build agents.
+#- task: gittools.gitversion.gitversion-task.GitVersion@5
+#  displayName: 'GitVersion'
+#  inputs:
+#    preferBundledVersion: false
+
+- task: DotNetCoreCLI@2
+  displayName: 'Install GitVersion (Global Tools Linux Build Agent Workaround)'
   inputs:
-    preferBundledVersion: false
+    command: custom
+    custom: 'tool'
+    arguments: 'install -g GitVersion.Tool'
+
+- script: 'dotnet-gitversion /output buildserver /nofetch' 
+  displayName: 'Run GitVersion'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
   inputs:
     command: 'build'
     projects: $(SolutionToBuild)
-    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration) '
+    arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.SemVer)'
+    versioningScheme: byBuildNumber
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Executable Specifications'
   inputs:
     command: 'test'
     projects: $(SolutionToBuild)
-    arguments: '-c $(BuildConfiguration) --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+    arguments: '-c $(BuildConfiguration) --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
     nobuild: true
 
 - script: |
@@ -56,9 +75,32 @@ steps:
     projects: $(SolutionToBuild)
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)'
     nobuild: true
-    buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
+    versioningScheme: byEnvVar
+    versionEnvVar: GitVersion.SemVer
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: Drop'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish to nuget.org'
+  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'corvus-dotnet-nuget-org'
+    versioningScheme: byBuildNumber
+
+- task: GithubRelease@0 
+  displayName: 'Create GitHub Release'      
+  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
+  inputs:
+    gitHubConnection: 'corvus-dotnet-github'
+    repositoryName: 'corvus-dotnet/Corvus.Extensions'
+    tagSource: manual
+    tag: $(GitVersion.SemVer) 
+    isPreRelease: $(IsPreRelease)
+    assets: |
+        $(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)/*.nupkg
+        $(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)/*.snupkg
