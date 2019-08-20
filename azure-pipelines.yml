@@ -18,11 +18,17 @@ steps:
   inputs:
     version: 2.2.401
 
-- task: gittools.gitversion.gitversion-task.GitVersion@5
-  displayName: 'GitVersion'
+#- task: gittools.gitversion.gitversion-task.GitVersion@5
+#  displayName: 'GitVersion'
+#  inputs:
+#    preferBundledVersion: false
+#    additionalArguments: /diag
+
+- task: NuGetCommand@2
   inputs:
-    preferBundledVersion: false
-    additionalArguments: /diag
+    command: custom
+    arguments: install GitVersion.CommandLine -Version 4.0.0 -OutputDirectory $(Build.BinariesDirectory)/tools -ExcludeVersion
+  displayName: 'Install GitVersion'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
