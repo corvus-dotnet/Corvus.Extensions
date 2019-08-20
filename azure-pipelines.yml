@@ -18,10 +18,11 @@ steps:
   inputs:
     version: 2.2.401
 
-- task: gittools.gitversion.gitversion-task.GitVersion@4
+- task: gittools.gitversion.gitversion-task.GitVersion@5
   displayName: 'GitVersion'
   inputs:
     preferBundledVersion: false
+    additionalArguments: /diag
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
