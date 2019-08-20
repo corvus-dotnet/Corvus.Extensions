@@ -83,7 +83,6 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
 
-# Having tagged master, this will now be triggered to run and then publish to nuget.org
 - task: DotNetCoreCLI@2
   displayName: 'Publish to nuget.org'
   condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))

@@ -28,9 +28,10 @@ steps:
 - script: 'dotnet-gitversion /output buildserver /nofetch' 
   displayName: 'Run GitVersion'
 
-- task: ATP.ATP-GitTag.GitTag.GitTag@5
-  displayName: 'GitTag'
+- task: DevMikaelKrief.githubtools.GitHubTag.GitHubTag@0
+  displayName: 'Tag Git'
   inputs:
-    tagEmail: 'Build.Agent@endjin.com'
+    githubEndpoint: 'corvus-dotnet-github'
+    repositoryName: 'corvus-dotnet/Corvus.Extensions'
+    commmit: 'Release v$(GitVersion.MajorMinorPatch)'
     tag: '$(GitVersion.MajorMinorPatch)'
-    tagMessage: 'Release v$(GitVersion.MajorMinorPatch)'
