@@ -84,21 +84,22 @@ steps:
 
 # Having tagged master, this will now be triggered to run and then publish to nuget.org
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet nuget push'
+  displayName: 'Publish to nuget.org'
   condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
   inputs:
     command: push
-    publishVstsFeed: ''
+    nuGetFeedType: external
+    publishFeedCredentials: 'corvus-dotnet-nuget-org'
     versioningScheme: byBuildNumber
 
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'      
   condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
   inputs:
-    gitHubConnection: ""
-    repositoryName: ""
+    gitHubConnection: 'corvus-dotnet'
+    repositoryName: 'corvus-dotnet/Corvus.Extensions'
     tagSource: manual
     tag: $(GitVersion.SemVer) 
     assets: |
-        $(Build.ArtifactStagingDirectory)/*.nupkg
-        $(Build.ArtifactStagingDirectory)/*.snupkg
+        $(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)/*.nupkg
+        $(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)/*.snupkg
