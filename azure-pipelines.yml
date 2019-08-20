@@ -18,7 +18,7 @@ steps:
   inputs:
     version: 2.2.401
 
-- task: gittools.gitversion.gitversion-task.GitVersion@5
+- task: gittools.gitversion.gitversion-task.GitVersion@4
   displayName: 'GitVersion'
   inputs:
     preferBundledVersion: false
