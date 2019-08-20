@@ -39,7 +39,7 @@ steps:
   inputs:
     command: 'build'
     projects: $(SolutionToBuild)
-    arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.NuGetVersion)'
+    arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.SemVer)'
     versioningScheme: byBuildNumber
 
 - task: DotNetCoreCLI@2
@@ -70,7 +70,7 @@ steps:
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)'
     nobuild: true
     versioningScheme: byEnvVar
-    versionEnvVar: GitVersion.NuGetVersion
+    versionEnvVar: GitVersion.SemVer
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: Drop'
