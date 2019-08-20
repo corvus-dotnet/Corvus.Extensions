@@ -92,8 +92,8 @@ steps:
     publishFeedCredentials: 'corvus-dotnet-nuget-org'
     versioningScheme: byBuildNumber
     packagesToPush: |
-      $(Build.ArtifactStagingDirectory)/**/*.nupkg
-      $(Build.ArtifactStagingDirectory)/**/*.snupkg
+      $(Build.ArtifactStagingDirectory)/*.nupkg
+      $(Build.ArtifactStagingDirectory)/*.snupkg
 
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'      
@@ -105,5 +105,5 @@ steps:
     tag: $(GitVersion.SemVer) 
     isPreRelease: $(IsPreRelease)
     assets: |
-        $(Build.ArtifactStagingDirectory)/**/*.nupkg
-        $(Build.ArtifactStagingDirectory)/**/*.snupkg
+        $(Build.ArtifactStagingDirectory)/*.nupkg
+        $(Build.ArtifactStagingDirectory)/*.snupkg
