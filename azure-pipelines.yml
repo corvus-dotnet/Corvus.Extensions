@@ -96,7 +96,7 @@ steps:
   displayName: 'Create GitHub Release'      
   condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
   inputs:
-    gitHubConnection: 'corvus-dotnet'
+    gitHubConnection: 'corvus-dotnet-github'
     repositoryName: 'corvus-dotnet/Corvus.Extensions'
     tagSource: manual
     tag: $(GitVersion.SemVer) 
