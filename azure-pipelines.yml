@@ -83,7 +83,7 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
 
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   displayName: 'Publish to nuget.org'
   condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
   inputs:
