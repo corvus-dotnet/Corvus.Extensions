@@ -14,6 +14,7 @@ variables:
 
   BuildConfiguration: 'Release'
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  IsPreRelease: ${{ ne(variables['GitVersion.PreReleaseTag'], '') }}
   SolutionToBuild: 'Solutions/Corvus.Extensions.sln'
 
 steps:
@@ -100,6 +101,7 @@ steps:
     repositoryName: 'corvus-dotnet/Corvus.Extensions'
     tagSource: manual
     tag: $(GitVersion.SemVer) 
+    isPreRelease: $(IsPreRelease)
     assets: |
         $(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)/*.nupkg
         $(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)/*.snupkg

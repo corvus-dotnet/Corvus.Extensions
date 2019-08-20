@@ -29,7 +29,7 @@ steps:
   displayName: 'Run GitVersion'
 
 - task: ATP.ATP-GitTag.GitTag.GitTag@5
-  displayName: 'GitTag '
+  displayName: 'GitTag'
   inputs:
     tagEmail: 'Build.Agent@endjin.com'
     tag: '$(GitVersion.MajorMinorPatch)'
