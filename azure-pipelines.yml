@@ -28,14 +28,15 @@ steps:
   inputs:
     command: 'build'
     projects: $(SolutionToBuild)
-    arguments: '/p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" --configuration $(BuildConfiguration) '
+    arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.NuGetVersion)'
+    versioningScheme: byBuildNumber
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Executable Specifications'
   inputs:
     command: 'test'
     projects: $(SolutionToBuild)
-    arguments: '-c $(BuildConfiguration) --no-restore /p:VersionPrefix="$(GitVersion.MajorMinorPatch)" /p:VersionSuffix="$(GitVersion.PreReleaseTag)" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+    arguments: '-c $(BuildConfiguration) --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
     nobuild: true
 
 - script: |
@@ -57,7 +58,8 @@ steps:
     projects: $(SolutionToBuild)
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages/$(Build.BuildID)'
     nobuild: true
-    buildProperties: 'VersionPrefix="$(GitVersion.MajorMinorPatch)";VersionSuffix="$(GitVersion.PreReleaseTag)"'
+    versioningScheme: byEnvVar
+    versionEnvVar: GitVersion.NuGetVersion
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: Drop'
