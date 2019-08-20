@@ -5,7 +5,7 @@ trigger:
     - feature/*
   tags:
     include:
-    - *
+    - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -99,6 +99,6 @@ steps:
     repositoryName: ""
     tagSource: manual
     tag: $(GitVersion.SemVer) 
-    assets: 
-    - $(Build.ArtifactStagingDirectory)/*.nupkg
-    - $(Build.ArtifactStagingDirectory)/*.snupkg
+    assets: |
+        $(Build.ArtifactStagingDirectory)/*.nupkg
+        $(Build.ArtifactStagingDirectory)/*.snupkg
