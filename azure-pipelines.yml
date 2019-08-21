@@ -40,6 +40,9 @@ steps:
 - script: 'dotnet-gitversion /output buildserver /nofetch' 
   displayName: 'Run GitVersion'
 
+- powershell: 'gci Env:'
+  displayName: 'Print Env Vars'
+
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
   inputs:
