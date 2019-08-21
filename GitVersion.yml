@@ -1,5 +1,4 @@
-branches: {
-  feature: {
-    mode: "ContinuousDeployment",
-  }
-}
+mode: "ContinuousDeployment"
+branches:
+  master:
+    tag: preview
