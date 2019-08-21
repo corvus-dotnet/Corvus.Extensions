@@ -103,4 +103,4 @@ steps:
     nuGetFeedType: external
     publishFeedCredentials: 'corvus-dotnet-nuget-org'
     versioningScheme: byBuildNumber
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
