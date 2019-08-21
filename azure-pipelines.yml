@@ -36,6 +36,9 @@ steps:
 - powershell: 'gci Env:'
   displayName: 'Print Env Vars'
 
+- powershell: '$Env:Endjin_IsPreRelease = (-not ([string]::IsNullOrEmpty($Env:GITVERSION_PRERELEASETAG)))'
+  displayName: 'Set Endjin_IsPreRelease Environment Variable'
+
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
   inputs:
@@ -91,7 +94,7 @@ steps:
     repositoryName: 'corvus-dotnet/Corvus.Extensions'
     tagSource: manual
     tag: $(GitVersion.SemVer) 
-    isPreRelease: ne(variables['GitVersion.PreReleaseTag'], '')
+    isPreRelease: $(Endjin_IsPreRelease)
     assets: |
         $(Build.ArtifactStagingDirectory)/**/*.nupkg
         $(Build.ArtifactStagingDirectory)/**/*.snupkg
