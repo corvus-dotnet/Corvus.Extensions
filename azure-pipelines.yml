@@ -33,8 +33,13 @@ steps:
 - script: 'dotnet-gitversion /output buildserver /nofetch' 
   displayName: 'Run GitVersion'
 
+- powershell: |
+    $IsPreRelease = (-not ([string]::IsNullOrEmpty($Env:GITVERSION_PRERELEASETAG)))
+    Write-Host "##vso[task.setvariable variable=Endjin_IsPreRelease]$IsPreRelease"
+  displayName: 'Set Endjin_IsPreRelease Variable'
+
 - powershell: 'gci Env:'
-  displayName: 'Print Env Vars'
+  displayName: 'Print Environment Variables'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
@@ -91,7 +96,7 @@ steps:
     repositoryName: 'corvus-dotnet/Corvus.Extensions'
     tagSource: manual
     tag: $(GitVersion.SemVer) 
-    isPreRelease: ne(variables['GitVersion.PreReleaseTag'], '')
+    isPreRelease: $(Endjin_IsPreRelease)
     assets: |
         $(Build.ArtifactStagingDirectory)/**/*.nupkg
         $(Build.ArtifactStagingDirectory)/**/*.snupkg
