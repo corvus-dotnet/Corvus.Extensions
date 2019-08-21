@@ -86,7 +86,7 @@ steps:
 
 - task: NuGetCommand@2
   displayName: 'Publish to nuget.org'
-  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
+  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], eq(variables['GitVersion.PreReleaseTag'], '')))
   inputs:
     command: push
     nuGetFeedType: external
@@ -96,13 +96,11 @@ steps:
 
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'      
-  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], and(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['GitVersion.PreReleaseTag'], ''))))
+  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], eq(variables['GitVersion.PreReleaseTag'], '')))
   inputs:
     gitHubConnection: 'corvus-dotnet-github'
     repositoryName: 'corvus-dotnet/Corvus.Extensions'
     tagSource: manual
     tag: $(GitVersion.SemVer) 
     isPreRelease: $(IsPreRelease)
-    assets: |
-        $(Build.ArtifactStagingDirectory)/**/*.nupkg
-        $(Build.ArtifactStagingDirectory)/**/*.snupkg
+    assets: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;$(Build.ArtifactStagingDirectory)/**/*.snupkg'
