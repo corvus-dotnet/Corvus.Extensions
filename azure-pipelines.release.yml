@@ -24,10 +24,14 @@ steps:
 - script: 'dotnet-gitversion /output buildserver /nofetch' 
   displayName: 'Run GitVersion'
 
+- powershell: |
+    Write-Host "##vso[task.setvariable variable=Endjin_Repository_Name]$Env:BUILD_REPOSITORY_NAME"
+  displayName: 'Set Environment Variable for Tag Git'
+
 - task: GitHubTag@1
   displayName: 'Tag Git'
   inputs:
     githubEndpoint: 'corvus-dotnet-github'
-    repositoryName: 'corvus-dotnet/Corvus.Extensions'
+    repositoryName: $(Endjin_Repository_Name)
     commmit: 'Release v$(GitVersion.MajorMinorPatch)'
     tag: '$(GitVersion.MajorMinorPatch)'
