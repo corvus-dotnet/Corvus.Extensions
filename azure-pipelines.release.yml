@@ -13,12 +13,6 @@ steps:
   inputs:
     version: 2.2.401
 
-# NB - In the future the GitVersion commands should be replaced with the GitVersion Azure DevOps task. However that task is currently unstable on Linux build agents.
-#- task: gittools.gitversion.gitversion-task.GitVersion@5
-#  displayName: 'GitVersion'
-#  inputs:
-#    preferBundledVersion: false
-
 - task: DotNetCoreCLI@2
   displayName: 'Install GitVersion (Global Tools Linux Build Agent Workaround)'
   inputs:
