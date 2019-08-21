@@ -92,7 +92,9 @@ steps:
     tagSource: manual
     tag: $(GitVersion.SemVer) 
     isPreRelease: ne(variables['GitVersion.PreReleaseTag'], '')
-    assets: '$(Build.ArtifactStagingDirectory)/**/*.nupkg $(Build.ArtifactStagingDirectory)/**/*.snupkg'
+    assets: |
+        $(Build.ArtifactStagingDirectory)/**/*.nupkg
+        $(Build.ArtifactStagingDirectory)/**/*.snupkg
 
 - task: NuGetCommand@2
   displayName: 'Publish to nuget.org'
