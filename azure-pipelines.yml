@@ -84,16 +84,6 @@ steps:
   inputs:
     versionSpec: '5.1.0'
 
-- task: NuGetCommand@2
-  displayName: 'Publish to nuget.org'
-  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], eq(variables['GitVersion.PreReleaseTag'], '')))
-  inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: 'corvus-dotnet-nuget-org'
-    versioningScheme: byBuildNumber
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;$(Build.ArtifactStagingDirectory)/**/*.snupkg'
-
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'      
   condition: and(succeeded(), or(variables['Endjin.ForcePublish'], eq(variables['GitVersion.PreReleaseTag'], '')))
@@ -104,3 +94,13 @@ steps:
     tag: $(GitVersion.SemVer) 
     isPreRelease: $(IsPreRelease)
     assets: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;$(Build.ArtifactStagingDirectory)/**/*.snupkg'
+
+- task: NuGetCommand@2
+  displayName: 'Publish to nuget.org'
+  condition: and(succeeded(), or(variables['Endjin.ForcePublish'], eq(variables['GitVersion.PreReleaseTag'], '')))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'corvus-dotnet-nuget-org'
+    versioningScheme: byBuildNumber
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg
