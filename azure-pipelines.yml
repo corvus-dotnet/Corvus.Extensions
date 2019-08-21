@@ -33,7 +33,9 @@ steps:
 - script: 'dotnet-gitversion /output buildserver /nofetch' 
   displayName: 'Run GitVersion'
 
-- powershell: 'Write-Host "##vso[task.setvariable variable=Endjin_IsPreRelease](-not ([string]::IsNullOrEmpty($Env:GITVERSION_PRERELEASETAG)))"'
+- powershell: |
+    $IsPreRelease = (-not ([string]::IsNullOrEmpty($Env:GITVERSION_PRERELEASETAG)))
+    Write-Host "##vso[task.setvariable variable=Endjin_IsPreRelease]$IsPreRelease"
   displayName: 'Set Endjin_IsPreRelease Variable'
 
 - powershell: 'gci Env:'
