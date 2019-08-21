@@ -36,10 +36,11 @@ steps:
 - powershell: |
     $IsPreRelease = (-not ([string]::IsNullOrEmpty($Env:GITVERSION_PRERELEASETAG)))
     Write-Host "##vso[task.setvariable variable=Endjin_IsPreRelease]$IsPreRelease"
-  displayName: 'Set Endjin_IsPreRelease Variable'
+  displayName: 'Set Endjin_IsPreRelease Variable for GitHub Releases'
 
-- powershell: 'gci Env:'
-  displayName: 'Print Environment Variables'
+# Useful for debugging purposes
+#- powershell: 'gci Env:'
+#  displayName: 'Print Environment Variables'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
