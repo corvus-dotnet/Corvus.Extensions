@@ -36,10 +36,12 @@ steps:
 - powershell: |
     $IsPreRelease = (-not ([string]::IsNullOrEmpty($Env:GITVERSION_PRERELEASETAG)))
     Write-Host "##vso[task.setvariable variable=Endjin_IsPreRelease]$IsPreRelease"
-  displayName: 'Set Endjin_IsPreRelease Variable'
+    Write-Host "##vso[task.setvariable variable=Endjin_Repository_Name]$Env:BUILD_REPOSITORY_NAME"
+  displayName: 'Set Environment Variable for GitHub Releases'
 
-- powershell: 'gci Env:'
-  displayName: 'Print Environment Variables'
+# Useful for debugging purposes
+#- powershell: 'gci Env:'
+#  displayName: 'Print Environment Variables'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore & Build'
@@ -93,7 +95,7 @@ steps:
   condition: and(succeeded(), or(variables['Endjin.ForcePublish'], eq(variables['GitVersion.PreReleaseTag'], '')))
   inputs:
     gitHubConnection: 'corvus-dotnet-github'
-    repositoryName: 'corvus-dotnet/Corvus.Extensions'
+    repositoryName: $(Endjin_Repository_Name)
     tagSource: manual
     tag: $(GitVersion.SemVer) 
     isPreRelease: $(Endjin_IsPreRelease)
