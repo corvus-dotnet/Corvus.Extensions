@@ -3,7 +3,7 @@ resources:
     - repository: recommended_practices
       type: github
       name: endjin/Endjin.RecommendedPractices.AzureDevopsPipelines.GitHub
-      endpoint: $(Endjin_Service_Connection_GitHub)
+      endpoint: corvus-dotnet-github
 
 jobs:
 - template: templates/build.and.release.yml@recommended_practices
