@@ -1,8 +1,9 @@
 resources:
   repositories:
-    - repository: endjin_recommended_practices
+    - repository: template
       type: github
       name: endjin/Endjin.RecommendedPractices.AzureDevopsPipelines.GitHub
+      endpoint: $(Endjin_Service_Connection_GitHub)
 
 jobs:
-- template: templates/build.and.release.yml@endjin_recommended_practices
+- template: templates/build.and.release.yml@template
