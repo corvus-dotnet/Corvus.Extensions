@@ -20,6 +20,16 @@ namespace Corvus.Extensions
         /// <param name="match">The predicate.</param>
         public static void RemoveAll<T>(this IList<T> destination, Predicate<T> match)
         {
+            if (destination is null)
+            {
+                throw new ArgumentNullException(nameof(destination));
+            }
+
+            if (match is null)
+            {
+                throw new ArgumentNullException(nameof(match));
+            }
+
             if (destination is List<T> list)
             {
                 list.RemoveAll(match);

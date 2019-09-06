@@ -25,6 +25,11 @@ namespace Corvus.Extensions
         /// <returns>The Base 64 encoded string.</returns>
         public static string AsBase64(this string value, Encoding encoding)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return Convert.ToBase64String(encoding.GetBytes(value));
         }
 
@@ -35,6 +40,11 @@ namespace Corvus.Extensions
         /// <returns>The Base 64 encoded string.</returns>
         public static string AsBase64(this string value)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return AsBase64(value, Encoding.UTF8);
         }
 
@@ -46,6 +56,11 @@ namespace Corvus.Extensions
         /// <returns>The Base 64 encoded string.</returns>
         public static string Base64UrlEncode(this string input)
         {
+            if (input is null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+
             byte[] arg = Encoding.UTF8.GetBytes(input);
             string s = Convert.ToBase64String(arg); // Regular base64 encoder
             s = s.Split('=')[0]; // Remove any trailing '='s
@@ -61,6 +76,11 @@ namespace Corvus.Extensions
         /// <returns>The original string.</returns>
         public static string Base64UrlDecode(this string arg)
         {
+            if (arg is null)
+            {
+                throw new ArgumentNullException(nameof(arg));
+            }
+
             string s = arg;
             s = s.Replace('-', '+'); // 62nd char of encoding
             s = s.Replace('_', '/'); // 63rd char of encoding
@@ -86,6 +106,11 @@ namespace Corvus.Extensions
         /// <returns>A stream over the UTF8-encoded representation of the string.</returns>
         public static Stream AsStream(this string value)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return AsStream(value, Encoding.UTF8);
         }
 
@@ -97,6 +122,11 @@ namespace Corvus.Extensions
         /// <returns>A stream over the encoded representation of the string.</returns>
         public static Stream AsStream(this string value, Encoding encoding)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             byte[] bytes = encoding.GetBytes(value);
             return new MemoryStream(bytes);
         }
@@ -109,6 +139,11 @@ namespace Corvus.Extensions
         /// <remarks><seealso cref="UnescapeContentType(string)"/></remarks>
         public static string EscapeContentType(this string contentType)
         {
+            if (contentType is null)
+            {
+                throw new ArgumentNullException(nameof(contentType));
+            }
+
             return Uri.EscapeDataString(contentType.Replace('/', '`').Replace('.', '|'));
         }
 
@@ -120,6 +155,11 @@ namespace Corvus.Extensions
         /// <returns>The original string represented by the base-64 encoded byte array.</returns>
         public static string FromBase64(this string value, Encoding encoding)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             byte[] bytes = Convert.FromBase64String(value);
 
             return encoding.GetString(bytes, 0, bytes.Length);
@@ -132,6 +172,11 @@ namespace Corvus.Extensions
         /// <returns>The original string represented by the base-64 encoded byte array.</returns>
         public static string FromBase64(this string value)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             return FromBase64(value, Encoding.UTF8);
         }
 
@@ -142,6 +187,11 @@ namespace Corvus.Extensions
         /// <returns>An enumerable set of strings representing each grapheme cluster in the string.</returns>
         public static IEnumerable<string> GetGraphemeClusters(this string s)
         {
+            if (s is null)
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
+
             TextElementEnumerator enumerator = StringInfo.GetTextElementEnumerator(s);
             while (enumerator.MoveNext())
             {
@@ -156,6 +206,11 @@ namespace Corvus.Extensions
         /// <returns>The reversed string, respecting grapheme clusters.</returns>
         public static string Reverse(this string s)
         {
+            if (s is null)
+            {
+                throw new ArgumentNullException(nameof(s));
+            }
+
             return string.Concat(s.GetGraphemeClusters().Reverse().ToArray());
         }
 
@@ -167,6 +222,11 @@ namespace Corvus.Extensions
         /// <remarks><seealso cref="EscapeContentType(string)"/></remarks>
         public static string UnescapeContentType(this string contentType)
         {
+            if (contentType is null)
+            {
+                throw new ArgumentNullException(nameof(contentType));
+            }
+
             return Uri.UnescapeDataString(contentType).Replace('`', '/').Replace('|', '.');
         }
 

@@ -21,6 +21,11 @@ namespace Corvus.Extensions
         /// <returns>An enumerable of the distinct items in the enumerable.</returns>
         public static IEnumerable<T> DistinctPreserveOrder<T>(this IEnumerable<T> list)
         {
+            if (list is null)
+            {
+                throw new ArgumentNullException(nameof(list));
+            }
+
             var hashSet = new HashSet<T>();
             foreach (T item in list)
             {
@@ -43,6 +48,16 @@ namespace Corvus.Extensions
         /// <returns>An enumerable which concatenates the prvovided lists.</returns>
         public static IEnumerable<T> Concatenate<T>(this IEnumerable<T> first, params IEnumerable<T>[] lists)
         {
+            if (first is null)
+            {
+                throw new ArgumentNullException(nameof(first));
+            }
+
+            if (lists is null)
+            {
+                throw new ArgumentNullException(nameof(lists));
+            }
+
             foreach (T item in first)
             {
                 yield return item;
@@ -66,6 +81,11 @@ namespace Corvus.Extensions
         /// <returns>True if the enumerable contains at least this number of items.</returns>
         public static bool HasMinimumCount<T>(this IEnumerable<T> enumerable, int count)
         {
+            if (enumerable is null)
+            {
+                throw new ArgumentNullException(nameof(enumerable));
+            }
+
             if (count < 1)
             {
                 throw new ArgumentOutOfRangeException(nameof(count), ExceptionMessages.EnumerableExtensions_HasMinimumCount_CountMustBeGreaterThanZero);
@@ -100,6 +120,16 @@ namespace Corvus.Extensions
         /// </remarks>
         public static bool AllAndAtLeastOne<T>(this IEnumerable<T> enumerable, Func<T, bool> predicate)
         {
+            if (enumerable is null)
+            {
+                throw new ArgumentNullException(nameof(enumerable));
+            }
+
+            if (predicate is null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+
             // Logically, this is:
             //  enumerable.Any() && enumerable.All(predicate)
             // However that's inefficient because it will start to enumerate twice. (The Any and
@@ -135,6 +165,16 @@ namespace Corvus.Extensions
         /// <returns>The distinct elements.</returns>
         public static IEnumerable<T> DistinctBy<T, TIdentity>(this IEnumerable<T> source, Func<T, TIdentity> identitySelector)
         {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (identitySelector is null)
+            {
+                throw new ArgumentNullException(nameof(identitySelector));
+            }
+
             return source.Distinct(new DelegateEqualityComparer<T, TIdentity>(identitySelector));
         }
 

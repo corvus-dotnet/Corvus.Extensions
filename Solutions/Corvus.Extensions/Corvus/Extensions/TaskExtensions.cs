@@ -26,6 +26,11 @@ namespace Corvus.Extensions
         /// </remarks>
         public static async Task<T> CastWithConversion<T>(this Task task)
         {
+            if (task is null)
+            {
+                throw new ArgumentNullException(nameof(task));
+            }
+
             await task.ConfigureAwait(false);
 
             PropertyInfo resultPropertyInfo = task.GetType().GetProperty("Result");
@@ -47,6 +52,11 @@ namespace Corvus.Extensions
         /// <exception cref="InvalidCastException">The task was not a task of the given type.</exception>
         public static Task<T> Cast<T>(this Task task)
         {
+            if (task is null)
+            {
+                throw new ArgumentNullException(nameof(task));
+            }
+
             if (task is Task<T> result)
             {
                 return result;

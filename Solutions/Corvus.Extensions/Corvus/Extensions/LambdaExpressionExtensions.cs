@@ -19,6 +19,11 @@ namespace Corvus.Extensions
         /// <returns>The name of the property expression.</returns>
         public static string ExtractPropertyName(this LambdaExpression expression)
         {
+            if (expression is null)
+            {
+                throw new ArgumentNullException(nameof(expression));
+            }
+
             MemberExpression memberExpression = GetMemberExpression(expression);
 
             return memberExpression.Member.Name;
