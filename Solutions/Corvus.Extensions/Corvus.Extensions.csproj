@@ -14,7 +14,7 @@
   <Import Project="..\Common.NetStandard_2_0.proj" />
 
   <ItemGroup>
-    <PackageReference Include="System.Interactive" Version="3.2.0" />
+    <PackageReference Include="System.Interactive" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
