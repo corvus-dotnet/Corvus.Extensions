@@ -10,21 +10,139 @@ It is built for netstandard2.0.
 ## Features
 
 ### Casting
-There is an efficient `Cast<>` which avoids boxing for value types.
+There is an efficient `Cast<>` which avoids boxing for value types, derived from [this StackOverflow answer](https://stackoverflow.com/a/23391746).
+
+This is commonly used in generic scenarios.
+
+Consider this interface
+
+```
+public interface IEntityInstance
+{
+  /// <summary>
+  /// Gets or sets the entity.
+  /// </summary>
+  object Entity { get; set; }}
+```
+
+and its strongly-typed generic counterpart
+
+```
+public interface IEntityInstance<T> : IEntityInstance
+{
+  /// <summary>
+  /// Gets or sets the entity of the given type.
+  /// </summary>
+  new T Entity { get; set; }
+}
+```
+
+In the implementation, we will see code like this
+
+```
+public sealed class EntityInstance<T> : IEntityInstance<T>
+{
+  /// <summary>
+  /// Gets or sets the entity.
+  /// </summary>
+  public T Entity { get; set; }
+  
+  object IEntityInstance.Entity
+  {
+    get => this.Entity;
+    set => this.Entity = CastTo<T>.From(value);
+  }
+}
+```
+
+`CastTo` supports a wide range of conversions with good efficiency trade-offs, including scenarios where `(T)(object)value` will fail.
 
 ### Collections
 
 An `AddRange()` extension for `ICollection<T>`
 
+```
+ICollection<int> someCollection;
+
+var myList = new List<int> { 1,2,3,4 };
+someCollection.AddRange(myList);
+```
 
 ### Dictionary
 
-- Add and Replace if there is no item for the given key
-- Merge two dictionaries (preserving the original value if already present)
+#### `AddIfNotExists()`
+
+Adds a value to a key, if the key does not already exist.
+
+```
+var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+
+myDictionary.AddIfNotExists("Hello", 3); // returns false, does not add to dictionary
+myDictionary.AddIfNotExists("Goodbye", 3); // returns true, adds to dictionary
+```
+
+#### `ReplaceIfExists()`
+
+Replaces a value in a key, but only if the key already exists.
+
+```
+var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+
+myDictionary.ReplaceIfExists("Hello", 3); // returns true, sets "Hello" to 3
+myDictionary.ReplaceIfExists("Goodbye", 3); // returns false, does not add to dictionary
+```
+
+#### `Merge()` 
+
+The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics, so the values in the first dictionary will be preserved.
+
+```
+var myDictionary1 = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+var myDictionary2 = new Dictionary<string, int> { { "Hello", 3 }, { "Goodbye", 4 } };
+
+myDictionary1.Merge(myDictionary2);
+
+// Results in:
+// { { "Hello", 1 }, { "World", 2 }, { "Goodbye", 4 } }
+
+``` 
 
 ### Enumerable
 
-- `Distinct()` preserving ordering, or with a predicate
+#### `DistinctPreserveOrder()`
+
+This emits an enumerable of the distinct items in the target, preserving their original ordering.
+
+For example.
+
+```
+var list = new List<int> { 1, 2, 3, 2, 4, 5, 6, 3 };
+var result = list.DistinctPreserveOrder();
+
+// Results in:
+
+{ 1, 2, 3, 4, 5, 6 }
+```
+
+#### `DistinctBy()`
+
+This allows you to provide a function to provide the value for equality comparison for each item.
+
+```
+class SomeType
+{
+  public string Prop1 { get; set; }
+  public int Prop2 { get; set; }
+}
+
+var list = new List<SomeType> { new SomeType { Prop1 = "Hello", Prop2 = 1 }, new SomeType { Prop1 = "Hello", Prop2 = 3 }, new SomeType { Prop1 = "World", Prop2 = 1 } };
+var result = list.DistinctBy(i => i.Prop1);
+
+// Results in:
+
+{ {"Hello", 1}, {"World", 1} }
+```
+
 - Concatenation
 - Minimum count
 - An efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice
