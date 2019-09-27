@@ -16,18 +16,19 @@ This is commonly used in generic scenarios.
 
 Consider this interface
 
-```
+```csharp
 public interface IEntityInstance
 {
   /// <summary>
   /// Gets or sets the entity.
   /// </summary>
-  object Entity { get; set; }}
+  object Entity { get; set; }
+}  
 ```
 
 and its strongly-typed generic counterpart
 
-```
+```csharp
 public interface IEntityInstance<T> : IEntityInstance
 {
   /// <summary>
@@ -39,7 +40,7 @@ public interface IEntityInstance<T> : IEntityInstance
 
 In the implementation, we will see code like this
 
-```
+```csharp
 public sealed class EntityInstance<T> : IEntityInstance<T>
 {
   /// <summary>
@@ -57,24 +58,24 @@ public sealed class EntityInstance<T> : IEntityInstance<T>
 
 `CastTo` supports a wide range of conversions with good efficiency trade-offs, including scenarios where `(T)(object)value` will fail.
 
-### Collections
+### `ICollection`
 
 An `AddRange()` extension for `ICollection<T>`
 
-```
+```csharp
 ICollection<int> someCollection;
 
 var myList = new List<int> { 1,2,3,4 };
 someCollection.AddRange(myList);
 ```
 
-### Dictionary
+### `IDictionary`
 
 #### `AddIfNotExists()`
 
 Adds a value to a key, if the key does not already exist.
 
-```
+```csharp
 var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
 
 myDictionary.AddIfNotExists("Hello", 3); // returns false, does not add to dictionary
@@ -85,7 +86,7 @@ myDictionary.AddIfNotExists("Goodbye", 3); // returns true, adds to dictionary
 
 Replaces a value in a key, but only if the key already exists.
 
-```
+```csharp
 var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
 
 myDictionary.ReplaceIfExists("Hello", 3); // returns true, sets "Hello" to 3
@@ -96,7 +97,7 @@ myDictionary.ReplaceIfExists("Goodbye", 3); // returns false, does not add to di
 
 The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics, so the values in the first dictionary will be preserved.
 
-```
+```csharp
 var myDictionary1 = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
 var myDictionary2 = new Dictionary<string, int> { { "Hello", 3 }, { "Goodbye", 4 } };
 
@@ -107,7 +108,7 @@ myDictionary1.Merge(myDictionary2);
 
 ``` 
 
-### Enumerable
+### `IEnumerable`
 
 #### `DistinctPreserveOrder()`
 
@@ -115,20 +116,19 @@ This emits an enumerable of the distinct items in the target, preserving their o
 
 For example.
 
-```
+```csharp
 var list = new List<int> { 1, 2, 3, 2, 4, 5, 6, 3 };
 var result = list.DistinctPreserveOrder();
 
 // Results in:
-
-{ 1, 2, 3, 4, 5, 6 }
+// { 1, 2, 3, 4, 5, 6 }
 ```
 
 #### `DistinctBy()`
 
 This allows you to provide a function to provide the value for equality comparison for each item.
 
-```
+```csharp
 class SomeType
 {
   public string Prop1 { get; set; }
@@ -139,22 +139,66 @@ var list = new List<SomeType> { new SomeType { Prop1 = "Hello", Prop2 = 1 }, new
 var result = list.DistinctBy(i => i.Prop1);
 
 // Results in:
-
-{ {"Hello", 1}, {"World", 1} }
+// { {"Hello", 1}, {"World", 1} }
 ```
 
-- Concatenation
-- Minimum count
-- An efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice
+#### `Concatenate()`
 
-### LambdaExpression
+This gives you the ability to concatenate mutiple enumerables, using the params pattern.
 
-- Extract a `MemberExpression` from a lambda expression
-- Extract a property name from a (property) lambda expression
+```csharp
+var list = new List<int> { 1, 2, 3 };
+var list2 = new List<int> { 4, 5, 6 };
+var list3 = new List<int> { 7, 8, 9 };
+var list4 = new List<int> { 10, 11, 12 };
+
+list.Concatenate(list2, list3, list4);
+
+// Results in: 
+// { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }
+```
+#### `HasMinimumCount()`
+
+This determines whether the enumerable has at least a given number of items in it.
+
+```csharpa
+var list = new List<int> { 1, 2, 3 };
+list.HasMinimumCount(3); // true
+list.HasMinimumCount(4); // false
+```
+
+#### `AllAndAtLeastOne()`
+This is an efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
+
+```csharp
+var list = new List<int> { 1, 2, 3 };
+var list2 = new List<int>();
+
+list.AllAndAtLeastOne(i => i <= 3); // true
+list.AllAndAtLeastOne(i => i <= 2); // false
+list2.AllAndAtLeastOne(i => i <= 2); // false
+```
+
+### `LambdaExpression`
+
+#### `GetMemberExpression()`
+This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
+
+#### `GetPropertyName()`
+This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`
 
 ### ListExtensions
 
-- Remove all items from the list that match a predicate
+#### `RemoveAll()`
+This removes all items from a list that match a predicate.
+
+```csharp
+var list = new List<int> { 1, 2, 3, 4, 5, 6 };
+list.RemoveAll(i => i < 3);
+
+// The list now contains:
+// { 3, 4, 5, 6 }
+```
 
 ### String
 
