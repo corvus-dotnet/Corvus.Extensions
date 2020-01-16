@@ -18,7 +18,7 @@
             this.context = context;
         }
 
-        [Given(@"the following collections")]
+        [Given("the following collections")]
         public void GivenTheFollowingCollections(Table table)
         {
             IEnumerable<IGrouping<string, TableRow>> collections = table.Rows.GroupBy(r => r["Collection"]);
@@ -30,7 +30,7 @@
             this.context.Add("Collections", result);
         }
 
-        [Given(@"the following dictionaries")]
+        [Given("the following dictionaries")]
         public void GivenTheFollowingDictionaries(Table table)
         {
             IEnumerable<IGrouping<string, TableRow>> dictionaries = table.Rows.GroupBy(r => r["Dictionary"]);
@@ -42,7 +42,7 @@
             this.context.Add("Dictionaries", result);
         }
 
-        [Given(@"the following integer collections")]
+        [Given("the following integer collections")]
         public void GivenTheFollowingIntegerCollections(Table table)
         {
             IEnumerable<IGrouping<string, TableRow>> collections = table.Rows.GroupBy(r => r["Collection"]);
@@ -73,14 +73,14 @@
             Assert.AreEqual(parameterName, ane.ParamName);
         }
 
-        [Then(@"a NullReferenceException should be thrown")]
+        [Then("a NullReferenceException should be thrown")]
         public void ThenANullReferenceExceptionShouldBeThrown()
         {
             Exception exception = this.context.Get<Exception>("Exception");
             Assert.IsInstanceOf<NullReferenceException>(exception);
         }
 
-        [Then(@"Collection (.*) should match Collection (.*)")]
+        [Then("Collection (.*) should match Collection (.*)")]
         public void ThenCollectionShouldMatchCollection(int index1, int index2)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -89,7 +89,7 @@
             Assert.AreEqual(c2, c1);
         }
 
-        [Then(@"Dictionary (.*) should equal Dictionary (.*)")]
+        [Then("Dictionary (.*) should equal Dictionary (.*)")]
         public void ThenDictionaryShouldBeDictionary(int index1, int index2)
         {
             List<Dictionary<int, int>> dictionaries = this.context.Get<List<Dictionary<int, int>>>("Dictionaries");
@@ -98,7 +98,7 @@
             CollectionAssert.AreEqual(d2.OrderBy(k => k.Key), d1.OrderBy(k => k.Key));
         }
 
-        [Then(@"each index should be passed in order")]
+        [Then("each index should be passed in order")]
         public void ThenEachIndexShouldBePassedInOrder()
         {
             List<int> indices = this.context.Get<List<int>>("Indices");
@@ -106,7 +106,7 @@
             CollectionAssert.AreEqual(Enumerable.Range(0, expectedIndexCount), indices);
         }
 
-        [Then(@"The range should match collection (.*)")]
+        [Then("The range should match collection (.*)")]
         public void ThenTheRangeShouldMatchCollection(int index)
         {
             List<List<int>> collections = this.context.Get<List<List<int>>>("Collections");
@@ -115,12 +115,12 @@
             CollectionAssert.AreEqual(c1, range);
         }
 
-        [When(@"I enumerate a null collection with foreach")]
+        [When("I enumerate a null collection with foreach")]
         public void WhenIEnumerateANullCollectionWithForeach()
         {
             try
             {
-                ((IEnumerable<string>)null).ForEach(c => this.Nop());
+                ((IEnumerable<string>)null).ForEach(_ => this.Nop());
             }
             catch (Exception ex)
             {
@@ -128,13 +128,13 @@
             }
         }
 
-        [When(@"I enumerate a null collection with foreachasync")]
+        [When("I enumerate a null collection with foreachasync")]
         public async Task WhenIEnumerateANullCollectionWithForeachasync()
         {
             try
             {
                 IEnumerable<string> collection = null;
-                await collection.ForEachAsync(null);
+                await collection.ForEachAsync(null).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -142,12 +142,12 @@
             }
         }
 
-        [When(@"I enumerate a null collection with foreachatindex")]
+        [When("I enumerate a null collection with foreachatindex")]
         public void WhenIEnumerateANullCollectionWithForeachatindex()
         {
             try
             {
-                ((IEnumerable<string>)null).ForEachAtIndex((c, i) => this.Nop());
+                ((IEnumerable<string>)null).ForEachAtIndex((_, __) => this.Nop());
             }
             catch (Exception ex)
             {
@@ -155,12 +155,12 @@
             }
         }
 
-        [When(@"I enumerate a null collection with foreachatindexasync")]
+        [When("I enumerate a null collection with foreachatindexasync")]
         public async Task WhenIEnumerateANullCollectionWithForeachatindexasync()
         {
             try
             {
-                await ((IEnumerable<string>)null).ForEachAtIndexAsync(null);
+                await ((IEnumerable<string>)null).ForEachAtIndexAsync(null).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -168,12 +168,12 @@
             }
         }
 
-        [When(@"I enumerate a null collection with foreachfailend")]
+        [When("I enumerate a null collection with foreachfailend")]
         public void WhenIEnumerateANullCollectionWithForeachfailend()
         {
             try
             {
-                ((IEnumerable<string>)null).ForEachFailEnd(c => this.Nop());
+                ((IEnumerable<string>)null).ForEachFailEnd(_ => this.Nop());
             }
             catch (Exception ex)
             {
@@ -181,12 +181,12 @@
             }
         }
 
-        [When(@"I enumerate a null collection with foreachfailendasync")]
+        [When("I enumerate a null collection with foreachfailendasync")]
         public async Task WhenIEnumerateANullCollectionWithForeachfailendasync()
         {
             try
             {
-                await ((IEnumerable<string>)null).ForEachFailEndAsync(null);
+                await ((IEnumerable<string>)null).ForEachFailEndAsync(null).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -194,7 +194,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreach add to another collection")]
+        [When("I enumerate collection (.*) with foreach add to another collection")]
         public void WhenIEnumerateCollectionWithForeachAddToAnotherCollection(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -204,17 +204,17 @@
             c1.ForEach(i => result.Add(i));
         }
 
-        [When(@"I enumerate collection (.*) with foreachasync add to another collection")]
+        [When("I enumerate collection (.*) with foreachasync add to another collection")]
         public async Task WhenIEnumerateCollectionWithForeachasyncAddToAnotherCollection(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
             var c1 = (IEnumerable<string>)collections[index - 1];
             var result = new List<string>();
             collections.Add(result);
-            await c1.ForEachAsync(i => { result.Add(i); return Task.CompletedTask; });
+            await c1.ForEachAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(false);
         }
 
-        [When(@"I enumerate collection (.*) with foreachasync with no action")]
+        [When("I enumerate collection (.*) with foreachasync with no action")]
         public async Task WhenIEnumerateCollectionWithForeachasyncWithNoAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -223,7 +223,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachAsync(null);
+                await ((IEnumerable<string>)c1).ForEachAsync(null).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -231,7 +231,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreachatindex add to another collection")]
+        [When("I enumerate collection (.*) with foreachatindex add to another collection")]
         public void WhenIEnumerateCollectionWithForeachatindexAddToAnotherCollection(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -248,7 +248,7 @@
             });
         }
 
-        [When(@"I enumerate collection (.*) with foreachatindexasync add to another collection")]
+        [When("I enumerate collection (.*) with foreachatindexasync add to another collection")]
         public async Task WhenIEnumerateCollectionWithForeachatindexasyncAddToAnotherCollection(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -263,10 +263,10 @@
                 result.Add(e);
                 indices.Add(i);
                 return Task.CompletedTask;
-            });
+            }).ConfigureAwait(false);
         }
 
-        [When(@"I enumerate collection (.*) with foreachatindexasync with no action")]
+        [When("I enumerate collection (.*) with foreachatindexasync with no action")]
         public async Task WhenIEnumerateCollectionWithForeachatindexasyncWithNoAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -275,7 +275,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachAtIndexAsync(null);
+                await ((IEnumerable<string>)c1).ForEachAtIndexAsync(null).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -283,7 +283,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreachatindex with no action")]
+        [When("I enumerate collection (.*) with foreachatindex with no action")]
         public void WhenIEnumerateCollectionWithForeachatindexWithNoAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -300,7 +300,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreachfailend add to another collection")]
+        [When("I enumerate collection (.*) with foreachfailend add to another collection")]
         public void WhenIEnumerateCollectionWithForeachfailendAddToAnotherCollection(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -310,17 +310,17 @@
             c1.ForEachFailEnd(i => result.Add(i));
         }
 
-        [When(@"I enumerate collection (.*) with foreachfailendasync add to another collection")]
+        [When("I enumerate collection (.*) with foreachfailendasync add to another collection")]
         public async Task WhenIEnumerateCollectionWithForeachfailendasyncAddToAnotherCollection(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
             var c1 = (IEnumerable<string>)collections[index - 1];
             var result = new List<string>();
             collections.Add(result);
-            await c1.ForEachFailEndAsync(i => { result.Add(i); return Task.CompletedTask; });
+            await c1.ForEachFailEndAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(false);
         }
 
-        [When(@"I enumerate collection (.*) with foreachfailendasync with a failing action")]
+        [When("I enumerate collection (.*) with foreachfailendasync with a failing action")]
         public async Task WhenIEnumerateCollectionWithForeachfailendasyncWithAFailingAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -328,7 +328,7 @@
 
             try
             {
-                await ((IEnumerable<string>)c1).ForEachFailEndAsync(i => { throw new InvalidOperationException(); });
+                await ((IEnumerable<string>)c1).ForEachFailEndAsync(_ => throw new InvalidOperationException()).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -336,7 +336,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreachfailendasync with no action")]
+        [When("I enumerate collection (.*) with foreachfailendasync with no action")]
         public async Task WhenIEnumerateCollectionWithForeachfailendasyncWithNoAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -345,7 +345,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachFailEndAsync(null);
+                await ((IEnumerable<string>)c1).ForEachFailEndAsync(null).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -353,7 +353,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreachfailend with a failing action")]
+        [When("I enumerate collection (.*) with foreachfailend with a failing action")]
         public void WhenIEnumerateCollectionWithForeachfailendWithAFailingAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -361,7 +361,7 @@
 
             try
             {
-                ((IEnumerable<string>)c1).ForEachFailEnd(i => { throw new InvalidOperationException(); });
+                ((IEnumerable<string>)c1).ForEachFailEnd(_ => throw new InvalidOperationException());
             }
             catch (Exception ex)
             {
@@ -369,7 +369,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreachfailend with no action")]
+        [When("I enumerate collection (.*) with foreachfailend with no action")]
         public void WhenIEnumerateCollectionWithForeachfailendWithNoAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -386,7 +386,7 @@
             }
         }
 
-        [When(@"I enumerate collection (.*) with foreach with no action")]
+        [When("I enumerate collection (.*) with foreach with no action")]
         public void WhenIEnumerateCollectionWithForeachWithNoAction(int index)
         {
             List<List<string>> collections = this.context.Get<List<List<string>>>("Collections");
@@ -403,7 +403,7 @@
             }
         }
 
-        [When(@"I merge Dictionary (.*) with Dictionary (.*)")]
+        [When("I merge Dictionary (.*) with Dictionary (.*)")]
         public void WhenIMergeDictionaryWithDictionary(int index1, int index2)
         {
             List<Dictionary<int, int>> dictionaries = this.context.Get<List<Dictionary<int, int>>>("Dictionaries");
@@ -416,24 +416,23 @@
         {
         }
 
-        [Then(@"the result should be true")]
+        [Then("the result should be true")]
         public void ThenTheResultShouldBeTrue()
         {
             Assert.IsTrue(this.context.Get<bool>("Result"));
         }
 
-        [Then(@"the result should be false")]
+        [Then("the result should be false")]
         public void ThenTheResultShouldBeFalse()
         {
             Assert.IsFalse(this.context.Get<bool>("Result"));
         }
 
-        [Then(@"an ArgumentOutOfRangeException should be thrown")]
+        [Then("an ArgumentOutOfRangeException should be thrown")]
         public void ThenAnArgumentOutOfRangeExceptionShouldBeThrown()
         {
             Assert.IsTrue(this.context.ContainsKey("Exception"));
             Assert.IsNotNull(this.context.Get<ArgumentOutOfRangeException>("Exception"));
         }
-
     }
 }

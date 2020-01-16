@@ -26,16 +26,21 @@ namespace Corvus.Extensions
                 throw new ArgumentNullException(nameof(list));
             }
 
-            var hashSet = new HashSet<T>();
-            foreach (T item in list)
-            {
-                if (hashSet.Contains(item))
-                {
-                    continue;
-                }
+            return Enumerate();
 
-                hashSet.Add(item);
-                yield return item;
+            IEnumerable<T> Enumerate()
+            {
+                var hashSet = new HashSet<T>();
+                foreach (T item in list)
+                {
+                    if (hashSet.Contains(item))
+                    {
+                        continue;
+                    }
+
+                    hashSet.Add(item);
+                    yield return item;
+                }
             }
         }
 
@@ -58,16 +63,21 @@ namespace Corvus.Extensions
                 throw new ArgumentNullException(nameof(lists));
             }
 
-            foreach (T item in first)
-            {
-                yield return item;
-            }
+            return Enumerate();
 
-            foreach (IEnumerable<T> list in lists)
+            IEnumerable<T> Enumerate()
             {
-                foreach (T item in list)
+                foreach (T item in first)
                 {
                     yield return item;
+                }
+
+                foreach (IEnumerable<T> list in lists)
+                {
+                    foreach (T item in list)
+                    {
+                        yield return item;
+                    }
                 }
             }
         }

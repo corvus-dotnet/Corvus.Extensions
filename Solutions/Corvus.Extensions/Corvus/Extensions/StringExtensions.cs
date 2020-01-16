@@ -30,6 +30,11 @@ namespace Corvus.Extensions
                 throw new ArgumentNullException(nameof(value));
             }
 
+            if (encoding is null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
             return Convert.ToBase64String(encoding.GetBytes(value));
         }
 
@@ -54,6 +59,7 @@ namespace Corvus.Extensions
         /// </summary>
         /// <param name="input">The value to convert.</param>
         /// <returns>The Base 64 encoded string.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1055:Uri return values should not be strings", Justification = "FxCop's heuristics have misfired - this does not return a URI")]
         public static string Base64UrlEncode(this string input)
         {
             if (input is null)
@@ -74,6 +80,7 @@ namespace Corvus.Extensions
         /// </summary>
         /// <param name="arg">The value to convert.</param>
         /// <returns>The original string.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1055:Uri return values should not be strings", Justification = "FxCop's heuristics have misfired - this does not return a URI")]
         public static string Base64UrlDecode(this string arg)
         {
             if (arg is null)
@@ -127,6 +134,11 @@ namespace Corvus.Extensions
                 throw new ArgumentNullException(nameof(value));
             }
 
+            if (encoding is null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
             byte[] bytes = encoding.GetBytes(value);
             return new MemoryStream(bytes);
         }
@@ -158,6 +170,11 @@ namespace Corvus.Extensions
             if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
+            }
+
+            if (encoding is null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
             }
 
             byte[] bytes = Convert.FromBase64String(value);
@@ -192,10 +209,15 @@ namespace Corvus.Extensions
                 throw new ArgumentNullException(nameof(s));
             }
 
-            TextElementEnumerator enumerator = StringInfo.GetTextElementEnumerator(s);
-            while (enumerator.MoveNext())
+            return Enumerate();
+
+            IEnumerable<string> Enumerate()
             {
-                yield return (string)enumerator.Current;
+                TextElementEnumerator enumerator = StringInfo.GetTextElementEnumerator(s);
+                while (enumerator.MoveNext())
+                {
+                    yield return (string)enumerator.Current;
+                }
             }
         }
 
@@ -247,7 +269,7 @@ namespace Corvus.Extensions
                 return s;
             }
 
-            string camelCase = char.ToLowerInvariant(s[0]).ToString();
+            string camelCase = char.ToLowerInvariant(s[0]).ToString(CultureInfo.InvariantCulture);
 
             if (s.Length > 1)
             {
