@@ -37,11 +37,11 @@
             {
                 Task<int> result = sourceTask.CastWithConversion<int>();
                 this.context.Set(result, "Result");
-                await result.ConfigureAwait(false);
+                await result.ConfigureAwait(true);
             }
             catch (InvalidCastException ex)
             {
-                await sourceTask.ConfigureAwait(false);
+                await sourceTask.ConfigureAwait(true);
                 this.context.Set(ex, "Exception");
             }
         }
@@ -50,7 +50,7 @@
         public async Task ThenTheTaskResultShouldBeADoubleValue(int p0)
         {
             Task<int> task = this.context.Get<Task<int>>("Result");
-            int result = await task.ConfigureAwait(false);
+            int result = await task.ConfigureAwait(true);
             Assert.AreEqual(p0, result);
         }
 
@@ -63,11 +63,11 @@
             {
                 Task<double> result = sourceTask.CastWithConversion<double>();
                 this.context.Set(result, "Result");
-                await result.ConfigureAwait(false);
+                await result.ConfigureAwait(true);
             }
             catch (InvalidCastException ex)
             {
-                await sourceTask.ConfigureAwait(false);
+                await sourceTask.ConfigureAwait(true);
                 this.context.Set(ex, "Exception");
             }
         }
@@ -100,11 +100,11 @@
             {
                 Task<SimpleChild> result = sourceTask.CastWithConversion<SimpleChild>();
                 this.context.Set(result, "Result");
-                await result.ConfigureAwait(false);
+                await result.ConfigureAwait(true);
             }
             catch (InvalidCastException ex)
             {
-                await sourceTask.ConfigureAwait(false);
+                await sourceTask.ConfigureAwait(true);
                 this.context.Set(ex, "Exception");
             }
         }
@@ -117,11 +117,11 @@
             {
                 Task<SimpleParent> result = sourceTask.CastWithConversion<SimpleParent>();
                 this.context.Set(result, "Result");
-                await result.ConfigureAwait(false);
+                await result.ConfigureAwait(true);
             }
             catch (InvalidCastException ex)
             {
-                await sourceTask.ConfigureAwait(false);
+                await sourceTask.ConfigureAwait(true);
                 this.context.Set(ex, "Exception");
             }
         }
@@ -135,11 +135,11 @@
             {
                 Task<SimpleParent> result = sourceTask.Cast<SimpleParent>();
                 this.context.Set(result, "Result");
-                await result.ConfigureAwait(false);
+                await result.ConfigureAwait(true);
             }
             catch (InvalidCastException ex)
             {
-                await sourceTask.ConfigureAwait(false);
+                await sourceTask.ConfigureAwait(true);
                 this.context.Set(ex, "Exception");
             }
         }
@@ -153,11 +153,11 @@
             {
                 Task<SimpleChild> result = sourceTask.Cast<SimpleChild>();
                 this.context.Set(result, "Result");
-                await result.ConfigureAwait(false);
+                await result.ConfigureAwait(true);
             }
             catch (InvalidCastException ex)
             {
-                await sourceTask.ConfigureAwait(false);
+                await sourceTask.ConfigureAwait(true);
                 this.context.Set(ex, "Exception");
             }
         }
@@ -168,7 +168,7 @@
             if (this.context.ContainsKey("Result"))
             {
                 Task<SimpleParent> task = this.context.Get<Task<SimpleParent>>("Result");
-                SimpleParent result = await task.ConfigureAwait(false);
+                SimpleParent result = await task.ConfigureAwait(true);
                 Assert.IsInstanceOf<SimpleParent>(result);
             }
         }

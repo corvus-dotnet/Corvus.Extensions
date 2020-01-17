@@ -134,7 +134,7 @@
             try
             {
                 IEnumerable<string> collection = null;
-                await collection.ForEachAsync(null).ConfigureAwait(false);
+                await collection.ForEachAsync(null).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
@@ -160,7 +160,7 @@
         {
             try
             {
-                await ((IEnumerable<string>)null).ForEachAtIndexAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)null).ForEachAtIndexAsync(null).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
@@ -186,7 +186,7 @@
         {
             try
             {
-                await ((IEnumerable<string>)null).ForEachFailEndAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)null).ForEachFailEndAsync(null).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
@@ -211,7 +211,7 @@
             var c1 = (IEnumerable<string>)collections[index - 1];
             var result = new List<string>();
             collections.Add(result);
-            await c1.ForEachAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(false);
+            await c1.ForEachAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(true);
         }
 
         [When("I enumerate collection (.*) with foreachasync with no action")]
@@ -223,7 +223,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)c1).ForEachAsync(null).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
@@ -263,7 +263,7 @@
                 result.Add(e);
                 indices.Add(i);
                 return Task.CompletedTask;
-            }).ConfigureAwait(false);
+            }).ConfigureAwait(true);
         }
 
         [When("I enumerate collection (.*) with foreachatindexasync with no action")]
@@ -275,7 +275,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachAtIndexAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)c1).ForEachAtIndexAsync(null).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
@@ -317,7 +317,7 @@
             var c1 = (IEnumerable<string>)collections[index - 1];
             var result = new List<string>();
             collections.Add(result);
-            await c1.ForEachFailEndAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(false);
+            await c1.ForEachFailEndAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(true);
         }
 
         [When("I enumerate collection (.*) with foreachfailendasync with a failing action")]
@@ -328,7 +328,7 @@
 
             try
             {
-                await ((IEnumerable<string>)c1).ForEachFailEndAsync(_ => throw new InvalidOperationException()).ConfigureAwait(false);
+                await ((IEnumerable<string>)c1).ForEachFailEndAsync(_ => throw new InvalidOperationException()).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
@@ -345,7 +345,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachFailEndAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)c1).ForEachFailEndAsync(null).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
