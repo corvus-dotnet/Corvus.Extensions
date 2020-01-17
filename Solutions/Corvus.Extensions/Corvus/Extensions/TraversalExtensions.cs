@@ -149,7 +149,9 @@ namespace Corvus.Extensions
                 {
                     action(item);
                 }
+#pragma warning disable CA1031 // Do not catch general exception types
                 catch (Exception exception)
+#pragma warning restore CA1031 // Do not catch general exception types
                 {
                     exceptions.Add(exception);
                 }
@@ -197,7 +199,9 @@ namespace Corvus.Extensions
                 {
                     await action(item).ConfigureAwait(false);
                 }
+#pragma warning disable CA1031 // Do not catch general exception types
                 catch (Exception exception)
+#pragma warning restore CA1031 // Do not catch general exception types
                 {
                     exceptions.Add(exception);
                 }

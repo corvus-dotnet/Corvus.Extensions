@@ -9,6 +9,7 @@
     <PackageDescription></PackageDescription>
     <PackageTags></PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
+    <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
   <Import Project="..\Common.NetStandard_2_0.proj" />

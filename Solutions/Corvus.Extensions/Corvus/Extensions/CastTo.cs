@@ -25,6 +25,7 @@ namespace Corvus.Extensions
         /// <remarks>
         /// This does not cause boxing for value types. It is especially useful in generic methods.
         /// </remarks>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1000:Do not declare static members on generic types", Justification = "The intended usage is meant to be self describing, e.g. CastTo<int>.From(x) means 'cast to int from x', so the usual reasoning behind CA1000 does not apply here")]
         public static T From<TSource>(TSource s)
         {
             return Cache<TSource>.Caster(s);
