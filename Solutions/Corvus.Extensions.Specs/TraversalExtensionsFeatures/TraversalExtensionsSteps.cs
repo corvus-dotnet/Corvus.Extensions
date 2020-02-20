@@ -120,7 +120,7 @@
         {
             try
             {
-                ((IEnumerable<string>)null).ForEach(_ => this.Nop());
+                ((IEnumerable<string>)null!).ForEach(_ => this.Nop());
             }
             catch (Exception ex)
             {
@@ -133,8 +133,8 @@
         {
             try
             {
-                IEnumerable<string> collection = null;
-                await collection.ForEachAsync(null).ConfigureAwait(false);
+                IEnumerable<string> collection = null!;
+                await collection.ForEachAsync(_ => Task.CompletedTask).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -147,7 +147,7 @@
         {
             try
             {
-                ((IEnumerable<string>)null).ForEachAtIndex((_, __) => this.Nop());
+                ((IEnumerable<string>)null!).ForEachAtIndex((_, __) => this.Nop());
             }
             catch (Exception ex)
             {
@@ -160,7 +160,7 @@
         {
             try
             {
-                await ((IEnumerable<string>)null).ForEachAtIndexAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)null!).ForEachAtIndexAsync((_, __) => Task.CompletedTask).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -173,7 +173,7 @@
         {
             try
             {
-                ((IEnumerable<string>)null).ForEachFailEnd(_ => this.Nop());
+                ((IEnumerable<string>)null!).ForEachFailEnd(_ => this.Nop());
             }
             catch (Exception ex)
             {
@@ -186,7 +186,7 @@
         {
             try
             {
-                await ((IEnumerable<string>)null).ForEachFailEndAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)null!).ForEachFailEndAsync(_ => Task.CompletedTask).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -223,7 +223,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)c1).ForEachAsync(null!).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -275,7 +275,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachAtIndexAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)c1).ForEachAtIndexAsync(null!).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -292,7 +292,7 @@
             collections.Add(result);
             try
             {
-                ((IEnumerable<string>)c1).ForEachAtIndex(null);
+                ((IEnumerable<string>)c1).ForEachAtIndex(null!);
             }
             catch (Exception ex)
             {
@@ -345,7 +345,7 @@
             collections.Add(result);
             try
             {
-                await ((IEnumerable<string>)c1).ForEachFailEndAsync(null).ConfigureAwait(false);
+                await ((IEnumerable<string>)c1).ForEachFailEndAsync(null!).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -378,7 +378,7 @@
             collections.Add(result);
             try
             {
-                ((IEnumerable<string>)c1).ForEachFailEnd(null);
+                ((IEnumerable<string>)c1).ForEachFailEnd(null!);
             }
             catch (Exception ex)
             {
@@ -395,7 +395,7 @@
             collections.Add(result);
             try
             {
-                ((IEnumerable<string>)c1).ForEach((Action<string>)null);
+                ((IEnumerable<string>)c1).ForEach((Action<string>)null!);
             }
             catch (Exception ex)
             {
