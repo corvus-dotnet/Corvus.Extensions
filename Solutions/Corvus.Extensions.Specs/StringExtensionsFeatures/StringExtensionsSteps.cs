@@ -52,7 +52,7 @@
         [Then(@"I should be able to use a big endian Unicode converter to read the string ""(.*)"" from the stream")]
         public void ThenIShouldBeAbleToUseABigEndianUnicodeConverterToReadTheStringFromTheStream(string result)
         {
-            using Stream stream = this.GetResult<Stream>();
+            using Stream stream = this.GetRequiredResult<Stream>();
             using var reader = new StreamReader(stream, Encoding.BigEndianUnicode);
             Assert.AreEqual(result, reader.ReadToEnd());
         }
@@ -60,7 +60,7 @@
         [Then(@"I should be able to use a Unicode converter to read the string ""(.*)"" from the stream")]
         public void ThenIShouldBeAbleToUseAUnicodeConverterToReadTheStringFromTheStream(string result)
         {
-            using Stream stream = this.GetResult<Stream>();
+            using Stream stream = this.GetRequiredResult<Stream>();
             using var reader = new StreamReader(stream, Encoding.Unicode);
             Assert.AreEqual(result, reader.ReadToEnd());
         }
@@ -68,7 +68,7 @@
         [Then(@"I should be able to use a UTF8 converter to read the string ""(.*)"" from the stream")]
         public void ThenIShouldBeAbleToUseAUTFConverterToReadTheStringFromTheStream(string result)
         {
-            using Stream stream = this.GetResult<Stream>();
+            using Stream stream = this.GetRequiredResult<Stream>();
             using var reader = new StreamReader(stream, Encoding.UTF8);
             Assert.AreEqual(result, reader.ReadToEnd());
         }
@@ -88,52 +88,62 @@
         [When("I base 64 encode the string")]
         public void WhenIBase64EncodeTheString()
         {
-            this.SetResult(this.GetSubject().AsBase64());
+            this.SetResult(this.GetRequiredSubject().AsBase64());
         }
 
         [When("I base 64 decode the string")]
         public void WhenIBaseDecodeTheString()
         {
-            this.SetResult(this.GetSubject().FromBase64());
+            this.SetResult(this.GetRequiredSubject().FromBase64());
         }
 
         [When("I base 64 decode the string with UTF16 encoding")]
         public void WhenIBaseDecodeTheStringWithUTFEncoding()
         {
-            this.SetResult(this.GetSubject().FromBase64(Encoding.Unicode));
+            this.SetResult(this.GetRequiredSubject().FromBase64(Encoding.Unicode));
         }
 
         [When("I base 64 encode the string with UTF16 encoding")]
         public void WhenIBaseEncodeTheStringWithUTFEncoding()
         {
-            this.SetResult(this.GetSubject().AsBase64(Encoding.Unicode));
+            this.SetResult(this.GetRequiredSubject().AsBase64(Encoding.Unicode));
         }
 
         [When("I get a big endian Unicode stream for the string")]
         public void WhenIGetABigEndianUnicodeStreamForTheString()
         {
-            this.SetResult(this.GetSubject().AsStream(Encoding.BigEndianUnicode));
+            this.SetResult(this.GetRequiredSubject().AsStream(Encoding.BigEndianUnicode));
         }
 
         [When("I get a stream for the string")]
         public void WhenIGetAStreamForTheString()
         {
-            this.SetResult(this.GetSubject().AsStream());
+            this.SetResult(this.GetRequiredSubject().AsStream());
         }
 
         [When("I get a Unicode stream for the string")]
         public void WhenIGetAUnicodeStreamForTheString()
         {
-            this.SetResult(this.GetSubject().AsStream(Encoding.Unicode));
+            this.SetResult(this.GetRequiredSubject().AsStream(Encoding.Unicode));
         }
 
         [When("I reverse the string")]
         public void WhenIReverseTheString()
         {
-            this.SetResult(this.GetSubject().Reverse());
+            this.SetResult(this.GetRequiredSubject().Reverse());
         }
 
-        private T GetResult<T>()
+        private T GetRequiredResult<T>()
+        {
+            if (this.context.ContainsKey("NullResult"))
+            {
+                throw new InvalidOperationException("The result was null, but this test requires a non-null value");
+            }
+            return this.context.Get<T>("Result");
+        }
+
+        private T? GetResult<T>()
+            where T : class
         {
             if (this.context.ContainsKey("NullResult"))
             {
@@ -142,11 +152,11 @@
             return this.context.Get<T>("Result");
         }
 
-        private string GetSubject()
+        private string GetRequiredSubject()
         {
             if (this.context.ContainsKey("NullSubject"))
             {
-                return null;
+                throw new InvalidOperationException("The subject was null, but this test requires a non-null value");
             }
             return this.context.Get<string>("Subject");
         }

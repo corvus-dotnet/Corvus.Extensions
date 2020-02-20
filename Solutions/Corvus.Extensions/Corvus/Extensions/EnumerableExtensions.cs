@@ -174,6 +174,7 @@ namespace Corvus.Extensions
         /// </param>
         /// <returns>The distinct elements.</returns>
         public static IEnumerable<T> DistinctBy<T, TIdentity>(this IEnumerable<T> source, Func<T, TIdentity> identitySelector)
+            where TIdentity : notnull
         {
             if (source is null)
             {
@@ -189,6 +190,7 @@ namespace Corvus.Extensions
         }
 
         private class DelegateEqualityComparer<T, TIdentity> : IEqualityComparer<T>
+            where TIdentity : notnull
         {
             private readonly Func<T, TIdentity> identitySelector;
 
