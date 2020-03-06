@@ -1,12 +1,16 @@
-﻿namespace Corvus.Extensions.Specs.StringExtensionsFeature
+﻿// <copyright file="StringExtensionsSteps.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
+// </copyright>
+
+namespace Corvus.Extensions.Specs.StringExtensionsFeature
 {
-    using Corvus.Extensions;
-    using Corvus.Extensions.Specs.StringExtensionsFeature.Context;
     using System;
     using System.IO;
     using System.Text;
-    using TechTalk.SpecFlow;
+    using Corvus.Extensions;
+    using Corvus.Extensions.Specs.StringExtensionsFeature.Context;
     using NUnit.Framework;
+    using TechTalk.SpecFlow;
 
     [Binding]
     public class StringExtensionsSteps
@@ -139,6 +143,7 @@
             {
                 throw new InvalidOperationException("The result was null, but this test requires a non-null value");
             }
+
             return this.context.Get<T>("Result");
         }
 
@@ -149,6 +154,7 @@
             {
                 return default;
             }
+
             return this.context.Get<T>("Result");
         }
 
@@ -158,6 +164,7 @@
             {
                 throw new InvalidOperationException("The subject was null, but this test requires a non-null value");
             }
+
             return this.context.Get<string>("Subject");
         }
 

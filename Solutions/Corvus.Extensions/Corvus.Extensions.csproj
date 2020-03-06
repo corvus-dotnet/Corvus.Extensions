@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
+    <Copyright>Copyright (c) Endjin Limited 2020. All rights reserved.</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageDescription></PackageDescription>
     <PackageTags></PackageTags>
@@ -13,9 +16,11 @@
     <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
-  <Import Project="..\Common.NetStandard_2_0.proj" />
-
   <ItemGroup>
+    <PackageReference Include="Endjin.RecommendedPractices" Version="0.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Interactive" Version="3.2.0" />
   </ItemGroup>
 
@@ -41,6 +46,7 @@
     <EmbeddedResource Update="Corvus\Extensions\ExceptionMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Corvus.Extensions</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Update="Endjin\Extensions\ExceptionMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>

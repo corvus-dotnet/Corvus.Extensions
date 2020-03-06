@@ -1,4 +1,8 @@
-﻿namespace Corvus.Extensions.Specs.TraversalExtensionsFeature
+﻿// <copyright file="TraversalExtensionsSteps.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
+// </copyright>
+
+namespace Corvus.Extensions.Specs.TraversalExtensionsFeature
 {
     using System;
     using System.Collections.Generic;
@@ -27,6 +31,7 @@
             {
                 result.Add(collection.Select(r => r["Value"]).ToList());
             }
+
             this.context.Add("Collections", result);
         }
 
@@ -39,6 +44,7 @@
             {
                 result.Add(dictionary.Select(r => new { v = int.Parse(r["Value"]), k = int.Parse(r["Key"]) }).ToDictionary(key => key.k, value => value.v));
             }
+
             this.context.Add("Dictionaries", result);
         }
 
@@ -51,6 +57,7 @@
             {
                 result.Add(collection.Select(r => int.Parse(r["Value"])).ToList());
             }
+
             this.context.Add("Collections", result);
         }
 
@@ -211,7 +218,11 @@
             var c1 = (IEnumerable<string>)collections[index - 1];
             var result = new List<string>();
             collections.Add(result);
-            await c1.ForEachAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(false);
+            await c1.ForEachAsync(i =>
+            {
+                result.Add(i);
+                return Task.CompletedTask;
+            }).ConfigureAwait(false);
         }
 
         [When("I enumerate collection (.*) with foreachasync with no action")]
@@ -317,7 +328,11 @@
             var c1 = (IEnumerable<string>)collections[index - 1];
             var result = new List<string>();
             collections.Add(result);
-            await c1.ForEachFailEndAsync(i => { result.Add(i); return Task.CompletedTask; }).ConfigureAwait(false);
+            await c1.ForEachFailEndAsync(i =>
+            {
+                result.Add(i);
+                return Task.CompletedTask;
+            }).ConfigureAwait(false);
         }
 
         [When("I enumerate collection (.*) with foreachfailendasync with a failing action")]
@@ -412,10 +427,6 @@
             d2.Merge(d1);
         }
 
-        private void Nop()
-        {
-        }
-
         [Then("the result should be true")]
         public void ThenTheResultShouldBeTrue()
         {
@@ -433,6 +444,10 @@
         {
             Assert.IsTrue(this.context.ContainsKey("Exception"));
             Assert.IsNotNull(this.context.Get<ArgumentOutOfRangeException>("Exception"));
+        }
+
+        private void Nop()
+        {
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
+﻿// <copyright file="TaskExtensionsFeatureSteps.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
+// </copyright>
+
+namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
 {
     using System;
     using System.Threading.Tasks;
