@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <RootNamespace>Corvus.Extensions.Specs</RootNamespace>
@@ -13,7 +12,6 @@
          appropriate if they aid understanding within the project.
     -->
     <NoWarn>SA0001;SA1204;SA1600;SA1602;CS1591</NoWarn>
-    <Copyright>Copyright (c) Endjin Limited 2020. All rights reserved.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
