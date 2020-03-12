@@ -1,14 +1,14 @@
-﻿namespace Corvus.Extensions.Specs.EnumerableExtensionsFeatures
-{
-    #region Using Directives
+﻿// <copyright file="EnumerableExtensionsSteps.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
+// </copyright>
 
+namespace Corvus.Extensions.Specs.EnumerableExtensionsFeatures
+{
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using TechTalk.SpecFlow;
-
-    #endregion
 
     [Binding]
     public class EnumerableExtensionsSteps

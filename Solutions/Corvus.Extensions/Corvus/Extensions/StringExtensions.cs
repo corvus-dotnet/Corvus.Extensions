@@ -10,7 +10,6 @@ namespace Corvus.Extensions
     using System.IO;
     using System.Linq;
     using System.Text;
-    using Corvus.Extensions;
 
     /// <summary>
     /// Extension methods for strings.
