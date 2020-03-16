@@ -109,8 +109,11 @@
     Id: 547fd9f5-9caf-449f-82d9-4fba9e7ce13a
     Measures:
         -
-            Score: 0
-            Description: None
+            Score: 1
+            Description: Packaged
+        -
+            Score: 1
+            Description: Versioned
 -
     Name: Deployment
     Id: edea4593-d2dd-485b-bc1b-aaaf18f098f9
