@@ -38,8 +38,8 @@
     Id: 2a7fc206-d578-41b0-85f6-a28b6b0fec5f
     Measures:
         -
-            Score: 0
-            Description: None
+            Score: 1
+            Description: 'Good quality'
 -
     Name: 'Design & Implementation Documentation'
     Id: f026d5a2-ce1a-4e04-af15-5a35792b164b
