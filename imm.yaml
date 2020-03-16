@@ -52,8 +52,8 @@
     Id: 145f2e3d-bb05-4ced-989b-7fb218fc6705
     Measures:
         -
-            Score: 0
-            Description: None
+            Score: 1
+            Description: 'Common scenarios'
 -
     Name: 'Date of Last IP Review'
     Id: da4ed776-0365-4d8a-a297-c4e91a14d646
