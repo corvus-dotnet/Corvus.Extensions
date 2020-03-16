@@ -71,8 +71,8 @@
     Id: 79b8ff50-7378-4f29-b07c-bcd80746bfd4
     Measures:
         -
-            Score: 0
-            Description: None
+            Score: 1
+            Description: 'Bugs & Features'
 -
     Name: 'Source Code Availability'
     Id: 30e1b40b-b27d-4631-b38d-3172426593ca
