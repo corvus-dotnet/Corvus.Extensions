@@ -17,11 +17,20 @@ Scenario Outline: Add a list to an existing list
 	|                            |                       |                  |
 	| 1, 2, 3                    | 2, 3, 4               | 1, 2, 3, 2, 3, 4 |
 
+Scenario: Add list to null
+	Given I have a null destination list
+	And I have a source list containing 1, 2, 3
+	When I call AddRange on the destination list passing in the source list expecting an exception
+	Then AddRange should have thrown an ArgumentNullException
 
+Scenario: Add null to list
+	Given I have a destination list containing 1, 2, 3
+	And I have a null source list
+	When I call AddRange on the destination list passing in the source list expecting an exception
+	Then AddRange should have thrown an ArgumentNullException
 
-# Multiple Target collection types
-# Empty vs non-empty initial target collections
-# Empty vs non-empty initial source collections
-# Source items overlap with target items
-# Null argument tests
-# Calling AddRange on itself
+Scenario: Add a list to itself
+	Given I have a destination list containing 1, 2, 3
+	And I use the destination list as the source list
+	When I call AddRange on the destination list passing in the source list expecting an exception
+	Then AddRange should have thrown an ArgumentException
