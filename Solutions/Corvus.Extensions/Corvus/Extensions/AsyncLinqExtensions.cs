@@ -37,7 +37,9 @@ namespace CareerCanvas.Specs.Steps
 
             var result = new List<T2>();
 
-            return (await Task.WhenAll(source.Select(t => mapper(t))).ConfigureAwait(false)).SelectMany(r => r);
+            return (await Task.WhenAll(
+                source.Select(sourceItem => mapper(sourceItem))).ConfigureAwait(false))
+                .SelectMany(result => result);
         }
 
         /// <summary>
@@ -62,7 +64,8 @@ namespace CareerCanvas.Specs.Steps
 
             var result = new List<T2>();
 
-            return await Task.WhenAll(source.Select(t => mapper(t))).ConfigureAwait(false);
+            return await Task.WhenAll(
+                source.Select(sourceItem => mapper(sourceItem))).ConfigureAwait(false);
         }
     }
 }
