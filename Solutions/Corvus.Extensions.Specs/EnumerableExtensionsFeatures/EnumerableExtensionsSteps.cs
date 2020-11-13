@@ -20,20 +20,6 @@ namespace Corvus.Extensions.Specs.EnumerableExtensionsFeatures
             this.context = context;
         }
 
-        [Given("I have a collection with (.*) items")]
-        public void GivenIHaveACollectionWithItems(int numberOfItemsInCollection)
-        {
-            IEnumerable<int> collection = Enumerable.Range(1, numberOfItemsInCollection);
-            this.context.Set(collection, "Collection");
-        }
-
-        [Given("I have a list with (.*) items")]
-        public void GivenIHaveAListWithItems(int numberOfItemsInCollection)
-        {
-            var collection = Enumerable.Range(1, numberOfItemsInCollection).ToList();
-            this.context.Set(collection, "Collection");
-        }
-
         [When("I check if a collection has at least (.*) items")]
         public void WhenICheckIfACollectionHasAtLeastItems(int minimumItemCount)
         {
