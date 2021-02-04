@@ -17,43 +17,43 @@ namespace Corvus.Extensions.Specs.CollectionExtensionsFeatures
         private List<int>? source;
         private Exception? exception;
 
-        [Given(@"I have a destination list containing (.*)")]
+        [Given("I have a destination list containing (.*)")]
         public void GivenIHaveADestinationListContaining(List<int> listContents)
         {
             this.destination = listContents;
         }
 
-        [Given(@"I have a null destination list")]
+        [Given("I have a null destination list")]
         public void GivenIHaveANullDestinationList()
         {
             this.destination = null;
         }
 
-        [Given(@"I have a source list containing (.*)")]
+        [Given("I have a source list containing (.*)")]
         public void GivenIHaveASourceListContaining(List<int> listContents)
         {
             this.source = listContents;
         }
 
-        [Given(@"I have a null source list")]
+        [Given("I have a null source list")]
         public void GivenIHaveANullSourceList()
         {
             this.source = null;
         }
 
-        [Given(@"I use the destination list as the source list")]
+        [Given("I use the destination list as the source list")]
         public void GivenIUseTheDestinationListAsTheSourceList()
         {
             this.source = (List<int>?)this.destination;
         }
 
-        [When(@"I call AddRange on the destination list passing in the source list")]
+        [When("I call AddRange on the destination list passing in the source list")]
         public void WhenICallAddRangeOnTheDestinationListPassingInTheSourceList()
         {
             this.destination!.AddRange(this.source!);
         }
 
-        [When(@"I call AddRange on the destination list passing in the source list expecting an exception")]
+        [When("I call AddRange on the destination list passing in the source list expecting an exception")]
         public void WhenICallAddRangeOnTheDestinationListPassingInTheSourceListExpectingAnException()
         {
             try
@@ -68,19 +68,19 @@ namespace Corvus.Extensions.Specs.CollectionExtensionsFeatures
             }
         }
 
-        [Then(@"the destination should now be (.*)")]
+        [Then("the destination should now be (.*)")]
         public void ThenTheDestinationShouldNowBe(List<int> listContents)
         {
-            Assert.IsTrue(Enumerable.SequenceEqual(this.destination, listContents));
+            CollectionAssert.AreEqual(listContents, this.destination);
         }
 
-        [Then(@"AddRange should have thrown an ArgumentNullException")]
+        [Then("AddRange should have thrown an ArgumentNullException")]
         public void ThenAddRangeShouldHaveThrownAnArgumentNullException()
         {
             Assert.IsInstanceOf<ArgumentNullException>(this.exception);
         }
 
-        [Then(@"AddRange should have thrown an ArgumentException")]
+        [Then("AddRange should have thrown an ArgumentException")]
         public void ThenAddRangeShouldHaveThrownAnArgumentException()
         {
             Assert.IsInstanceOf<ArgumentException>(this.exception);
