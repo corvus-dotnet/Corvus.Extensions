@@ -30,6 +30,11 @@ namespace Corvus.Extensions
                 throw new System.ArgumentNullException(nameof(items));
             }
 
+            if (destination == items)
+            {
+                throw new System.ArgumentException("Cannot add a collection to itself.", nameof(items));
+            }
+
             items.ForEach(t => destination.Add(t));
         }
     }
