@@ -1,6 +1,6 @@
 # Corvus.Extensions
-[![Build Status](https://dev.azure.com/endjin-labs/Corvus.Extensions/_apis/build/status/corvus-dotnet.Corvus.Extensions?branchName=master)](https://dev.azure.com/endjin-labs/Corvus.Extensions/_build/latest?definitionId=4&branchName=master)
-[![GitHub license](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://raw.githubusercontent.com/corvus-dotnet/Corvus.Extensions/master/LICENSE)
+[![Build Status](https://dev.azure.com/endjin-labs/Corvus.Extensions/_apis/build/status/corvus-dotnet.Corvus.Extensions?branchName=main)](https://dev.azure.com/endjin-labs/Corvus.Extensions/_build/latest?definitionId=4&branchName=main)
+[![GitHub license](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://raw.githubusercontent.com/corvus-dotnet/Corvus.Extensions/main/LICENSE)
 [![IMM](https://endimmfuncdev.azurewebsites.net/api/imm/github/corvus-dotnet/Corvus.Extensions/total?cache=false)](https://endimmfuncdev.azurewebsites.net/api/imm/github/corvus-dotnet/Corvus.Extensions/total?cache=false)
 
 This provides a library of useful extensions to .NET types.
@@ -222,7 +222,7 @@ Various `ForEach` extensions, including:
 
 ## Licenses
 
-[![GitHub license](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://raw.githubusercontent.com/corvus-dotnet/Corvus.Extensions/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://raw.githubusercontent.com/corvus-dotnet/Corvus.Extensions/main/LICENSE)
 
 Corvus.Extensions is available under the Apache 2.0 open source license.
 
