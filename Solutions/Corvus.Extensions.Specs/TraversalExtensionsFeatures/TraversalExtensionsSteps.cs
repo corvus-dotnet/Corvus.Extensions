@@ -80,11 +80,11 @@ namespace Corvus.Extensions.Specs.TraversalExtensionsFeature
             Assert.AreEqual(parameterName, ane.ParamName);
         }
 
-        [Then("a NullReferenceException should be thrown")]
+        [Then("an ArgumentNullException should be thrown")]
         public void ThenANullReferenceExceptionShouldBeThrown()
         {
             Exception exception = this.context.Get<Exception>("Exception");
-            Assert.IsInstanceOf<NullReferenceException>(exception);
+            Assert.IsInstanceOf<ArgumentNullException>(exception);
         }
 
         [Then("Collection (.*) should match Collection (.*)")]

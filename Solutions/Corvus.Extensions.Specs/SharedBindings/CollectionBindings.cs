@@ -1,9 +1,12 @@
-﻿namespace Corvus.Extensions.Specs.SharedBindings
+﻿// <copyright file="CollectionBindings.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
+// </copyright>
+
+namespace Corvus.Extensions.Specs.SharedBindings
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
+
     using TechTalk.SpecFlow;
 
     [Binding]

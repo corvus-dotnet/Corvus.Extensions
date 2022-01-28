@@ -32,7 +32,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -64,7 +64,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -99,7 +99,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -133,7 +133,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -182,7 +182,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -230,7 +230,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -267,7 +267,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -304,7 +304,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)
@@ -341,7 +341,7 @@ namespace Corvus.Extensions
         {
             if (items == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException(nameof(items));
             }
 
             if (action == null)

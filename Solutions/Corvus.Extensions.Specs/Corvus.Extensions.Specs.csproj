@@ -40,11 +40,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Endjin.RecommendedPractices" Version="1.2.0">
+    <PackageReference Include="Corvus.Testing.SpecFlow.NUnit" Version="1.4.7" />
+    <PackageReference Include="Endjin.RecommendedPractices.GitHub" Version="2.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Corvus.Testing.SpecFlow.NUnit" Version="1.4.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Corvus.Extensions\Corvus.Extensions.csproj" />
