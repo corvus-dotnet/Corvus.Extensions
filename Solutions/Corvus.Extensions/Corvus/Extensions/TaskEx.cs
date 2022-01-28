@@ -7,13 +7,14 @@ namespace Corvus.Extensions.Tasks
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     /// <summary>
     /// Extensions to Task.* methods.
     /// </summary>
+#pragma warning disable CA1711 // Identifiers should not have incorrect suffix - this is the established public name so we can't change it
     public static class TaskEx
+#pragma warning restore CA1711
     {
         /// <summary>
         ///  Flattening of the outputs from Task.WhenAll.

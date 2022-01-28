@@ -87,11 +87,11 @@ Scenario: A null collection is enumerated with foreach
 
 Scenario: A null collection is enumerated with foreachfailend
 	When I enumerate a null collection with foreachfailend
-	Then a NullReferenceException should be thrown
+	Then an ArgumentNullException should be thrown
 
 Scenario: A null collection is enumerated with foreachatindex
 	When I enumerate a null collection with foreachatindex
-	Then a NullReferenceException should be thrown
+	Then an ArgumentNullException should be thrown
 
 Scenario: A collection is enumerated with foreachasync
 	Given the following collections
@@ -117,7 +117,7 @@ Scenario: A collection is enumerated with foreachasync with no action
 
 Scenario: A null collection is enumerated with foreachasync
 	When I enumerate a null collection with foreachasync
-	Then a NullReferenceException should be thrown
+	Then an ArgumentNullException should be thrown
 
 Scenario: A collection is enumerated with foreachfailendasync
 	Given the following collections
@@ -154,7 +154,7 @@ Scenario: A collection is enumerated with foreachfailendasync with no action
 
 Scenario: A null collection is enumerated with foreachfailendasync
 	When I enumerate a null collection with foreachfailendasync
-	Then a NullReferenceException should be thrown
+	Then an ArgumentNullException should be thrown
 
 
 Scenario: A collection is enumerated with foreachatindexasync
@@ -182,7 +182,7 @@ Scenario: A collection is enumerated with foreachatindexasync with no action
 
 Scenario: A null collection is enumerated with foreachatindexasync
 	When I enumerate a null collection with foreachatindexasync
-	Then a NullReferenceException should be thrown
+	Then an ArgumentNullException should be thrown
 
 
 Scenario: When you merge two dictionaries

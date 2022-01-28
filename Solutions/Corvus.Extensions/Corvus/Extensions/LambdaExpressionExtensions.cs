@@ -41,7 +41,7 @@ namespace Corvus.Extensions
                 throw new ArgumentNullException(nameof(expression));
             }
 
-            if (!(expression.Body is MemberExpression memberExpression))
+            if (expression.Body is not MemberExpression memberExpression)
             {
                 throw new ArgumentException(ExceptionMessages.LambdaExpressionExtensions_TheExpressionIsNotAMemberAccessExpression, nameof(expression));
             }

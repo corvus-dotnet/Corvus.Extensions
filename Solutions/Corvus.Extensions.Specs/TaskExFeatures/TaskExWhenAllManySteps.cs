@@ -1,4 +1,8 @@
-﻿namespace Corvus.Extensions.Specs.TaskExFeatures
+﻿// <copyright file="TaskExWhenAllManySteps.cs" company="Endjin Limited">
+// Copyright (c) Endjin Limited. All rights reserved.
+// </copyright>
+
+namespace Corvus.Extensions.Specs.TaskExFeatures
 {
     using System;
     using System.Collections.Generic;
@@ -13,9 +17,9 @@
     public class TaskExWhenAllManySteps
     {
         private readonly ScenarioContext context;
-        private readonly object mapperLock = new object();
-        private readonly List<(int sourceItem, IList<(int, string)> result)> mapperInvocationsAndResults = new List<(int, IList<(int, string)>)>();
-        private IList<(int sourceItem, string result)>? result;
+        private readonly object mapperLock = new();
+        private readonly List<(int SourceItem, IList<(int, string)> Result)> mapperInvocationsAndResults = new();
+        private IList<(int SourceItem, string Result)>? result;
         private int mappersInProgress = 0;
         private int maxMappersInProgress = 0;
 
@@ -41,7 +45,7 @@
 
                 await Task.Run(() => countdown.SignalAndWait(TimeSpan.FromSeconds(5))).ConfigureAwait(false);
 
-                var result =  Enumerable.Range(0, sourceItem).Select(i => (sourceItem, $"{i}!")).ToList();
+                var result = Enumerable.Range(0, sourceItem).Select(i => (sourceItem, $"{i}!")).ToList();
 
                 lock (this.mapperLock)
                 {
@@ -71,7 +75,7 @@
         [Then("the results from all items should be in the final result")]
         public void ThenTheResultsFromAllItemsShouldBeInTheFinalResult()
         {
-            IEnumerable<(int, string)> expectedResults = this.mapperInvocationsAndResults.SelectMany(r => r.result);
+            IEnumerable<(int, string)> expectedResults = this.mapperInvocationsAndResults.SelectMany(r => r.Result);
 
             CollectionAssert.AreEquivalent(expectedResults, this.result);
         }
@@ -79,7 +83,7 @@
         [Then("the results should be ordered by the original collection order")]
         public void ThenTheResultsShouldBeOrderedByTheOriginalCollectionOrder()
         {
-            IEnumerable<int> groupedResults = this.result.GroupBy(r => r.sourceItem).Select(g => g.Key);
+            IEnumerable<int> groupedResults = this.result.GroupBy(r => r.SourceItem).Select(g => g.Key);
 
             CollectionAssert.AreEqual(this.Collection, groupedResults);
         }
@@ -87,8 +91,8 @@
         [Then("for each original item the results should be in the order that the mapping function returned them")]
         public void ThenForEachOriginalItemTheResultsShouldBeInTheOrderThatTheMappingFunctionReturnedThem()
         {
-            var groupedResults = this.result.GroupBy(r => r.sourceItem).ToDictionary(x => x.Key, x => x.ToList());
-            Dictionary<int, IList<(int sourceItem, string result)>> expectedResults = this.mapperInvocationsAndResults.ToDictionary(x => x.sourceItem, x => x.result);
+            var groupedResults = this.result.GroupBy(r => r.SourceItem).ToDictionary(x => x.Key, x => x.ToList());
+            Dictionary<int, IList<(int SourceItem, string Result)>> expectedResults = this.mapperInvocationsAndResults.ToDictionary(x => x.SourceItem, x => x.Result);
 
             foreach (int i in this.Collection)
             {
