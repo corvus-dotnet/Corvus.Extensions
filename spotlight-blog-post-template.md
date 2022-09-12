@@ -9,7 +9,7 @@ Category:
 Tags:
 
 HeaderImageUrl: 
-Excerpt: "Excerpt"
+Excerpt: "Brief summary of the library."
 ---
 ## Introduction
 
