@@ -12,24 +12,60 @@ First, add a reference to the `Corvus.Extensions` NuGet package.
 
 #!markdown
 
+Add a using a statement for the `Corvus.Extensions` namespace
+
+#!csharp
+
+using Corvus.Extensions;
+
+#!markdown
+
 ### AsBase64()
 
 #!markdown
 
-Convert the provided string to a base 64 representation of its byte representation in a particular encoding.
+Converts the provided string to a base 64 representation of its byte representation in a particular encoding.
 
-#!csharp
+#!markdown
 
-using System.Text;
+#### Examples
+
+Example to convert a string's byte representation in Unicode to base 64 representation
 
 #!csharp
 
 string hello = "Hello";
-hello.AsBase64(Encoding.ASCII);
+string encoded = hello.AsBase64(Encoding.Unicode);
 
 #!markdown
 
 ### Base64UrlEncode()
+
+Convert the provided string to a base 64 representation of its byte representation in the UTF8 encoding,
+with a URL-safe representation.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string url = "https://www.youtube.com/watch?v=pcc-EXzK3vI";
+string urlEncoded = url.Base64UrlEncode();
+urlEncoded
+
+#!markdown
+
+### Base64UrlDecode()
+
+Convert the provided string from a base 64 representation of its byte representation in the UTF8 encoding
+with a URL-safe representation.
+
+#!csharp
+
+string urlEncoded = "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj1wY2MtRVh6SzN2SQ";
+string urlDecoded = urlEncoded.Base64UrlDecode();
+urlDecoded
 
 #!markdown
 
