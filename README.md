@@ -7,6 +7,18 @@ This provides a library of useful extensions to .NET types.
 
 It is built for netstandard2.0.
 
+## Getting started
+
+`Corvus.Extensions` is available on [NuGet](https://www.nuget.org/packages/Corvus.Extensions). To add a reference to the package in your project, run the following command
+```
+dotnet add package Corvus.Extensions
+```
+
+Use the --version option to specify a [version](https://www.nuget.org/packages/Corvus.Extensions#versions-body-tab) to install.
+```
+dotnet add package Corvus.Extensions --version 1.1.4
+```
+
 ## Features
 
 ### Casting
