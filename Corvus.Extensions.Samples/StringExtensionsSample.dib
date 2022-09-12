@@ -1,0 +1,60 @@
+#!markdown
+
+## StringExtensions - Sample notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+### AsBase64()
+
+#!markdown
+
+Convert the provided string to a base 64 representation of its byte representation in a particular encoding.
+
+#!csharp
+
+using System.Text;
+
+#!csharp
+
+string hello = "Hello";
+hello.AsBase64(Encoding.ASCII);
+
+#!markdown
+
+### Base64UrlEncode()
+
+#!markdown
+
+### AsStream()
+
+#!markdown
+
+### EscapeContentType()
+
+#!markdown
+
+### FromBase64()
+
+#!markdown
+
+### GetGraphemeClusters() 
+
+#!markdown
+
+### Reverse()
+
+#!markdown
+
+### UnescapeContentType()
+
+#!markdown
+
+### ToCamelCase()

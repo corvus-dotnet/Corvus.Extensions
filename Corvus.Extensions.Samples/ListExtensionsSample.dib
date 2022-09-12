@@ -1,0 +1,41 @@
+#!markdown
+
+## ListExtensions - Sample notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+### RemoveAll()
+
+Example using the `RemoveAll()` extension method. This removes all items from a list that match a predicate.
+
+#!markdown
+
+Example 1 using a list of `int`
+
+#!csharp
+
+var list = new List<int> { 1, 2, 3, 4, 5, 6 };
+list.RemoveAll(i => i < 3);
+
+// The list now contains:
+// { 3, 4, 5, 6 }
+
+#!markdown
+
+Example 2 using a list of `string`
+
+#!csharp
+
+var list = new List<string> { "dog", "cat", "mouse", "pig", "dog" };
+list.RemoveAll(i => i != "dog");
+
+// The list now contains:
+// { "dog", "dog" }
