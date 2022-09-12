@@ -16,7 +16,13 @@ Excerpt: "Brief summary of the library."
 - Summary of the library and what it does
 - What is the value it adds?
 
+## How to Use
+
+"To use Corvus.x, do y."
+
 ## How to get started
+
+### Examples
 
 - Show a single code example
 - Describe other things that can be done with the library and link to corresponding code examples in the repo, or show a table of code examples with links to corresponding sections of the repo
