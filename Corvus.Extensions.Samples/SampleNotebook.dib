@@ -1,0 +1,43 @@
+#!markdown
+
+## DictionaryExtensions - Sample notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+### AddIfNotExists
+
+Example using the `AddIfNotExists()` extension method. First, a dictionary containing two key value pairs. Using the extension method to add a value that already exists returns the same dictionary. Using it to add a value not already in the dictionary returns the updated dictionary containing the new value.
+
+#!csharp
+
+using Corvus.Extensions;
+
+var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+foreach (KeyValuePair<string, int> value in myDictionary)
+    {
+        Console.WriteLine(value.Key, value.Value);
+    }
+
+#!csharp
+
+myDictionary.AddIfNotExists("Hello", 3); // returns false, does not add to dictionary
+foreach (KeyValuePair<string, int> value in myDictionary)
+    {
+        Console.WriteLine(value.Key, value.Value);
+    }
+
+#!csharp
+
+myDictionary.AddIfNotExists("Goodbye", 3); // returns true, adds to dictionary
+foreach (KeyValuePair<string, int> value in myDictionary)
+    {
+        Console.WriteLine(value.Key, value.Value);
+    }
