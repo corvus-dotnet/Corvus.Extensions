@@ -102,7 +102,7 @@ Replaces a value in a key, but only if the key already exists.
 var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
 
 myDictionary.ReplaceIfExists("Hello", 3); // returns true, sets "Hello" to 3
-myDictionary.ReplaceIfExists("Goodbye", 3); // returns false, does not add to dictionary
+myDictionary.ReplaceIfExists("Goodbye", 3); // returns false, adds the key value pair to dictionary
 ```
 
 #### `Merge()` 
