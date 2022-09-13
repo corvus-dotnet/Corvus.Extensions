@@ -21,19 +21,39 @@ Convert the provided string to a base 64 representation of its byte representati
 #!csharp
 
 using System.Text;
+using Corvus.Extensions;
 
 #!csharp
 
 string hello = "Hello";
-hello.AsBase64(Encoding.ASCII);
+return hello.AsBase64(Encoding.ASCII);
 
 #!markdown
 
 ### Base64UrlEncode()
 
+#!csharp
+
+string decodedString = "Cat = feline + Dog = canine";
+return decodedString.Base64UrlEncode();
+
+#!markdown
+
+### Base64UrlDecode()
+
+#!csharp
+
+string encodedString = "Q2F0ID0gZmVsaW5lICsgRG9nID0gY2FuaW5l";
+return encodedString.Base64UrlDecode();
+
 #!markdown
 
 ### AsStream()
+
+#!csharp
+
+string myString = "Hello";
+return myString.AsStream();
 
 #!markdown
 
