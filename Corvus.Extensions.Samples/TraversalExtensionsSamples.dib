@@ -1,0 +1,63 @@
+#!markdown
+
+## Traversal Extensions - Sample Notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+using Corvus.Extensions;
+
+#!markdown
+
+### ForEachAsync()
+
+#!markdown
+
+public static int Add(int x)
+{ 
+    return x + 1;
+}
+
+Func<int> funcAdd;
+funcAdd = Add;
+
+int x;
+Func<int> funcAddNumber = () => x+1 ;
+
+#!markdown
+
+public async Task<bool> isEqualToOne(int x)
+{
+    return x.Equals(1);
+}
+
+Func<bool> funcIsEqualToOne = isEqualToOne();
+
+#!markdown
+
+var list = new List<int> { 1, 2, 3, 4, 5 };
+list.ForEachAsync<int>(isEqualToOne(list[0]));
+
+#!markdown
+
+## ForEachAtIndex<T>()
+
+#!markdown
+
+static void ConsolePrint(int i)
+{
+    Console.WriteLine(i);
+}
+
+Action<int> printAction = ConsolePrint;
+printAction(10);
+
+#!markdown
+
+var list = new List<int> { 1, 2, 3, 4, 5 };
+list.ForEachAtIndex<int>(printAction);
