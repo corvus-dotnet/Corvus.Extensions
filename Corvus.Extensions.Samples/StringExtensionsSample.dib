@@ -12,15 +12,31 @@ First, add a reference to the `Corvus.Extensions` NuGet package.
 
 #!markdown
 
+Add using statement for `Corvus.Extensions` namespace
+
+#!csharp
+
+using System.IO;
+using Corvus.Extensions;
+
+#!markdown
+
 ### AsBase64()
 
 #!markdown
 
 Convert the provided string to a base 64 representation of its byte representation in a particular encoding.
 
+#!markdown
+
+#### Examples
+
+Example to convert a string's byte representation in Unicode to base 64 representation
+
 #!csharp
 
-using System.Text;
+string hello = "Hello";
+return hello.AsBase64(Encoding.ASCII);	string encoded = hello.AsBase64(Encoding.Unicode);
 
 #!markdown
 
@@ -28,7 +44,53 @@ using System.Text;
 
 #!markdown
 
+Convert the provided string to a base 64 representation of its byte representation in the UTF8 encoding,
+with a URL-safe representation.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string url = "https://www.youtube.com/watch?v=pcc-EXzK3vI";
+string urlEncoded = url.Base64UrlEncode();
+    urlEncoded
+
+#!markdown
+
+### Base64UrlDecode()
+
+#!markdown
+
+Convert the provided string from a base 64 representation of its byte representation in the UTF8 encoding
+with a URL-safe representation.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string urlEncoded = "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj1wY2MtRVh6SzN2SQ";
+string urlDecoded = urlEncoded.Base64UrlDecode();
+urlDecoded
+
+#!markdown
+
 ### AsStream()
+
+Provide a stream over the string in the specified encoding.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "hello";
+Stream myStream = myString.AsStream(Encoding.ASCII);
+return myStream.ToString();
 
 #!markdown
 
@@ -36,7 +98,25 @@ using System.Text;
 
 #!markdown
 
+Escapes a content type string.
+
+#!csharp
+
+string url = "https://www.youtube.com/watch?v=pcc-EXzK3vI";
+return url.EscapeContentType();
+
+#!markdown
+
 ### FromBase64()
+
+#!markdown
+
+Decode a string from a base64-encoded byte array with the specified text encoding.
+
+#!csharp
+
+string base64String = "SGVsbG8=";
+return base64String.FromBase64();
 
 #!markdown
 
@@ -44,12 +124,58 @@ using System.Text;
 
 #!markdown
 
+Enumerate the grapheme clusters in a string.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "hello";
+return myString.GetGraphemeClusters();
+
+#!markdown
+
 ### Reverse()
+
+Reverse the string.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "hello";
+return myString.Reverse();
 
 #!markdown
 
 ### UnescapeContentType()
 
+Unescapes a content type string.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "https%3A%60%60www%7Cyoutube%7Ccom%60watch%3Fv%3Dpcc-EXzK3vI";
+return myString.UnescapeContentType();
+
 #!markdown
 
 ### ToCamelCase()
+
+ Converts a string to camel case from pascal case.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "HelloFromEndjin";
+return myString.ToCamelCase();
