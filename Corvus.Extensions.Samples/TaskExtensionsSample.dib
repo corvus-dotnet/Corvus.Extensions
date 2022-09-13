@@ -1,0 +1,44 @@
+#!markdown
+
+## TaskExtensions - Sample notebook
+
+#!markdown
+
+Casts Task/Task<?> to Task<T> result type with or without a cast of the actual result value.
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+Add using statement for `Corvus.Extensions` namespace
+
+#!csharp
+
+using System.IO;
+using Corvus.Extensions;
+
+#!markdown
+
+### CastWithConversion()
+
+#!markdown
+
+Checks to see if a Task actually has a result and converts to a task of the relevant type.
+
+#!markdown
+
+#### Examples
+
+#!markdown
+
+### Cast()
+
+#!markdown
+
+#### Examples
