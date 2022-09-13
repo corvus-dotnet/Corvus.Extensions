@@ -10,6 +10,10 @@ First, add a reference to the `Corvus.Extensions` NuGet package.
 
 #r "nuget: Corvus.Extensions, 1.1.4"
 
+#!csharp
+
+using Corvus.Extensions;
+
 #!markdown
 
 ### RemoveAll()
@@ -36,6 +40,6 @@ Example 2 using a list of `string`
 
 var list = new List<string> { "dog", "cat", "mouse", "pig", "dog" };
 list.RemoveAll(i => i != "dog");
-
+list
 // The list now contains:
 // { "dog", "dog" }
