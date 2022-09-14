@@ -1,0 +1,65 @@
+#!markdown
+
+## TaskEx - Sample notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+Add using statement for `Corvus.Extensions` namespace
+
+#!csharp
+
+using System.IO;
+using Corvus.Extensions;
+
+#!markdown
+
+### WhenAllMany()
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+int[] numbers = {1,2,3,4};
+string[] letters = {"A", "B", "C"};
+
+numbers.SelectMany(n => letters, (n, l) => $"number: {n}, letter: {l}")
+
+#!csharp
+
+string[][] input =
+{
+  new[]{"Hello", "World"},
+  new[]{"Cat", "Dog"}  
+};
+
+input.SelectMany(a => a)
+
+#!csharp
+
+foreach (var a in input)
+{
+    foreach (var item in a)
+    {
+        Console.WriteLine(item);
+    }
+}
+
+#!csharp
+
+foreach (var a in numbers)
+{
+    foreach (var item in letters)
+    {
+        Console.WriteLine($"number: {a}, letter: {item}");
+    }
+}
