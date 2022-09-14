@@ -29,35 +29,54 @@ funcAdd = Add;
 int x;
 Func<int> funcAddNumber = () => x+1 ;
 
-#!markdown
+#!csharp
 
 public async Task<bool> isEqualToOne(int x)
 {
-    return x.Equals(1);
+    bool result = x.Equals(1);
+    Console.WriteLine(result);
+    return result;
 }
 
-Func<bool> funcIsEqualToOne = isEqualToOne();
+Func<int, Task<bool>> funcIsEqualToOne = isEqualToOne;
 
-#!markdown
+#!csharp
 
 var list = new List<int> { 1, 2, 3, 4, 5 };
-list.ForEachAsync<int>(isEqualToOne(list[0]));
+await list.ForEachAsync<int>(isEqualToOne)
+// method was useful when we didn't have async and await.
+
+#!csharp
+
+foreach (int x in list)
+{
+    await isEqualToOne(x);
+}
 
 #!markdown
 
 ## ForEachAtIndex<T>()
 
-#!markdown
+#!csharp
 
-static void ConsolePrint(int i)
+static void ConsolePrint(string s, int i)
 {
     Console.WriteLine(i);
+    Console.WriteLine(s);
 }
 
-Action<int> printAction = ConsolePrint;
-printAction(10);
+Action<string, int> printAction = ConsolePrint;
 
-#!markdown
+#!csharp
 
-var list = new List<int> { 1, 2, 3, 4, 5 };
-list.ForEachAtIndex<int>(printAction);
+IEnumerable<string> list = new List<string> { "foo", "bar", "quux" };
+list.ForEachAtIndex<string>(printAction);
+
+#!csharp
+
+int i = 0;
+
+foreach (string v in list)
+{
+    printAction(v, i++);
+}

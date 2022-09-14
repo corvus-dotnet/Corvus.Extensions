@@ -31,9 +31,23 @@ public static string ExtractPropertyName(this LambdaExpression expression)
     return memberExpression.Member.Name;
 }
 
-#!markdown
+#!csharp
 
-LambdaExpression cube = x => x * x * x;
+Expression<Func<string, int>> getter = x => x.Length;
+
+#!csharp
+
+getter.ExtractPropertyName()
+
+#!csharp
+
+public class DbRow
+{
+    public string FirstName{ get; set; }
+}
+
+Expression<Func<DbRow, bool>> rowFilter = row => row.FirstName == "Ian";
+Expression.Lambda(typeof(Func<DbRow, string>), ((BinaryExpression) rowFilter.Body).Left, Expression.Parameter(typeof(DbRow), "row")).ExtractPropertyName()
 
 #!markdown
 
