@@ -55,6 +55,33 @@ The above runs fine but it's not a meaningful example. Need to understand when y
 
 Similar story for the example below.
 
+#!csharp
+
+static int Divide(int x)
+{
+    int result = 10/x;
+    Console.WriteLine(result);
+    return result;
+}
+
+int x = 0;
+Task task = Task.Run( () => {
+    int result = Divide(x);
+});
+
+#!csharp
+
+// static async Task<int> DivideByZero()
+// {
+//     int result = Divide(0);
+//     return result;
+// }
+
+#!csharp
+
+Task<int> newTask = task.CastWithConversion<int>();
+newTask
+
 #!markdown
 
 ### `Cast()`
