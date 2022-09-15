@@ -79,7 +79,7 @@ Task task = Task.Run( () => {
 
 #!csharp
 
-Task<int> newTask = task.CastWithConversion<int>();
+Task<float> newTask = task.CastWithConversion<float>();
 newTask
 
 #!markdown
