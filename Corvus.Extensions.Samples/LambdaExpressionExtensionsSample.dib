@@ -60,3 +60,5 @@ This extracts a property name from a lambda expression, throwing if that express
 #!csharp
 
 getter.GetMemberExpression()
+
+//{ x: Type: System.String, NodeType: Parameter, Name: x, IsByRef: False, CanReduce: False }
