@@ -39,7 +39,7 @@ numbers.SelectMany(n => letters, (n, l) => $"number: {n}, letter: {l}")
 string[][] input =
 {
   new[]{"Hello", "World"},
-  new[]{"Cat", "Dog"}  
+  new[]{"Cat", "Dog", "Bird"}  
 };
 
 input.SelectMany(a => a)
