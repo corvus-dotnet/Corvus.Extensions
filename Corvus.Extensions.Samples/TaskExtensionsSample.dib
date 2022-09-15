@@ -4,10 +4,6 @@
 
 #!markdown
 
-Casts Task/Task<?> to Task<T> result type with or without a cast of the actual result value.
-
-#!markdown
-
 First, add a reference to the `Corvus.Extensions` NuGet package.
 
 #!csharp
@@ -20,14 +16,16 @@ Add using statement for `Corvus.Extensions` namespace
 
 #!csharp
 
-using System.IO;
 using Corvus.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
 
 #!markdown
 
-### CastWithConversion()
-
-#!markdown
+### `CastWithConversion()`
 
 Checks to see if a Task actually has a result and converts to a task of the relevant type.
 
@@ -35,10 +33,51 @@ Checks to see if a Task actually has a result and converts to a task of the rele
 
 #### Examples
 
+#!csharp
+
+string url = "www.contoso.com";
+Ping png = new Ping();
+var reply = png.Send(url);
+Task task = Task.Run( () => {
+            Ping ping = new Ping();
+            PingReply reply = ping.Send(url);
+            return reply;
+
+});
+
+#!csharp
+
+Task<String> newTask = task.CastWithConversion<string>();
+
 #!markdown
 
-### Cast()
+The above runs fine but it's not a meaningful example. Need to understand when you would want to use `CastWithConversion`.
+
+Similar story for the example below.
+
+#!markdown
+
+### `Cast()`
+
+Casts from a `Task` to a `Task<T>`
 
 #!markdown
 
 #### Examples
+
+#!csharp
+
+string url = "www.contoso.com";
+Ping png = new Ping();
+var reply = png.Send(url);
+Task task = Task.Run( () => {
+            Ping ping = new Ping();
+            PingReply reply = ping.Send(url);
+            return reply;
+
+});
+
+#!csharp
+
+Task<PingReply> newTask = task.Cast<PingReply>();
+//return await task.CastWithConversion<int>();
