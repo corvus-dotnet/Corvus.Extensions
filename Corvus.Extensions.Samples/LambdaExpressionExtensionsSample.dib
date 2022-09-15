@@ -51,31 +51,12 @@ Expression.Lambda(typeof(Func<DbRow, string>), ((BinaryExpression) rowFilter.Bod
 
 #!markdown
 
-lambdaExpr.ExtractPropertyName();
+### GetMemberExpression()
 
 #!markdown
 
-// A parameter for the lambda expression.
-ParameterExpression paramExpr = Expression.Parameter(typeof(int), "arg");
+This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`.
 
-// This expression represents a lambda expression
-// that adds 1 to the parameter value.
-LambdaExpression lambdaExpr = Expression.Lambda(
-    Expression.Add(
-        paramExpr,
-        Expression.Constant(1)
-    ),
-    new List<ParameterExpression>() { paramExpr }
-);
+#!csharp
 
-// Print out the expression.
-Console.WriteLine(lambdaExpr);
-
-// Compile and run the lamda expression.
-// The value of the parameter is 1.
-Console.WriteLine(lambdaExpr.Compile().DynamicInvoke(1));
-
-// This code example produces the following output:
-//
-// arg => (arg +1)
-// 2
+getter.GetMemberExpression()
