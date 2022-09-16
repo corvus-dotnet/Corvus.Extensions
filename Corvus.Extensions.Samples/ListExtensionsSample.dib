@@ -1,6 +1,6 @@
 #!markdown
 
-## ListExtensions - Sample notebook
+## ListExtensions - Sample Notebook
 
 #!markdown
 
@@ -10,15 +10,23 @@ First, add a reference to the `Corvus.Extensions` NuGet package.
 
 #r "nuget: Corvus.Extensions, 1.1.4"
 
+#!markdown
+
+Add using statement for `Corvus.Extensions` namespace
+
 #!csharp
 
 using Corvus.Extensions;
 
 #!markdown
 
-### RemoveAll()
+### `RemoveAll()`
 
 Example using the `RemoveAll()` extension method. This removes all items from a list that match a predicate.
+
+#!markdown
+
+### Examples
 
 #!markdown
 
