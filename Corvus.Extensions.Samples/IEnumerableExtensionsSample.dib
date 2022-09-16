@@ -27,9 +27,6 @@ var result = list.DistinctPreserveOrder();
 
 return result;
 
-// Results in:
-// { 1, 2, 3, 4, 5, 6 }
-
 #!markdown
 
 ### DistinctBy()
@@ -51,9 +48,6 @@ var result = list.DistinctBy(i => i.Prop1);
 
 return result;
 
-// Results in:
-// { {"Hello", 1}, {"World", 1} }
-
 #!markdown
 
 ### Concatenate()
@@ -71,9 +65,6 @@ var list4 = new List<int> { 10, 11, 12 };
 
 return list.Concatenate(list2, list3, list4);
 
-// Results in: 
-// { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }
-
 #!markdown
 
 ### HasMinimumCount()
@@ -88,11 +79,11 @@ var list = new List<int> { 1, 2, 3 };
 
 #!csharp
 
-return list.HasMinimumCount(3); // true
+return list.HasMinimumCount(3);
 
 #!csharp
 
-return list.HasMinimumCount(4); // false
+return list.HasMinimumCount(4);
 
 #!markdown
 
