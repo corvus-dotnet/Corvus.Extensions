@@ -64,7 +64,7 @@ static int Divide(int x)
     return result;
 }
 
-int x = 0;
+int x = 2;
 Task task = Task.Run( () => {
     int result = Divide(x);
 });
@@ -81,6 +81,23 @@ Task task = Task.Run( () => {
 
 Task<float> newTask = task.CastWithConversion<float>();
 newTask
+
+#!csharp
+
+class Base
+{
+
+}
+
+class Derived : Base
+{
+
+}
+
+Task t = Task.FromResult(new Derived());
+// Task<Base> tb = t.CastWithConversion<Base>();
+Task<Base> tb = (Task<Base>)t;
+tb.Result
 
 #!markdown
 
