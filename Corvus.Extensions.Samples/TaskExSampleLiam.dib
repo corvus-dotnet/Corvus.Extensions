@@ -31,70 +31,124 @@ using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
 
-#!csharp
-
-public class Example
-{
-   public static void Main()
-   {
-      int failed = 0;
-      var tasks = new List<Task<Ping>>();
-      String[] urls = { "www.adatum.com", "www.cohovineyard.com",
-                        "www.cohowinery.com", "www.northwindtraders.com",
-                        "www.contoso.com" };
-      
-      foreach (var value in urls) {
-         var url = value;
-         tasks.Add(Task.Run( () => { Ping png = new Ping();
-                                     try {
-                                        var reply = png.Send(url);
-                                        if (! (reply.Status == IPStatus.Success)) {
-                                           Interlocked.Increment(ref failed);
-                                           throw new TimeoutException("Unable to reach " + url + ".");
-                                        }
-                                     }
-                                     catch (PingException) {
-                                        Interlocked.Increment(ref failed);
-                                        throw;
-                                     }
-                                     return png;
-                                   }));
-      }
-      Task t = Task.WhenAll(tasks);
-      try {
-         t.Wait();
-      }
-      catch {}   
-
-      if (t.Status == TaskStatus.RanToCompletion)
-         Console.WriteLine("All ping attempts succeeded.");
-      else if (t.Status == TaskStatus.Faulted)
-         Console.WriteLine("{0} ping attempts failed", failed);      
-   }
-}
-// The example displays output like the following:
-//       5 ping attempts failed
-
-#!csharp
-
-Example.Main()
-
-#!csharp
-
-Func<string,Task<Ping>> method = (url) => {
-    Ping png = new Ping();
-    try {
-        var reply = png.Send(url);
-        if (! (reply.Status == IPStatus.Success)) {
-            throw new TimeoutException("Unable to reach " + url + ".");
-        }
-    }
-    catch (PingException) {
-        throw;
-    }
-    return png;
-};
-
 #!markdown
 
-#### Examples
+#### OPML Files and feeds...
+
+The collection to apply the method should be a collection of feed collection objects (whatever that is), say containing feed collection objects representing Azure weekly and Power BI Weekly
+
+```csharp
+List<FeedCollection> collectionOfFeedCollections = new List<FeedCollection>()
+
+```
+
+On each of those `FeedCollection` objects, you want to do `GetAllFeeds`, which you'll want to return a `Task<IEnumerable<Feed>>`. This is the function of the Func.
+
+It should look like this:
+
+```csharp
+Func<FeedCollection, Task<IEnumerable<Feed>>> mapper = (feedCollection) => 
+{
+    Task<IEnumerable<Feed>> feeds = await feedCollection.GetAllFeeds();
+    return feeds;
+}
+```
+
+The `SelectMany()` method on the result should flatten the resulting collection to give a collection of feeds. Or should it?
+
+Will the `Configure.Await(false)` in `source.Select(sourceItem => mapper(sourceItem))).ConfigureAwait(false))` mean that we have a collection of `IEnumerable<Feed>` instead of a collection of `Task<IEnumerable<Feed>>`?
+
+I think it will. Meaning we will end up with a `List<Feed>`, or at the very end (when the method returns with the `Task.WhenAll()` applied) we'll have a `Task<List<Feed>>`.
+
+#!csharp
+
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
+#!csharp
+
+public record Feed(string Name, string Author, string Format, Uri Url);
+
+#!csharp
+
+public class FeedDownloadResult
+{
+    public string Content { get; set; }
+    
+    public HttpStatusCode StatusCode { get; set; }
+}
+
+#!csharp
+
+public class FeedCollection
+{
+    public FeedCollection(Feed[] feeds)
+    {
+        this.Feeds = feeds;
+    }
+
+    public Feed[] Feeds { get; private set; }
+    
+    public string Name { get; set; }
+
+    public Task<FeedDownloadResult[]> GetAllFeedsAsync()
+    {
+        List<Task<FeedDownloadResult>> feedTasks = new List<Task<FeedDownloadResult>>();
+        foreach (Feed feed in this.Feeds)
+        {
+            Task<FeedDownloadResult> feedDownloadResult =  GetFeedAsync(feed);
+            feedTasks.Add(feedDownloadResult);
+        }
+
+        return Task.WhenAll<FeedDownloadResult>(feedTasks.ToArray<Task<FeedDownloadResult>>());
+    }
+
+    private async Task<FeedDownloadResult> GetFeedAsync(Feed feed)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, feed.Url);
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+
+        return new FeedDownloadResult
+        {
+            Content = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null,
+            StatusCode = response.StatusCode
+        };
+    }
+
+}
+
+#!csharp
+
+FeedCollection[] feedCollections = 
+{
+    new FeedCollection
+    (
+        new Feed[]
+        {
+            new Feed("Chris Risner's blog", "Chris Risner", "RSS", new Uri("https://feeds.feedburner.com/Chrisrisnercom")),
+            new Feed("Joseph Jude's blog", "Joseph Jude", "RSS", new Uri("https://jjude.com/feed.xml"))
+        };
+    ),
+
+    new FeedCollection
+    (
+        new Feed[]
+        {
+            new Feed("Marius Sandbu's blog", "Marius Sandbu", "RSS", new Uri("https://msandbu.wordpress.com/feed/")),
+            new Feed("Jakob Ehn's blog", "Jakob Ehn", "RSS", new Uri("https://blog.ehn.nu/feed/"))
+        };
+    )
+};
+
+#!csharp
+
+Func<FeedCollection, Task<FeedDownloadResult[]>> mapper = (feedCollection) => 
+{
+    return feedCollection.GetAllFeedsAsync();
+};
+
+return feedCollections.WhenAllMany(mapper);
