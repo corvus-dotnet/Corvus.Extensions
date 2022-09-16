@@ -19,17 +19,7 @@ using System.Linq.Expressions;
 
 #!markdown
 
-public static string ExtractPropertyName(this LambdaExpression expression)
-{
-    if (expression is null)
-    {
-        throw new ArgumentNullException(nameof(expression));
-    }
-
-    MemberExpression memberExpression = GetMemberExpression(expression);
-
-    return memberExpression.Member.Name;
-}
+Extract a property name from a lambda expression.
 
 #!csharp
 
@@ -38,16 +28,6 @@ Expression<Func<string, int>> getter = x => x.Length;
 #!csharp
 
 getter.ExtractPropertyName()
-
-#!csharp
-
-public class DbRow
-{
-    public string FirstName{ get; set; }
-}
-
-Expression<Func<DbRow, bool>> rowFilter = row => row.FirstName == "Ian";
-Expression.Lambda(typeof(Func<DbRow, string>), ((BinaryExpression) rowFilter.Body).Left, Expression.Parameter(typeof(DbRow), "row")).ExtractPropertyName()
 
 #!markdown
 

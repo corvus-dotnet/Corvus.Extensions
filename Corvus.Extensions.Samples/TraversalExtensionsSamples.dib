@@ -16,6 +16,10 @@ using Corvus.Extensions;
 
 ### ForEachAsync()
 
+#!markdown
+
+Execute an async action for each item in the enumerable.
+
 #!csharp
 
 public async Task<bool> isEqualToOne(int x)
@@ -42,7 +46,11 @@ foreach (int x in list)
 
 #!markdown
 
-## ForEachAtIndex<T>()
+### ForEachAtIndex<T>()
+
+#!markdown
+
+Execute an action for each item in the enumerable with the index of the item in the enumerable.
 
 #!csharp
 
@@ -70,7 +78,11 @@ foreach (string v in list)
 
 #!markdown
 
-## ForEachAtIndexAsync()
+### ForEachAtIndexAsync()
+
+#!markdown
+
+Execute an async action for each item in the enumerable, in turn, with the index of the item in the enumerable.
 
 #!csharp
 
@@ -90,7 +102,13 @@ await list.ForEachAtIndexAsync<string>(actionConsolePrint);
 
 #!markdown
 
-## ForEachFailEnd()
+### ForEachFailEnd()
+
+#!markdown
+
+Execute an action for each item in the enumerable. 
+
+If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
 
 #!csharp
 
@@ -108,7 +126,15 @@ list.ForEachFailEnd<int>(divideAction)
 
 #!markdown
 
-## ForEachFailEndAsync()
+### ForEachFailEndAsync()
+
+#!markdown
+
+Execute an action for each item in the enumerable.
+
+Returns a task which completes when the enumeration has completed.
+
+If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
 
 #!csharp
 
@@ -127,7 +153,7 @@ await list.ForEachFailEndAsync<int>(divideAction)
 
 #!markdown
 
-## ForEachUntilFalse()
+### ForEachUntilFalse()
 
 #!markdown
 
@@ -151,7 +177,7 @@ list.ForEachUntilFalse<int>(equalsZeroAction)
 
 #!markdown
 
-## ForEachUntilFalseAsync()
+### ForEachUntilFalseAsync()
 
 #!markdown
 
@@ -175,7 +201,7 @@ await list.ForEachUntilFalseAsync<int>(equalsZeroAction)
 
 #!markdown
 
-## ForEachUntilTrue()
+### ForEachUntilTrue()
 
 #!markdown
 
@@ -199,7 +225,7 @@ list.ForEachUntilTrue<int>(equalsZeroAction)
 
 #!markdown
 
-## ForEachUntilTrueAsync()
+### ForEachUntilTrueAsync()
 
 #!markdown
 
