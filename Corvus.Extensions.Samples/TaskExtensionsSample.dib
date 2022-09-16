@@ -57,33 +57,6 @@ Similar story for the example below.
 
 #!csharp
 
-static int Divide(int x)
-{
-    int result = 10/x;
-    Console.WriteLine(result);
-    return result;
-}
-
-int x = 2;
-Task task = Task.Run( () => {
-    int result = Divide(x);
-});
-
-#!csharp
-
-// static async Task<int> DivideByZero()
-// {
-//     int result = Divide(0);
-//     return result;
-// }
-
-#!csharp
-
-Task<float> newTask = task.CastWithConversion<float>();
-newTask
-
-#!csharp
-
 class Base
 {
 
@@ -94,9 +67,24 @@ class Derived : Base
 
 }
 
+#!markdown
+
+The following cell returns an error:
+
+#!csharp
+
 Task t = Task.FromResult(new Derived());
-// Task<Base> tb = t.CastWithConversion<Base>();
+
 Task<Base> tb = (Task<Base>)t;
+tb.Result
+
+#!markdown
+
+While using `CastWithConversion<>()` allows us to cast the task to a base.
+
+#!csharp
+
+Task<Base> tb = t.CastWithConversion<Base>();
 tb.Result
 
 #!markdown
