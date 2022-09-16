@@ -35,30 +35,30 @@ using System.Threading.Tasks;
 
 #### OPML Files and feeds...
 
-The collection to apply the method should be a collection of feed collection objects (whatever that is), say containing feed collection objects representing Azure weekly and Power BI Weekly
+The collection to apply the method to should be a collection of `FeedCollection` objects, say containing `FeedCollection` objects representing Azure weekly and Power BI Weekly
 
 ```csharp
 List<FeedCollection> collectionOfFeedCollections = new List<FeedCollection>()
 
 ```
 
-On each of those `FeedCollection` objects, you want to do `GetAllFeeds`, which you'll want to return a `Task<IEnumerable<Feed>>`. This is the function of the Func.
+On each of those `FeedCollection` objects, you want call a `GetAllFeeds` method, which you'll want to return a `Task<IEnumerable<FeedDownloadResult>>`. This is the function of the Func.
 
-It should look like this:
+It should look something like this:
 
 ```csharp
-Func<FeedCollection, Task<IEnumerable<Feed>>> mapper = (feedCollection) => 
+Func<FeedCollection, Task<IEnumerable<FeedDownloadResult>>> mapper = (feedCollection) => 
 {
-    Task<IEnumerable<Feed>> feeds = await feedCollection.GetAllFeeds();
+    Task<IEnumerable<FeedDownloadResult>> feeds = await feedCollection.GetAllFeeds();
     return feeds;
 }
 ```
 
-The `SelectMany()` method on the result should flatten the resulting collection to give a collection of feeds. Or should it?
+The `SelectMany()` method on the result should flatten the resulting collection to give a collection of `FeedDownloadResult`.
 
-Will the `Configure.Await(false)` in `source.Select(sourceItem => mapper(sourceItem))).ConfigureAwait(false))` mean that we have a collection of `IEnumerable<Feed>` instead of a collection of `Task<IEnumerable<Feed>>`?
+Meaning we will end up with a `List<FeedDownloadResult>`, or at the very end (when the method returns with the `Task.WhenAll()` applied) we'll have a `Task<List<FeedDownloadResult>>`.
 
-I think it will. Meaning we will end up with a `List<Feed>`, or at the very end (when the method returns with the `Task.WhenAll()` applied) we'll have a `Task<List<Feed>>`.
+What it's basically doing is iterating through the `FeedCollection`s, for each one iterating through its `Feed`s, for each  `Feed` it's sending a HTTP GET request to the URL in the `Feed` and returning a `Task<FeedDownloadResult>`.
 
 #!csharp
 

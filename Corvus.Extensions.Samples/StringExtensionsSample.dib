@@ -1,6 +1,6 @@
 #!markdown
 
-## StringExtensions - Sample notebook
+## StringExtensions - Sample Notebook
 
 #!markdown
 
@@ -21,7 +21,7 @@ using Corvus.Extensions;
 
 #!markdown
 
-### AsBase64()
+### `AsBase64()`
 
 #!markdown
 
@@ -31,7 +31,7 @@ Convert the provided string to a base 64 representation of its byte representati
 
 #### Examples
 
-Example to convert a string's byte representation in Unicode to base 64 representation
+The example below converts a string's byte representation in Unicode to a base 64 representation.
 
 #!csharp
 
@@ -40,7 +40,7 @@ return hello.AsBase64(Encoding.ASCII);	string encoded = hello.AsBase64(Encoding.
 
 #!markdown
 
-### Base64UrlEncode()
+### `Base64UrlEncode()`
 
 #!markdown
 
@@ -59,7 +59,7 @@ string urlEncoded = url.Base64UrlEncode();
 
 #!markdown
 
-### Base64UrlDecode()
+### `Base64UrlDecode()`
 
 #!markdown
 
@@ -78,7 +78,7 @@ urlDecoded
 
 #!markdown
 
-### AsStream()
+### `AsStream()`
 
 Provide a stream over the string in the specified encoding.
 
@@ -94,11 +94,11 @@ return myStream.ToString();
 
 #!markdown
 
-### EscapeContentType()
+### `EscapeContentType()`
 
 #!markdown
 
-Escapes a content type string.
+Escape a content type string.
 
 #!csharp
 
@@ -107,7 +107,7 @@ return url.EscapeContentType();
 
 #!markdown
 
-### FromBase64()
+### `FromBase64()`
 
 #!markdown
 
@@ -120,7 +120,7 @@ return base64String.FromBase64();
 
 #!markdown
 
-### GetGraphemeClusters() 
+### `GetGraphemeClusters()` 
 
 #!markdown
 
@@ -137,7 +137,7 @@ return myString.GetGraphemeClusters();
 
 #!markdown
 
-### Reverse()
+### `Reverse()`
 
 Reverse the string.
 
@@ -152,9 +152,9 @@ return myString.Reverse();
 
 #!markdown
 
-### UnescapeContentType()
+### `UnescapeContentType()`
 
-Unescapes a content type string.
+Unescape a content type string.
 
 #!markdown
 
@@ -167,9 +167,9 @@ return myString.UnescapeContentType();
 
 #!markdown
 
-### ToCamelCase()
+### `ToCamelCase()`
 
- Converts a string to camel case from pascal case.
+ Convert a string to camel case from pascal case.
 
 #!markdown
 
