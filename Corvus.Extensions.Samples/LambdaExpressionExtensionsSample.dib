@@ -19,7 +19,7 @@ using System.Linq.Expressions;
 
 #!markdown
 
-Extract a property name from a lambda expression.
+Extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`.
 
 #!csharp
 
@@ -35,10 +35,10 @@ getter.ExtractPropertyName()
 
 #!markdown
 
-This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`.
+Extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
 
 #!csharp
 
-getter.GetMemberExpression()
+getter.GetMemberExpression().Expression
 
 //{ x: Type: System.String, NodeType: Parameter, Name: x, IsByRef: False, CanReduce: False }
