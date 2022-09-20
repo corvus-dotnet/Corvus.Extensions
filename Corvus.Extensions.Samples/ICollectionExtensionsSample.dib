@@ -1,0 +1,29 @@
+#!markdown
+
+## ICollectionExtensions - Sample Notebook 
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+using Corvus.Extensions;
+
+#!markdown
+
+### AddRange()
+
+#!markdown
+
+Add a range of items to the collection.
+
+#!csharp
+
+var myDestinationList = new List<int> { 5,6,7,8 };
+var myItemsList = new List<int> { 1,2,3,4 };
+myDestinationList.AddRange(myItemsList);
+
+return myDestinationList;
