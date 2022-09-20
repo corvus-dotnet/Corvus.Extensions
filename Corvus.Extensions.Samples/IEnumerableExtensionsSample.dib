@@ -1,0 +1,111 @@
+#!markdown
+
+## IEnumerableExtensions - Sample Notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+using Corvus.Extensions;
+
+#!markdown
+
+### DistinctPreserveOrder()
+
+#!markdown
+
+This emits an enumerable of the distinct items in the target, preserving their original ordering.
+
+#!csharp
+
+var list = new List<int> { 1, 2, 3, 2, 4, 5, 6, 3 };
+var result = list.DistinctPreserveOrder();
+
+return result;
+
+#!markdown
+
+### DistinctBy()
+
+#!markdown
+
+This allows you to provide a function to provide the value for equality comparison for each item.
+
+#!csharp
+
+class SomeType
+{
+  public string Prop1 { get; set; }
+  public int Prop2 { get; set; }
+}
+
+var list = new List<SomeType> { new SomeType { Prop1 = "Hello", Prop2 = 1 }, new SomeType { Prop1 = "Hello", Prop2 = 3 }, new SomeType { Prop1 = "World", Prop2 = 1 } };
+var result = list.DistinctBy(i => i.Prop1);
+
+return result;
+
+#!markdown
+
+### Concatenate()
+
+#!markdown
+
+This gives you the ability to concatenate mutiple enumerables, using the params pattern.
+
+#!csharp
+
+var list = new List<int> { 1, 2, 3 };
+var list2 = new List<int> { 4, 5, 6 };
+var list3 = new List<int> { 7, 8, 9 };
+var list4 = new List<int> { 10, 11, 12 };
+
+return list.Concatenate(list2, list3, list4);
+
+#!markdown
+
+### HasMinimumCount()
+
+#!markdown
+
+This determines whether the enumerable has at least a given number of items in it.
+
+#!csharp
+
+var list = new List<int> { 1, 2, 3 };
+
+#!csharp
+
+return list.HasMinimumCount(3);
+
+#!csharp
+
+return list.HasMinimumCount(4);
+
+#!markdown
+
+### AllAndAtLeastOne()
+
+#!markdown
+
+This is an efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
+
+#!csharp
+
+var list = new List<int> { 1, 2, 3 };
+var list2 = new List<int>();
+
+#!csharp
+
+return list.AllAndAtLeastOne(i => i <= 3); // true
+
+#!csharp
+
+return list.AllAndAtLeastOne(i => i <= 2); // false
+
+#!csharp
+
+return list2.AllAndAtLeastOne(i => i <= 2); // false
