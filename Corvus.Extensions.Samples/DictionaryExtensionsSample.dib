@@ -10,6 +10,8 @@ First, add a reference to the `Corvus.Extensions` NuGet package.
 
 #r "nuget: Corvus.Extensions, 1.1.4"
 
+using Corvus.Extensions;
+
 #!markdown
 
 ### AddIfNotExists
@@ -18,26 +20,60 @@ Example using the `AddIfNotExists()` extension method. First, a dictionary conta
 
 #!csharp
 
-using Corvus.Extensions;
-
 var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
-foreach (KeyValuePair<string, int> value in myDictionary)
-    {
-        Console.WriteLine(value.Key, value.Value);
-    }
 
 #!csharp
 
 myDictionary.AddIfNotExists("Hello", 3); // returns false, does not add to dictionary
-foreach (KeyValuePair<string, int> value in myDictionary)
-    {
-        Console.WriteLine(value.Key, value.Value);
-    }
+
+return myDictionary;
 
 #!csharp
 
 myDictionary.AddIfNotExists("Goodbye", 3); // returns true, adds to dictionary
-foreach (KeyValuePair<string, int> value in myDictionary)
-    {
-        Console.WriteLine(value.Key, value.Value);
-    }
+
+return myDictionary;
+
+#!markdown
+
+### Replace if exists
+
+#!markdown
+
+Replaces a value in a key, but only if the key already exists.
+
+#!csharp
+
+var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+
+#!csharp
+
+myDictionary.ReplaceIfExists("Hello", 3); // returns true, sets "Hello" to 3
+
+return myDictionary;
+
+#!csharp
+
+myDictionary.ReplaceIfExists("Goodbye", 3); // returns false, adds new key value pair to dictionary
+
+return myDictionary;
+
+#!markdown
+
+### Merge
+
+#!markdown
+
+The union of two dictionaries. Note that this uses AddIfNotExists() semantics, so the values in the first dictionary will be preserved.
+
+#!csharp
+
+var myDictionary1 = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+var myDictionary2 = new Dictionary<string, int> { { "Hello", 3 }, { "Goodbye", 4 } };
+
+myDictionary1.Merge(myDictionary2);
+
+return myDictionary1;
+
+// Results in:
+// { { "Hello", 1 }, { "World", 2 }, { "Goodbye", 4 } }
