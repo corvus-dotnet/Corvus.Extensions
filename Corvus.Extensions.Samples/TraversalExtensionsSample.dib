@@ -1,0 +1,248 @@
+#!markdown
+
+## Traversal Extensions - Sample Notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+using Corvus.Extensions;
+
+#!markdown
+
+### ForEachAsync()
+
+#!markdown
+
+Execute an async action for each item in the enumerable.
+
+#!csharp
+
+public async Task<bool> isEqualToOne(int x)
+{
+    bool result = x.Equals(1);
+    Console.WriteLine(result);
+    return result;
+}
+
+Func<int, Task<bool>> funcIsEqualToOne = isEqualToOne;
+
+#!csharp
+
+var list = new List<int> { 1, 2, 3, 4, 5 };
+await list.ForEachAsync<int>(isEqualToOne)
+// method was useful when we didn't have async and await.
+
+#!csharp
+
+foreach (int x in list)
+{
+    await isEqualToOne(x);
+}
+
+#!markdown
+
+### ForEachAtIndex<T>()
+
+#!markdown
+
+Execute an action for each item in the enumerable with the index of the item in the enumerable.
+
+#!csharp
+
+static void ConsolePrint(string s, int i)
+{
+    Console.WriteLine(i);
+    Console.WriteLine(s);
+}
+
+Action<string, int> printAction = ConsolePrint;
+
+#!csharp
+
+IEnumerable<string> list = new List<string> { "foo", "bar", "quux" };
+list.ForEachAtIndex<string>(printAction);
+
+#!csharp
+
+int i = 0;
+
+foreach (string v in list)
+{
+    printAction(v, i++);
+}
+
+#!markdown
+
+### ForEachAtIndexAsync()
+
+#!markdown
+
+Execute an async action for each item in the enumerable, in turn, with the index of the item in the enumerable.
+
+#!csharp
+
+static async Task<string> ConsolePrint(string s, int i)
+{
+    Console.WriteLine(s);
+    Console.WriteLine(i);
+    return s;
+}
+
+Func<string, int, Task<string>> actionConsolePrint = ConsolePrint;
+
+#!csharp
+
+IEnumerable<string> list = new List<string> { "foo", "bar", "quux" };
+await list.ForEachAtIndexAsync<string>(actionConsolePrint);
+
+#!markdown
+
+### ForEachFailEnd()
+
+#!markdown
+
+Execute an action for each item in the enumerable. 
+
+If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
+
+#!csharp
+
+IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
+
+static void Divide(int x)
+{
+    int result = 10/x;
+    Console.WriteLine(result);
+}
+
+Action<int> divideAction = Divide;
+
+list.ForEachFailEnd<int>(divideAction)
+
+#!markdown
+
+### ForEachFailEndAsync()
+
+#!markdown
+
+Execute an action for each item in the enumerable.
+
+Returns a task which completes when the enumeration has completed.
+
+If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
+
+#!csharp
+
+IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
+
+public async Task<int> DivideAsync(int x)
+{
+    int result = 10/x;
+    Console.WriteLine(result);
+    return result;
+}
+
+Func<int, Task<int>> divideAction = DivideAsync;
+
+await list.ForEachFailEndAsync<int>(divideAction)
+
+#!markdown
+
+### ForEachUntilFalse()
+
+#!markdown
+
+Execute an action for each item in the enumerable.
+
+Returns false if the enumeration returned early, ohterwise true.
+
+#!csharp
+
+IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
+
+static bool IsEqualToZero(int x)
+{
+    bool result = x.Equals(0);
+    return result;
+}
+
+Func<int, bool> equalsZeroAction = IsEqualToZero;
+
+list.ForEachUntilFalse<int>(equalsZeroAction)
+
+#!markdown
+
+### ForEachUntilFalseAsync()
+
+#!markdown
+
+Execute an action for each item in the enumerable.
+
+A task which completes False if the enumeration returned early, otherwise true.
+
+#!csharp
+
+IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
+
+public async Task<bool> IsEqualToZero(int x)
+{
+    bool result = x.Equals(0);
+    return result;
+}
+
+Func<int, Task<bool>> equalsZeroAction = IsEqualToZero;
+
+await list.ForEachUntilFalseAsync<int>(equalsZeroAction)
+
+#!markdown
+
+### ForEachUntilTrue()
+
+#!markdown
+
+Execute an action for each item in the enumerable.
+
+Returns true if the action terminated early, otherwise false.
+
+#!csharp
+
+IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
+
+static bool IsEqualToZero(int x)
+{
+    bool result = x.Equals(0);
+    return result;
+}
+
+Func<int, bool> equalsZeroAction = IsEqualToZero;
+
+list.ForEachUntilTrue<int>(equalsZeroAction)
+
+#!markdown
+
+### ForEachUntilTrueAsync()
+
+#!markdown
+
+Execute an action for each item in the enumerable.
+
+A task which completes True if the action terminated early, otherwise false.
+
+#!csharp
+
+IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
+
+public async Task<bool> IsEqualToZero(int x)
+{
+    bool result = x.Equals(0);
+    return result;
+}
+
+Func<int, Task<bool>> equalsZeroAction = IsEqualToZero;
+
+await list.ForEachUntilTrueAsync<int>(equalsZeroAction)
