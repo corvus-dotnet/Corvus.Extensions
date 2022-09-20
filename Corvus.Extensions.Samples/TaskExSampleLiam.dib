@@ -1,0 +1,154 @@
+#!markdown
+
+## TaskEx - Sample notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+Add using statement for `Corvus.Extensions` namespace
+
+#!csharp
+
+using System.IO;
+using Corvus.Extensions;
+
+#!markdown
+
+### WhenAllMany()
+
+#!csharp
+
+using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
+
+#!markdown
+
+#### OPML Files and feeds...
+
+The collection to apply the method to should be a collection of `FeedCollection` objects, say containing `FeedCollection` objects representing Azure weekly and Power BI Weekly
+
+```csharp
+List<FeedCollection> collectionOfFeedCollections = new List<FeedCollection>()
+
+```
+
+On each of those `FeedCollection` objects, you want call a `GetAllFeeds` method, which you'll want to return a `Task<IEnumerable<FeedDownloadResult>>`. This is the function of the Func.
+
+It should look something like this:
+
+```csharp
+Func<FeedCollection, Task<IEnumerable<FeedDownloadResult>>> mapper = (feedCollection) => 
+{
+    Task<IEnumerable<FeedDownloadResult>> feeds = await feedCollection.GetAllFeeds();
+    return feeds;
+}
+```
+
+The `SelectMany()` method on the result should flatten the resulting collection to give a collection of `FeedDownloadResult`.
+
+Meaning we will end up with a `List<FeedDownloadResult>`, or at the very end (when the method returns with the `Task.WhenAll()` applied) we'll have a `Task<List<FeedDownloadResult>>`.
+
+What it's basically doing is iterating through the `FeedCollection`s, for each one iterating through its `Feed`s, for each  `Feed` it's sending a HTTP GET request to the URL in the `Feed` and returning a `Task<FeedDownloadResult>`.
+
+#!csharp
+
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
+#!csharp
+
+public record Feed(string Name, string Author, string Format, Uri Url);
+
+#!csharp
+
+public class FeedDownloadResult
+{
+    public string Content { get; set; }
+    
+    public HttpStatusCode StatusCode { get; set; }
+}
+
+#!csharp
+
+public class FeedCollection
+{
+    public FeedCollection(Feed[] feeds)
+    {
+        this.Feeds = feeds;
+    }
+
+    public Feed[] Feeds { get; private set; }
+    
+    public string Name { get; set; }
+
+    public Task<FeedDownloadResult[]> GetAllFeedsAsync()
+    {
+        List<Task<FeedDownloadResult>> feedTasks = new List<Task<FeedDownloadResult>>();
+        foreach (Feed feed in this.Feeds)
+        {
+            Task<FeedDownloadResult> feedDownloadResult =  GetFeedAsync(feed);
+            feedTasks.Add(feedDownloadResult);
+        }
+
+        return Task.WhenAll<FeedDownloadResult>(feedTasks.ToArray<Task<FeedDownloadResult>>());
+    }
+
+    private async Task<FeedDownloadResult> GetFeedAsync(Feed feed)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, feed.Url);
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+
+        return new FeedDownloadResult
+        {
+            Content = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null,
+            StatusCode = response.StatusCode
+        };
+    }
+
+}
+
+#!csharp
+
+FeedCollection[] feedCollections = 
+{
+    new FeedCollection
+    (
+        new Feed[]
+        {
+            new Feed("Chris Risner's blog", "Chris Risner", "RSS", new Uri("https://feeds.feedburner.com/Chrisrisnercom")),
+            new Feed("Joseph Jude's blog", "Joseph Jude", "RSS", new Uri("https://jjude.com/feed.xml"))
+        };
+    ),
+
+    new FeedCollection
+    (
+        new Feed[]
+        {
+            new Feed("Marius Sandbu's blog", "Marius Sandbu", "RSS", new Uri("https://msandbu.wordpress.com/feed/")),
+            new Feed("Jakob Ehn's blog", "Jakob Ehn", "RSS", new Uri("https://blog.ehn.nu/feed/"))
+        };
+    )
+};
+
+#!csharp
+
+Func<FeedCollection, Task<FeedDownloadResult[]>> mapper = (feedCollection) => 
+{
+    return feedCollection.GetAllFeedsAsync();
+};
+
+return feedCollections.WhenAllMany(mapper);
