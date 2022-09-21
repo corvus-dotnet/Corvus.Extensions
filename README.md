@@ -14,19 +14,6 @@ It is built for netstandard2.0.
 - `.github` - Contains GitHub repo related files, such as issue templates and GitHub Actions workflow definitions
 - `Solutions` - Contains files for all of the extension methods and tests
 
-
-## Getting Started 
-
-
-`Corvus.Extensions` is available on [NuGet](https://www.nuget.org/packages/Corvus.Extensions). To add a reference to the package in your project, run the following command
-```
-dotnet add package Corvus.Extensions
-```
-
-Use the --version option to specify a [version](https://www.nuget.org/packages/Corvus.Extensions#versions-body-tab) to install.
-```
-dotnet add package Corvus.Extensions --version 1.1.4
-```
 ## Getting Started 
 
 
