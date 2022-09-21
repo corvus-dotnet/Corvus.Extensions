@@ -1,13 +1,3 @@
 #!markdown
 
 ## CastingExtensions - Sample Notebook
-
-#!csharp
-
-public interface IEntityInstance
-{
-  /// <summary>
-  /// Gets or sets the entity.
-  /// </summary>
-  object Entity { get; set; }
-}  
