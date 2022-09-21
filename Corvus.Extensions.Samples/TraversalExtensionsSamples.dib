@@ -130,7 +130,7 @@ list.ForEachFailEnd<int>(divideAction)
 
 #!markdown
 
-Execute an action for each item in the enumerable.
+Execute an async action for each item in the enumerable.
 
 Returns a task which completes when the enumeration has completed.
 
@@ -159,7 +159,7 @@ await list.ForEachFailEndAsync<int>(divideAction)
 
 Execute an action for each item in the enumerable.
 
-Returns false if the enumeration returned early, ohterwise true.
+Returns false if the enumeration returned early, otherwise true.
 
 #!csharp
 
@@ -181,7 +181,7 @@ list.ForEachUntilFalse<int>(equalsZeroAction)
 
 #!markdown
 
-Execute an action for each item in the enumerable.
+Execute an async action for each item in the enumerable.
 
 A task which completes False if the enumeration returned early, otherwise true.
 
@@ -229,7 +229,7 @@ list.ForEachUntilTrue<int>(equalsZeroAction)
 
 #!markdown
 
-Execute an action for each item in the enumerable.
+Execute an async action for each item in the enumerable.
 
 A task which completes True if the action terminated early, otherwise false.
 
