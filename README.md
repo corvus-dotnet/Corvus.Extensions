@@ -41,7 +41,7 @@ This is commonly used in generic scenarios.
 
 An `AddRange()` extension for `ICollection<T>`
 
-![AddRange()](GIFs\Collection\addRange.gif)
+![AddRange()](GIFs/Collection/addRange.gif)
 
 ### Dictionary Extensions 
  
@@ -49,19 +49,19 @@ An `AddRange()` extension for `ICollection<T>`
 
 Adds a value to a key, if the key does not already exist.
 
-![AddIfNotExists()](GIFs\Dictionary\AddIfNotExists.gif)
+![AddIfNotExists()](GIFs/Dictionary/AddIfNotExists.gif)
 
 `ReplaceIfExists()`
 
 Replaces a value in a key, but only if the key already exists.
 
-![ReplaceIfExists](GIFs\Dictionary\ReplaceIfExists.gif)
+![ReplaceIfExists](GIFs/Dictionary/ReplaceIfExists.gif)
 
 `Merge()` 
 
 The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics, so the values in the first dictionary will be preserved.
 
-![Merge](GIFs\Dictionary\merge.gif)
+![Merge](GIFs/Dictionary/merge.gif)
 
 ### Enumerable Extensions
 
@@ -69,30 +69,30 @@ The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics,
 
 This emits an enumerable of the distinct items in the target, preserving their original ordering.
 
-![DistinctPreserveOrder()](GIFs\Enumerable\DistinctPreserveOrder.gif)
+![DistinctPreserveOrder()](GIFs/Enumerable/DistinctPreserveOrder.gif)
 
 `DistinctBy()`
 
 This allows you to provide a function to provide the value for equality comparison for each item.
 
-![DistinctBy()](GIFs\Enumerable\DistinctBy.gif)
+![DistinctBy()](GIFs/Enumerable/DistinctBy.gif)
 
  `Concatenate()`
 
 This gives you the ability to concatenate multiple enumerables, using the params pattern.
 
-![Concatenate()](GIFs\Enumerable\Concatenate.gif)
+![Concatenate()](GIFs/Enumerable/Concatenate.gif)
 
  `HasMinimumCount()`
 
 This determines whether the enumerable has at least a given number of items in it.
 
-![HasMinimumCount](GIFs\Enumerable\HasMinimumCount.gif)
+![HasMinimumCount](GIFs/Enumerable/HasMinimumCount.gif)
 
  `AllAndAtLeastOne()`
 This is an efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
 
-![AllAndAtLeastOne](GIFs\Enumerable\AllAndAtLeastOne.gif)
+![AllAndAtLeastOne](GIFs/Enumerable/AllAndAtLeastOne.gif)
 
 ### Lambda Expression Extensions 
 
@@ -107,7 +107,7 @@ This extracts a property name from a lambda expression, throwing if that express
  `RemoveAll()`
 This removes all items from a list that match a predicate.
 
-![RemoveAll](GIFs\List\RemoveAll.gif)
+![RemoveAll](GIFs/List/RemoveAll.gif)
 
 ### String Extensions
 
@@ -120,19 +120,19 @@ This removes all items from a list that match a predicate.
 
 Convert the provided string to a base 64 representation of its byte representation in a particular encoding.
 
-![AsBase64](GIFs\String\AsBase64.gif)
+![AsBase64](GIFs/String/AsBase64.gif)
 
 `Base64UrlEncode()`
 
 Convert the provided string to a base 64 representation of its byte representation in the UTF8 encoding, with a URL-safe representation.
 
-![Base64UrlEncode()](GIFs\String\Base64UrlEncode.gif)
+![Base64UrlEncode()](GIFs/String/Base64UrlEncode.gif)
 
 `Base64UrlDecode()`
 
 Convert the provided string from a base 64 representation of its byte representation in the UTF8 encoding with a URL-safe representation.
 
-![Base64UrlDecode()](GIFs\String\Base64UrlDecode.gif)
+![Base64UrlDecode()](GIFs/String/Base64UrlDecode.gif)
 
 `AsStream()`
 
