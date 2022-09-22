@@ -36,6 +36,7 @@ Example 1 using a list of `int`
 
 var list = new List<int> { 1, 2, 3, 4, 5, 6 };
 list.RemoveAll(i => i < 3);
+list
 
 // The list now contains:
 // { 3, 4, 5, 6 }
