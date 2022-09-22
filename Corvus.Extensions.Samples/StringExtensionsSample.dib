@@ -36,7 +36,8 @@ The example below converts a string's byte representation in Unicode to a base 6
 #!csharp
 
 string hello = "Hello";
-return hello.AsBase64(Encoding.ASCII);	string encoded = hello.AsBase64(Encoding.Unicode);
+string helloEncoded = hello.AsBase64(Encoding.Unicode);
+helloEncoded
 
 #!markdown
 
@@ -55,7 +56,7 @@ with a URL-safe representation.
 
 string url = "https://www.youtube.com/watch?v=pcc-EXzK3vI";
 string urlEncoded = url.Base64UrlEncode();
-    urlEncoded
+urlEncoded
 
 #!markdown
 
@@ -102,8 +103,8 @@ Escape a content type string.
 
 #!csharp
 
-string url = "https://www.youtube.com/watch?v=pcc-EXzK3vI";
-return url.EscapeContentType();
+string contentTypeString = "text/html";
+return contentTypeString.EscapeContentType();
 
 #!markdown
 
@@ -116,7 +117,8 @@ Decode a string from a base64-encoded byte array with the specified text encodin
 #!csharp
 
 string base64String = "SGVsbG8=";
-return base64String.FromBase64();
+string base64StringDecoded = base64String.FromBase64(Encoding.ASCII);
+base64StringDecoded
 
 #!markdown
 
@@ -162,8 +164,8 @@ Unescape a content type string.
 
 #!csharp
 
-string myString = "https%3A%60%60www%7Cyoutube%7Ccom%60watch%3Fv%3Dpcc-EXzK3vI";
-return myString.UnescapeContentType();
+string escapedContentTypeString = "text%60html";
+return escapedContentTypeString.UnescapeContentType();
 
 #!markdown
 
