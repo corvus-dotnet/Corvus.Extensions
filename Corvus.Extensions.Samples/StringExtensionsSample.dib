@@ -117,8 +117,7 @@ Decode a string from a base64-encoded byte array with the specified text encodin
 #!csharp
 
 string base64String = "SGVsbG8=";
-string base64StringDecoded = base64String.FromBase64(Encoding.ASCII);
-base64StringDecoded
+return base64String.FromBase64(Encoding.ASCII);
 
 #!markdown
 
