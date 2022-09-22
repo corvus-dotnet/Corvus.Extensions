@@ -130,7 +130,7 @@ list.ForEachFailEnd<int>(divideAction)
 
 #!markdown
 
-Execute an action for each item in the enumerable.
+Execute an async action for each item in the enumerable.
 
 Returns a task which completes when the enumeration has completed.
 
