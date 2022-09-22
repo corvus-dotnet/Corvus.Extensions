@@ -43,7 +43,9 @@ class SomeType
   public int Prop2 { get; set; }
 }
 
-var list = new List<SomeType> { new SomeType { Prop1 = "Hello", Prop2 = 1 }, new SomeType { Prop1 = "Hello", Prop2 = 3 }, new SomeType { Prop1 = "World", Prop2 = 1 } };
+var list = new List<SomeType> { new SomeType { Prop1 = "Hello", Prop2 = 1 }, 
+                                new SomeType { Prop1 = "Hello", Prop2 = 3 }, 
+                                new SomeType { Prop1 = "World", Prop2 = 1 } };
 var result = list.DistinctBy(i => i.Prop1);
 
 return result;
