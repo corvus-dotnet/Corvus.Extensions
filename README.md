@@ -144,9 +144,13 @@ Provide a stream over the string in the specified encoding.
 
 Escape a content type string.
 
+![EscapeContentType()](GIFs/String/EscapeContentType.gif)
+
 `FromBase64()`
 
 Decode a string from a base64-encoded byte array with the specified text encoding.
+
+![FromBase64()](GIFs/String/fromBase64.gif)
 
 `GetGraphemeClusters()`
 
@@ -163,6 +167,8 @@ Reverse the string.
 `UnescapeContentType()`
 
 Unescape a content type string.
+
+![UnescapeContentType()](GIFs/String/UnescapeContentType.gif)
 
 `ToCamelCase()`
 
