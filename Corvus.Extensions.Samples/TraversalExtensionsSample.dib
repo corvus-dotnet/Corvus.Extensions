@@ -35,7 +35,10 @@ Func<int, Task<bool>> funcIsEqualToOne = isEqualToOne;
 
 var list = new List<int> { 1, 2, 3, 4, 5 };
 await list.ForEachAsync<int>(isEqualToOne)
-// method was useful when we didn't have async and await.
+
+#!markdown
+
+The `ForEachAsync()` method is here for historical interest. It is now possible to write the following and get the same output:
 
 #!csharp
 
