@@ -1,0 +1,196 @@
+#!markdown
+
+## StringExtensions - Sample Notebook
+
+#!markdown
+
+### How to use .NET Interactive notebooks
+
+In order to use .NET Interactive notebooks, download the .NET Interactive Notebooks extensions from the [marketplace](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode). 
+
+You'll need to have the following pre-requisites installed:
+ - Visual Studio Code (can be downloaded from [here](https://code.visualstudio.com/))
+ - Install the latest [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+
+To run a notebook, open one of the files with the .dib extension in this repository. Select "Run All" from the top menu of the notebook to run all the cells, or run each cell individually by clicking on the "Execute Cell" button on the left of each cell.
+
+#!markdown
+
+## Examples
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+Add using statement for `Corvus.Extensions` namespace
+
+#!csharp
+
+using System.IO;
+using Corvus.Extensions;
+
+#!markdown
+
+### `AsBase64()`
+
+#!markdown
+
+Convert the provided string to a base 64 representation of its byte representation in a particular encoding.
+
+#!markdown
+
+#### Examples
+
+The example below converts a string's byte representation in Unicode to a base 64 representation.
+
+#!csharp
+
+string hello = "Hello";
+string helloEncoded = hello.AsBase64(Encoding.Unicode);
+helloEncoded
+
+#!markdown
+
+### `Base64UrlEncode()`
+
+#!markdown
+
+Convert the provided string to a base 64 representation of its byte representation in the UTF8 encoding,
+with a URL-safe representation.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string url = "https://www.youtube.com/watch?v=pcc-EXzK3vI";
+string urlEncoded = url.Base64UrlEncode();
+urlEncoded
+
+#!markdown
+
+### `Base64UrlDecode()`
+
+#!markdown
+
+Convert the provided string from a base 64 representation of its byte representation in the UTF8 encoding
+with a URL-safe representation.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string urlEncoded = "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj1wY2MtRVh6SzN2SQ";
+string urlDecoded = urlEncoded.Base64UrlDecode();
+urlDecoded
+
+#!markdown
+
+### `AsStream()`
+
+Provide a stream over the string in the specified encoding.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "hello";
+Stream myStream = myString.AsStream(Encoding.ASCII);
+return myStream.ToString();
+
+#!markdown
+
+### `EscapeContentType()`
+
+#!markdown
+
+Escape a content type string.
+
+#!csharp
+
+string contentTypeString = "text/html";
+return contentTypeString.EscapeContentType();
+
+#!markdown
+
+### `FromBase64()`
+
+#!markdown
+
+Decode a string from a base64-encoded byte array with the specified text encoding.
+
+#!csharp
+
+string base64String = "SGVsbG8=";
+return base64String.FromBase64(Encoding.ASCII);
+
+#!markdown
+
+### `GetGraphemeClusters()` 
+
+#!markdown
+
+Enumerate the grapheme clusters in a string.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "hello";
+return myString.GetGraphemeClusters();
+
+#!markdown
+
+### `Reverse()`
+
+Reverse the string.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "hello";
+return myString.Reverse();
+
+#!markdown
+
+### `UnescapeContentType()`
+
+Unescape a content type string.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string escapedContentTypeString = "text%60html";
+return escapedContentTypeString.UnescapeContentType();
+
+#!markdown
+
+### `ToCamelCase()`
+
+ Convert a string to camel case from pascal case.
+
+#!markdown
+
+#### Examples
+
+#!csharp
+
+string myString = "HelloFromEndjin";
+return myString.ToCamelCase();
