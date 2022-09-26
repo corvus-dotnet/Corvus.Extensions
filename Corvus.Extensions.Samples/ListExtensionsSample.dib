@@ -1,0 +1,68 @@
+#!markdown
+
+## ListExtensions - Sample Notebook
+
+#!markdown
+
+### How to use .NET Interactive notebooks
+
+In order to use .NET Interactive notebooks, download the .NET Interactive Notebooks extensions from the [marketplace](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode). 
+
+You'll need to have the following pre-requisites installed:
+ - Visual Studio Code (can be downloaded from [here](https://code.visualstudio.com/))
+ - Install the latest [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+
+To run a notebook, open one of the files with the .dib extension in this repository. Select "Run All" from the top menu of the notebook to run all the cells, or run each cell individually by clicking on the "Execute Cell" button on the left of each cell.
+
+#!markdown
+
+## Examples
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+Add using statement for `Corvus.Extensions` namespace
+
+#!csharp
+
+using Corvus.Extensions;
+
+#!markdown
+
+### `RemoveAll()`
+
+Example using the `RemoveAll()` extension method. This removes all items from a list that match a predicate.
+
+#!markdown
+
+### Examples
+
+#!markdown
+
+Example 1 using a list of `int`
+
+#!csharp
+
+var list = new List<int> { 1, 2, 3, 4, 5, 6 };
+list.RemoveAll(i => i < 3);
+list
+
+// The list now contains:
+// { 3, 4, 5, 6 }
+
+#!markdown
+
+Example 2 using a list of `string`
+
+#!csharp
+
+var list = new List<string> { "dog", "cat", "mouse", "pig", "dog" };
+list.RemoveAll(i => i != "dog");
+list
+// The list now contains:
+// { "dog", "dog" }
