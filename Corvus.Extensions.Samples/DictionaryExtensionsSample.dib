@@ -1,0 +1,93 @@
+#!markdown
+
+## DictionaryExtensions - Sample notebook
+
+#!markdown
+
+### How to use .NET Interactive notebooks
+
+In order to use .NET Interactive notebooks, download the .NET Interactive Notebooks extensions from the [marketplace](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode). 
+
+You'll need to have the following pre-requisites installed:
+ - Visual Studio Code (can be downloaded from [here](https://code.visualstudio.com/))
+ - Install the latest [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+
+To run a notebook, open one of the files with the .dib extension in this repository. Select "Run All" from the top menu of the notebook to run all the cells, or run each cell individually by clicking on the "Execute Cell" button on the left of each cell.
+
+#!markdown
+
+## Examples
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+using Corvus.Extensions;
+
+#!markdown
+
+### AddIfNotExists
+
+Example using the `AddIfNotExists()` extension method. First, a dictionary containing two key value pairs. Using the extension method to add a value that already exists returns the same dictionary. Using it to add a value not already in the dictionary returns the updated dictionary containing the new value.
+
+#!csharp
+
+var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+
+#!csharp
+
+myDictionary.AddIfNotExists("Hello", 3); // returns false, does not add to dictionary
+
+return myDictionary;
+
+#!csharp
+
+myDictionary.AddIfNotExists("Goodbye", 3); // returns true, adds to dictionary
+
+return myDictionary;
+
+#!markdown
+
+### Replace if exists
+
+#!markdown
+
+Replaces a value in a key, but only if the key already exists.
+
+#!csharp
+
+var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+
+#!csharp
+
+myDictionary.ReplaceIfExists("Hello", 3); // returns true, sets "Hello" to 3
+
+return myDictionary;
+
+#!csharp
+
+myDictionary.ReplaceIfExists("Goodbye", 3); // returns false, adds new key value pair to dictionary
+
+return myDictionary;
+
+#!markdown
+
+### Merge
+
+#!markdown
+
+The union of two dictionaries. Note that this uses AddIfNotExists() semantics, so the values in the first dictionary will be preserved.
+
+#!csharp
+
+var myDictionary1 = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+var myDictionary2 = new Dictionary<string, int> { { "Hello", 3 }, { "Goodbye", 4 } };
+
+myDictionary1.Merge(myDictionary2);
+
+return myDictionary1;
+
+// Results in:
+// { { "Hello", 1 }, { "World", 2 }, { "Goodbye", 4 } }
