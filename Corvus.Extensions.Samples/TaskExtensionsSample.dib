@@ -25,13 +25,13 @@ using System.Threading.Tasks;
 
 #!markdown
 
-### `CastWithConversion()`
-
-Checks to see if a Task actually has a result and converts to a task of the relevant type.
+## Examples
 
 #!markdown
 
-#### Example
+### `CastWithConversion()`
+
+Checks to see if a Task actually has a result and converts to a task of the relevant type.
 
 #!csharp
 
