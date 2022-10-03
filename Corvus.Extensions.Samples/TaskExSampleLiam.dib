@@ -18,6 +18,7 @@ Add using statement for `Corvus.Extensions` namespace
 
 using System.IO;
 using Corvus.Extensions;
+using Corvus.Extensions.Tasks;
 
 #!markdown
 
@@ -131,7 +132,7 @@ FeedCollection[] feedCollections =
         {
             new Feed("Chris Risner's blog", "Chris Risner", "RSS", new Uri("https://feeds.feedburner.com/Chrisrisnercom")),
             new Feed("Joseph Jude's blog", "Joseph Jude", "RSS", new Uri("https://jjude.com/feed.xml"))
-        };
+        }
     ),
 
     new FeedCollection
@@ -140,7 +141,7 @@ FeedCollection[] feedCollections =
         {
             new Feed("Marius Sandbu's blog", "Marius Sandbu", "RSS", new Uri("https://msandbu.wordpress.com/feed/")),
             new Feed("Jakob Ehn's blog", "Jakob Ehn", "RSS", new Uri("https://blog.ehn.nu/feed/"))
-        };
+        }
     )
 };
 
@@ -151,4 +152,4 @@ Func<FeedCollection, Task<FeedDownloadResult[]>> mapper = (feedCollection) =>
     return feedCollection.GetAllFeedsAsync();
 };
 
-return feedCollections.WhenAllMany(mapper);
+return TaskEx.WhenAllMany<FeedCollection, FeedDownloadResult>(feedCollections, mapper);
