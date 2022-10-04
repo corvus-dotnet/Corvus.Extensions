@@ -18,48 +18,109 @@ Add using statement for `Corvus.Extensions` namespace
 
 using System.IO;
 using Corvus.Extensions;
+using Corvus.Extensions.Tasks;
 
 #!markdown
 
 ### WhenAllMany()
 
+This method flattens the outputs from `Task.WhenAll`
+
 #!markdown
 
 #### Examples
 
-#!csharp
-
-int[] numbers = {1,2,3,4};
-string[] letters = {"A", "B", "C"};
-
-numbers.SelectMany(n => letters, (n, l) => $"number: {n}, letter: {l}")
+The following example uses `WhenAllMany` to asynchronously download all the OPML feeds in a set of feed collections and return a flattened collection of the results.
 
 #!csharp
 
-string[][] input =
+using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
+
+#!csharp
+
+public record Feed(string Name, string Author, string Format, Uri Url);
+
+#!csharp
+
+public class FeedDownloadResult
 {
-  new[]{"Hello", "World"},
-  new[]{"Cat", "Dog", "Bird"}  
+    public string Content { get; set; }
+    
+    public HttpStatusCode StatusCode { get; set; }
+}
+
+#!csharp
+
+public class FeedCollection
+{
+    public FeedCollection(Feed[] feeds)
+    {
+        this.Feeds = feeds;
+    }
+
+    public IEnumerable<Feed> Feeds { get; private set; }
+    
+    public string Name { get; set; }
+
+    public async Task<IEnumerable<FeedDownloadResult>> GetAllFeedsAsync()
+    {
+        List<Task<FeedDownloadResult>> feedTasks = new List<Task<FeedDownloadResult>>();
+        foreach (Feed feed in this.Feeds)
+        {
+            Task<FeedDownloadResult> feedDownloadResult =  GetFeedAsync(feed);
+            feedTasks.Add(feedDownloadResult);
+        }
+        FeedDownloadResult[] results = await Task.WhenAll(feedTasks).ConfigureAwait(false);
+        return results;
+    }
+
+    private async Task<FeedDownloadResult> GetFeedAsync(Feed feed)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, feed.Url);
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+
+        return new FeedDownloadResult
+        {
+            Content = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null,
+            StatusCode = response.StatusCode
+        };
+    }
+
+}
+
+#!csharp
+
+FeedCollection[] feedCollections = 
+{
+    new FeedCollection
+    (
+        new Feed[]
+        {
+            new Feed("Chris Risner's blog", "Chris Risner", "RSS", new Uri("https://feeds.feedburner.com/Chrisrisnercom")),
+            new Feed("Joseph Jude's blog", "Joseph Jude", "RSS", new Uri("https://jjude.com/feed.xml"))
+        }
+    ),
+
+    new FeedCollection
+    (
+        new Feed[]
+        {
+            new Feed("Marius Sandbu's blog", "Marius Sandbu", "RSS", new Uri("https://msandbu.wordpress.com/feed/")),
+            new Feed("Jakob Ehn's blog", "Jakob Ehn", "RSS", new Uri("https://blog.ehn.nu/feed/"))
+        }
+    )
 };
 
-input.SelectMany(a => a)
-
 #!csharp
 
-foreach (var a in input)
+Func<FeedCollection, Task<IEnumerable<FeedDownloadResult>>> mapper = (feedCollection) => 
 {
-    foreach (var item in a)
-    {
-        Console.WriteLine(item);
-    }
-}
-
-#!csharp
-
-foreach (var a in numbers)
-{
-    foreach (var item in letters)
-    {
-        Console.WriteLine($"number: {a}, letter: {item}");
-    }
-}
+    return feedCollection.GetAllFeedsAsync();
+};
+IList<FeedDownloadResult> result = await TaskEx.WhenAllMany<FeedCollection, FeedDownloadResult>(feedCollections, mapper);
+return result[0].Content;
