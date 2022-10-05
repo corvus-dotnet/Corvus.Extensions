@@ -31,11 +31,8 @@ dotnet add package Corvus.Extensions --version 1.1.4
 
 ### Casting
 
-There is an efficient `Cast<>` which avoids boxing for value types, derived from [this StackOverflow answer](https://stackoverflow.com/a/23391746).
-
-This is commonly used in generic scenarios.
-
-`CastTo` supports a wide range of conversions with good efficiency trade-offs, including scenarios where `(T)(object)value` will fail.
+The `CastTo` method used to be necessary to avoid boxing in certain generic conversion cases.
+The .NET framework can now determine when boxing is not necessary, so `CastTo` is no longer necessary, hence why we're not including an example for it.
 
 ### Collection Extensions
 
