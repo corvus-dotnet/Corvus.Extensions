@@ -31,7 +31,13 @@ Checks to see if a Task actually has a result and converts to a task of the rele
 
 #!markdown
 
-#### Examples
+## Examples
+
+#!markdown
+
+### `CastWithConversion()`
+
+Checks to see if a Task actually has a result and converts to a task of the relevant type.
 
 #!csharp
 
@@ -47,7 +53,7 @@ class Derived : Base
 
 #!markdown
 
-The following cell returns an error:
+The following cell returns an error, as `Task<T>` is not covariant.
 
 #!csharp
 
@@ -58,7 +64,7 @@ tb.Result
 
 #!markdown
 
-While using `CastWithConversion<>()` allows us to cast the task to a base.
+Using `CastWithConversion<>()` allows us to cast the task to a base.
 
 #!csharp
 
