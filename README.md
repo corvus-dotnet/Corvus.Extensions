@@ -92,15 +92,15 @@ This is an efficient implementation of `enum.Any() && enum.All(predicate)` that 
 
 ### Lambda Expression Extensions 
 
- `GetMemberExpression()`
-This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
-
-![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
-
  `ExtractPropertyName()`
 This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`
 
 ![ExtractPropertyName](GIFs/LambdaExpression/ExtractPropertyName.gif)
+
+ `GetMemberExpression()`
+This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
+
+![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
 
 ### List Extensions
 
