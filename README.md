@@ -16,7 +16,6 @@ It is built for netstandard2.0.
 
 ## Getting Started 
 
-
 `Corvus.Extensions` is available on [NuGet](https://www.nuget.org/packages/Corvus.Extensions). To add a reference to the package in your project, run the following command
 ```
 dotnet add package Corvus.Extensions
@@ -173,7 +172,6 @@ Convert a string to camel case from pascal case.
 
 ![ToCamelCase()](GIFs/String/ToCamelCase.gif)
 
-
 ### Task Extensions
 
 - Casts `Task`/`Task<?>` to `Task<T>` result type with or without a cast of the actual result value
@@ -231,7 +229,6 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
  Returns false if the enumeration returned early, otherwise true.
 
-
  ![ForEachUntilFalse()](GIFs/Traversal/ForEachUntilFalse.gif)
 
  `ForEachUntilFalseAsync()`
@@ -258,8 +255,6 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
  ![ForEachUntilTrueAsync()](GIFs/Traversal/ForEachUntilTrueAsync.gif)
 
-
-
 ## Contributing
 
 This project has adopted a code of conduct adapted from the [Contributor Covenant](http://contributor-covenant.org/) to clarify expected behavior in our community. This code of conduct has been [adopted by many other projects](http://contributor-covenant.org/adopters/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#110;&#100;&#106;&#105;&#110;&#046;&#099;&#111;&#109;](&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#110;&#100;&#106;&#105;&#110;&#046;&#099;&#111;&#109;) with any additional questions or comments.
@@ -283,7 +278,6 @@ We produce two free weekly newsletters; [Azure Weekly](https://azureweekly.info)
 Keep up with everything that's going on at endjin via our [blog](https://blogs.endjin.com/), follow us on [Twitter](https://twitter.com/endjin), or [LinkedIn](https://www.linkedin.com/company/1671851/).
 
 Our other Open Source projects can be found on [GitHub](https://endjin.com/open-source)
-
 
 ## IP Maturity Matrix (IMM)
 
