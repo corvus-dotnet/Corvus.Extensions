@@ -48,5 +48,3 @@ This allows a more direct expression of the expectation that an expression has t
 #!csharp
 
 getter.GetMemberExpression().Expression
-
-//{ x: Type: System.String, NodeType: Parameter, Name: x, IsByRef: False, CanReduce: False }
