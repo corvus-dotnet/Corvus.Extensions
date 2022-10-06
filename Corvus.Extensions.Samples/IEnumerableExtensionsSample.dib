@@ -111,7 +111,7 @@ return list.HasMinimumCount(4);
 
 This is an efficient implementation of the built-in LINQ operators [Any()](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.any?view=net-6.0) && [`All(predicate)`](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.all?view=net-6.0) that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
 
-This method is also useful because of the counterintuitive behaviour of `All()` with empty collections, whereby `items.All()` returns true if `items` is an empty collection. `items.AllAndAtLeastOne()` returns false if `items` is an empty collection, as one of the examples below shows. 
+This method is also useful because of the counterintuitive behavior of `All()` with empty collections, whereby `items.All()` returns true if `items` is an empty collection. `items.AllAndAtLeastOne()` returns false if `items` is an empty collection, as one of the examples below shows. 
 
 #!csharp
 
