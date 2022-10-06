@@ -143,7 +143,7 @@ Enumerate the grapheme clusters in a string.
 
 This method is a wrapper around [StringInfo.GetTextElementEnumerator](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.stringinfo.gettextelementenumerator?view=net-7.0), which returns an enumerator that iterates through the text elements of a string. `GetGraphemeClusters()` returns an `IEnumerable<string>`, meaning the functionality can be used with LINQ.
 
-A note about grapheme clusters. A C# `string` is a sequence of `char`s, however each `char` in a `string` does not necessarily correspond to a visible character. This is were the notion of grapheme clusters come in. For example, the `string` "a" is a grapheme cluster containing one `char`, whilst the `string` "🎉", is a grapheme cluster containing two `char`s, as the example below demonstrates. See [this](https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction) article for more information on character encodings and grapheme structures in .NET.
+A note about grapheme clusters. A C# `string` is a sequence of `char`s, however each `char` in a `string` does not necessarily correspond to a visible character. This is were the notion of grapheme clusters come in. For example, the `string` "a" is a grapheme cluster containing one `char`, whilst the `string` "🎉" is a grapheme cluster containing two `char`s, as the example below demonstrates. See [this](https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction) article for more information on character encodings and grapheme structures in .NET.
 
 You can think of `GetGraphemeClusters()` as enumerating through the "logical characters" in a string.
 
