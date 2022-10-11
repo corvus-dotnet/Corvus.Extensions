@@ -22,19 +22,19 @@ Execute an async action for each item in the enumerable.
 
 #!csharp
 
-public async Task<bool> isEqualToOne(int x)
+public async Task<bool> IsEqualToOne(int x)
 {
     bool result = x.Equals(1);
     Console.WriteLine(result);
     return result;
 }
 
-Func<int, Task<bool>> funcIsEqualToOne = isEqualToOne;
+Func<int, Task<bool>> funcIsEqualToOne = IsEqualToOne;
 
 #!csharp
 
 var list = new List<int> { 1, 2, 3, 4, 5 };
-await list.ForEachAsync<int>(isEqualToOne)
+await list.ForEachAsync<int>(IsEqualToOne)
 
 #!markdown
 
@@ -44,7 +44,7 @@ The `ForEachAsync()` method is here for historical interest. It is now possible 
 
 foreach (int x in list)
 {
-    await isEqualToOne(x);
+    await IsEqualToOne(x);
 }
 
 #!markdown
