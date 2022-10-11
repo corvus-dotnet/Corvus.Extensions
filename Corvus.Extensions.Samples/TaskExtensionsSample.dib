@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 ### `CastWithConversion()`
 
-Checks to see if a Task actually has a result and converts to a task of the relevant type.
+Checks to see if a `Task` actually has a result and converts to a `Task` of the relevant type.
 
 #!markdown
 
@@ -37,7 +37,7 @@ Checks to see if a Task actually has a result and converts to a task of the rele
 
 ### `CastWithConversion()`
 
-Checks to see if a Task actually has a result and converts to a task of the relevant type.
+Checks to see if a `Task` actually has a result and converts to a `Task` of the relevant type.
 
 #!csharp
 
@@ -64,7 +64,7 @@ tb.Result
 
 #!markdown
 
-Using `CastWithConversion<>()` allows us to cast the task to a base.
+Using `CastWithConversion<>()` allows us to cast the `Task` to a `Task<Base>`.
 
 #!csharp
 
