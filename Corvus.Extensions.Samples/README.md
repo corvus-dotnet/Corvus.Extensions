@@ -1,6 +1,6 @@
 # Corvus.Extensions sample notebooks
 
-In this folder, you will find a number of notebooks containing examples for the extension methods in the [`Corvus.Extensions\Solutions\Corvus\Extensions`](https://github.com/corvus-dotnet/Corvus.Extensions/tree/samples-readme/Solutions/Corvus.Extensions/Corvus/Extensions) folder.
+In this folder, you will find a number of notebooks containing examples for the extension methods in the [`Corvus.Extensions\Solutions\Corvus\Extensions`](https://github.com/corvus-dotnet/Corvus.Extensions/tree/main/Solutions/Corvus.Extensions/Corvus/Extensions) folder.
 
 ## How to use .NET Interactive notebooks
 
