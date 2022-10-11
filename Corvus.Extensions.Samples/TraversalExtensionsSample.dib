@@ -92,12 +92,10 @@ static async Task ConsolePrint(string s, int i)
     Console.WriteLine(i);
 }
 
-Func<string, int, Task<string>> actionConsolePrint = ConsolePrint;
-
 #!csharp
 
 IEnumerable<string> list = new List<string> { "foo", "bar", "quux" };
-await list.ForEachAtIndexAsync<string>(actionConsolePrint);
+await list.ForEachAtIndexAsync<string>(ConsolePrint);
 
 #!markdown
 
