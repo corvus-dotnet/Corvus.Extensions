@@ -26,10 +26,7 @@ public async Task IsEqualToOne(int x)
 {
     bool result = x.Equals(1);
     Console.WriteLine(result);
-    // return result;
 }
-
-Func<int, Task<bool>> funcIsEqualToOne = IsEqualToOne;
 
 #!csharp
 
