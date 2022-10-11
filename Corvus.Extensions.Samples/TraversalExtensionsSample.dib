@@ -139,14 +139,13 @@ If any operation fails, then the enumeration is continued to the end when an Agg
 
 IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
 
-public async Task<int> DivideAsync(int x)
+public async Task DivideAsync(int x)
 {
     int result = 10/x;
     Console.WriteLine(result);
-    return result;
 }
 
-Func<int, Task<int>> divideAction = DivideAsync;
+Func<int, Task> divideAction = DivideAsync;
 
 await list.ForEachFailEndAsync<int>(divideAction)
 
