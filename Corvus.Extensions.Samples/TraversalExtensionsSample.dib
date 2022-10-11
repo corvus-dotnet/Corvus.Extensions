@@ -22,11 +22,11 @@ Execute an async action for each item in the enumerable.
 
 #!csharp
 
-public async Task<bool> IsEqualToOne(int x)
+public async Task IsEqualToOne(int x)
 {
     bool result = x.Equals(1);
     Console.WriteLine(result);
-    return result;
+    // return result;
 }
 
 Func<int, Task<bool>> funcIsEqualToOne = IsEqualToOne;
