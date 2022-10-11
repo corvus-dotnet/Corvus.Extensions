@@ -86,11 +86,10 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
 #!csharp
 
-static async Task<string> ConsolePrint(string s, int i)
+static async Task ConsolePrint(string s, int i)
 {
     Console.WriteLine(s);
     Console.WriteLine(i);
-    return s;
 }
 
 Func<string, int, Task<string>> actionConsolePrint = ConsolePrint;
