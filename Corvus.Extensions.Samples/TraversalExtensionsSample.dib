@@ -123,9 +123,7 @@ static void Divide(int x)
     Console.WriteLine(result);
 }
 
-Action<int> divideAction = Divide;
-
-list.ForEachFailEnd<int>(divideAction)
+list.ForEachFailEnd<int>(Divide)
 
 #!markdown
 
@@ -149,9 +147,7 @@ public async Task DivideAsync(int x)
     Console.WriteLine(result);
 }
 
-Func<int, Task> divideAction = DivideAsync;
-
-await list.ForEachFailEndAsync<int>(divideAction)
+await list.ForEachFailEndAsync<int>(DivideAsync)
 
 #!markdown
 
@@ -239,6 +235,4 @@ public async Task<bool> IsEqualToZero(int x)
     return result;
 }
 
-Func<int, Task<bool>> equalsZeroAction = IsEqualToZero;
-
-await list.ForEachUntilTrueAsync<int>(equalsZeroAction)
+await list.ForEachUntilTrueAsync<int>(IsEqualToZero)
