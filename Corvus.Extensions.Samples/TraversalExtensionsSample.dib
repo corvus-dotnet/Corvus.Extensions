@@ -217,9 +217,7 @@ static bool IsEqualToZero(int x)
     return result;
 }
 
-Func<int, bool> equalsZeroAction = IsEqualToZero;
-
-list.ForEachUntilTrue<int>(equalsZeroAction)
+list.ForEachUntilTrue<int>(IsEqualToZero)
 
 #!markdown
 
