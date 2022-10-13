@@ -24,6 +24,7 @@ Execute an async action for each item in the enumerable.
 
 public async Task IsEqualToOne(int x)
 {
+    await Task.Delay(TimeSpan.FromSeconds(0.5));
     bool result = x.Equals(1);
     Console.WriteLine(result);
 }
@@ -92,6 +93,7 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
 static async Task ConsolePrint(string s, int i)
 {
+    await Task.Delay(TimeSpan.FromSeconds(0.5));
     Console.WriteLine(s);
     Console.WriteLine(i);
 }
@@ -143,6 +145,7 @@ IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
 
 public async Task DivideAsync(int x)
 {
+    await Task.Delay(TimeSpan.FromSeconds(0.5));
     int result = 10/x;
     Console.WriteLine(result);
 }
@@ -187,6 +190,7 @@ IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
 
 public async Task<bool> IsEqualToZero(int x)
 {
+    await Task.Delay(TimeSpan.FromSeconds(0.5));
     bool result = x.Equals(0);
     return result;
 }
@@ -231,6 +235,7 @@ IEnumerable<int> list = new List<int> { 1, 2, 8, 0, 5 };
 
 public async Task<bool> IsEqualToZero(int x)
 {
+    await Task.Delay(TimeSpan.FromSeconds(0.5));
     bool result = x.Equals(0);
     return result;
 }
