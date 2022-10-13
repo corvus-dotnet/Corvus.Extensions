@@ -67,6 +67,10 @@ Action<string, int> printAction = ConsolePrint;
 IEnumerable<string> list = new List<string> { "foo", "bar", "quux" };
 list.ForEachAtIndex<string>(printAction);
 
+#!markdown
+
+Using `ForEachAtIndex` in the previous example is equivalent to doing the following:
+
 #!csharp
 
 int i = 0;
