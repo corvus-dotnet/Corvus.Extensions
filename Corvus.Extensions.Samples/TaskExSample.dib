@@ -24,13 +24,13 @@ using Corvus.Extensions.Tasks;
 
 ### WhenAllMany()
 
-This method flattens the outputs from `Task.WhenAll`
+Passes the elements of a sequence to a callback that projects each element to a `Task<IEnumerable<T>>` and flattens the sequences produced by the resulting tasks into one `Task<IList<T>>`.
 
 #!markdown
 
 #### Examples
 
-The following example uses `WhenAllMany` to asynchronously download all the OPML feeds in a set of feed collections and return a flattened collection of the results.
+The following example uses `WhenAllMany` to asynchronously download all the OPML feeds in a set of feed collections and return a flattened collection of the results. An OPML feed is an XML file containing information like the title, description and link for each post on a given blog site.
 
 #!csharp
 
@@ -38,12 +38,21 @@ using System;
 using System.Net;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+
+#!markdown
+
+Create a record to represent a feed.
 
 #!csharp
 
 public record Feed(string Name, string Author, string Format, Uri Url);
+
+#!markdown
+
+Create a class to represent the result of a downloaded feed
 
 #!csharp
 
@@ -53,6 +62,10 @@ public class FeedDownloadResult
     
     public HttpStatusCode StatusCode { get; set; }
 }
+
+#!markdown
+
+Create a class to represent a collection of feeds
 
 #!csharp
 
@@ -94,6 +107,10 @@ public class FeedCollection
 
 }
 
+#!markdown
+
+Create an array of `FeedCollection` objects, each containing multiple `Feed` objects.
+
 #!csharp
 
 FeedCollection[] feedCollections = 
@@ -102,8 +119,8 @@ FeedCollection[] feedCollections =
     (
         new Feed[]
         {
-            new Feed("Chris Risner's blog", "Chris Risner", "RSS", new Uri("https://feeds.feedburner.com/Chrisrisnercom")),
-            new Feed("Joseph Jude's blog", "Joseph Jude", "RSS", new Uri("https://jjude.com/feed.xml"))
+            new Feed("Azure Weekly", "endjin", "RSS", new Uri("https://azureweekly.info/rss.xml")),
+            new Feed("Power BI Weekly", "endjin", "RSS", new Uri("https://powerbiweekly.info/rss.xml"))
         }
     ),
 
@@ -111,11 +128,15 @@ FeedCollection[] feedCollections =
     (
         new Feed[]
         {
-            new Feed("Marius Sandbu's blog", "Marius Sandbu", "RSS", new Uri("https://msandbu.wordpress.com/feed/")),
-            new Feed("Jakob Ehn's blog", "Jakob Ehn", "RSS", new Uri("https://blog.ehn.nu/feed/"))
+            new Feed("endjin.com", "endjin", "RSS", new Uri("https://endjin.com/rss.xml")),
+            new Feed("Scott Hanselman Blog", "Scott Hanselman", "RSS", new Uri("http://feeds.feedblitz.com/scotthanselman"))
         }
     )
 };
+
+#!markdown
+
+Define a function that takes a `FeedCollection` object and simply calls the `GetAllFeedsAsync` on it, which will return a `Task<IEnumerable<FeedDownloadResult>>`.
 
 #!csharp
 
@@ -123,5 +144,12 @@ Func<FeedCollection, Task<IEnumerable<FeedDownloadResult>>> mapper = (feedCollec
 {
     return feedCollection.GetAllFeedsAsync();
 };
+
+#!markdown
+
+Then call the `WhenAllMany` method, passing in our `Func` and the `FeedCollection[]` object defined earlier. As a result, each of the `FeedColection`s in `feedCollections` is going to passed to the `Func`, `mapper`, the resulting sequences produced by the multiple `Task<IEnumerable<FeedDownloadResult>>` will then be flattened into one `Task<IList<FeedDownloadResult>>`.
+
+#!csharp
+
 IList<FeedDownloadResult> result = await TaskEx.WhenAllMany<FeedCollection, FeedDownloadResult>(feedCollections, mapper);
 return result[0].Content;
