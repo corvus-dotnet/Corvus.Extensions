@@ -33,13 +33,13 @@ dotnet add package Corvus.Extensions --version 1.1.4
 The `CastTo` method used to be necessary to avoid boxing in certain generic conversion cases.
 The .NET framework can now determine when boxing is not necessary, so `CastTo` is no longer necessary, hence why we're not including an example for it.
 
-### Collection Extensions
+### [Collection Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ICollectionExtensionsSample.dib)
 
 An `AddRange()` extension for `ICollection<T>`
 
 ![AddRange()](GIFs/Collection/addRange.gif)
 
-### Dictionary Extensions 
+### [Dictionary Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/DictionaryExtensionsSample.dib) 
  
 `AddIfNotExists()`
 
@@ -59,7 +59,7 @@ The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics,
 
 ![Merge](GIFs/Dictionary/merge.gif)
 
-### Enumerable Extensions
+### [Enumerable Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/IEnumerableExtensionsSample.dib)
 
 `DistinctPreserveOrder()`
 
@@ -102,14 +102,14 @@ This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the bo
 
 ![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
 
-### List Extensions
+### [List Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ListExtensionsSample.dib)
 
  `RemoveAll()`
 This removes all items from a list that match a predicate.
 
 ![RemoveAll](GIFs/List/RemoveAll.gif)
 
-### String Extensions
+### [String Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/StringExtensionsSample.dib)
 
 - Get as a stream in various encodings
 - Base64 encode/decode (with or without URL safety)
