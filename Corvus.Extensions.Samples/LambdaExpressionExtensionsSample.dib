@@ -1,0 +1,50 @@
+#!markdown
+
+## Lambda Expression Extensions - Sample Notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+using Corvus.Extensions;
+using System.Linq.Expressions;
+
+#!markdown
+
+### ExtractPropertyName()
+
+#!markdown
+
+Extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`.
+
+#!markdown
+
+This can be useful in code that bridges between .NET types and external storage. In particular, if a library wants to allow C# expressions for writing queries against storage, it can be neccessary to find out which properties a C# expression uses, to be able to work out what that maps to in the external storage.
+
+#!csharp
+
+Expression<Func<string, int>> getter = x => x.Length;
+
+#!csharp
+
+getter.ExtractPropertyName()
+
+#!markdown
+
+### GetMemberExpression()
+
+#!markdown
+
+Extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
+
+#!markdown
+
+This allows a more direct expression of the expectation that an expression has this particular form. It allows us to avoid cluttering up the code with exception throwing, which can improve readability.
+
+#!csharp
+
+getter.GetMemberExpression().Expression
