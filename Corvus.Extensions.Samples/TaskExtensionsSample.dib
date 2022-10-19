@@ -1,0 +1,66 @@
+#!markdown
+
+## TaskExtensions - Sample notebook
+
+#!markdown
+
+First, add a reference to the `Corvus.Extensions` NuGet package.
+
+#!csharp
+
+#r "nuget: Corvus.Extensions, 1.1.4"
+
+#!markdown
+
+Add using statement for `Corvus.Extensions` namespace
+
+#!csharp
+
+using Corvus.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
+
+#!markdown
+
+## Examples
+
+#!markdown
+
+### `CastWithConversion()`
+
+Checks to see if a `Task` actually has a result and converts to a `Task` of the relevant type.
+
+#!csharp
+
+class Base
+{
+
+}
+
+class Derived : Base
+{
+
+}
+
+#!markdown
+
+The following cell returns an error, as `Task<T>` is not covariant.
+
+#!csharp
+
+Task t = Task.FromResult(new Derived());
+
+Task<Base> tb = (Task<Base>)t;
+tb.Result
+
+#!markdown
+
+Using `CastWithConversion<>()` allows us to cast the `Task` to a `Task<Base>`.
+
+#!csharp
+
+Task<Base> tb = t.CastWithConversion<Base>();
+tb.Result
