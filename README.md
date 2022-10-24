@@ -3,215 +3,188 @@
 [![GitHub license](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://raw.githubusercontent.com/corvus-dotnet/Corvus.Extensions/main/LICENSE)
 [![IMM](https://endimmfuncdev.azurewebsites.net/api/imm/github/corvus-dotnet/Corvus.Extensions/total?cache=false)](https://endimmfuncdev.azurewebsites.net/api/imm/github/corvus-dotnet/Corvus.Extensions/total?cache=false)
 
+<!-- Introduction -->
+
 This provides a library of useful extensions to .NET types.
 
 It is built for netstandard2.0.
 
-## Features
+## Repository Structure 
+
+- `.github` - Contains GitHub repo related files, such as issue templates and GitHub Actions workflow definitions
+- `Solutions` - Contains files for all of the extension methods and tests
+
+## Getting Started 
+
+`Corvus.Extensions` is available on [NuGet](https://www.nuget.org/packages/Corvus.Extensions). To add a reference to the package in your project, run the following command
+```
+dotnet add package Corvus.Extensions
+```
+
+Use the --version option to specify a [version](https://www.nuget.org/packages/Corvus.Extensions#versions-body-tab) to install.
+```
+dotnet add package Corvus.Extensions --version 1.1.4
+```
+
+## Features 
 
 ### Casting
-There is an efficient `Cast<>` which avoids boxing for value types, derived from [this StackOverflow answer](https://stackoverflow.com/a/23391746).
 
-This is commonly used in generic scenarios.
+The `CastTo` method used to be necessary to avoid boxing in certain generic conversion cases.
+The .NET framework can now determine when boxing is not necessary, so `CastTo` is no longer necessary, hence why we're not including an example for it.
 
-Consider this interface
-
-```csharp
-public interface IEntityInstance
-{
-  /// <summary>
-  /// Gets or sets the entity.
-  /// </summary>
-  object Entity { get; set; }
-}  
-```
-
-and its strongly-typed generic counterpart
-
-```csharp
-public interface IEntityInstance<T> : IEntityInstance
-{
-  /// <summary>
-  /// Gets or sets the entity of the given type.
-  /// </summary>
-  new T Entity { get; set; }
-}
-```
-
-In the implementation, we will see code like this
-
-```csharp
-public sealed class EntityInstance<T> : IEntityInstance<T>
-{
-  /// <summary>
-  /// Gets or sets the entity.
-  /// </summary>
-  public T Entity { get; set; }
-  
-  object IEntityInstance.Entity
-  {
-    get => this.Entity;
-    set => this.Entity = CastTo<T>.From(value);
-  }
-}
-```
-
-`CastTo` supports a wide range of conversions with good efficiency trade-offs, including scenarios where `(T)(object)value` will fail.
-
-### `ICollection`
+### [Collection Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ICollectionExtensionsSample.dib)
 
 An `AddRange()` extension for `ICollection<T>`
 
-```csharp
-ICollection<int> someCollection;
+![AddRange()](GIFs/Collection/addRange.gif)
 
-var myList = new List<int> { 1,2,3,4 };
-someCollection.AddRange(myList);
-```
-
-### `IDictionary`
-
-#### `AddIfNotExists()`
+### [Dictionary Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/DictionaryExtensionsSample.dib) 
+ 
+`AddIfNotExists()`
 
 Adds a value to a key, if the key does not already exist.
 
-```csharp
-var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+![AddIfNotExists()](GIFs/Dictionary/AddIfNotExists.gif)
 
-myDictionary.AddIfNotExists("Hello", 3); // returns false, does not add to dictionary
-myDictionary.AddIfNotExists("Goodbye", 3); // returns true, adds to dictionary
-```
-
-#### `ReplaceIfExists()`
+`ReplaceIfExists()`
 
 Replaces a value in a key, but only if the key already exists.
 
-```csharp
-var myDictionary = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
+![ReplaceIfExists](GIFs/Dictionary/ReplaceIfExists.gif)
 
-myDictionary.ReplaceIfExists("Hello", 3); // returns true, sets "Hello" to 3
-myDictionary.ReplaceIfExists("Goodbye", 3); // returns false, does not add to dictionary
-```
-
-#### `Merge()` 
+`Merge()` 
 
 The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics, so the values in the first dictionary will be preserved.
 
-```csharp
-var myDictionary1 = new Dictionary<string, int> { { "Hello", 1 }, { "World", 2 } };
-var myDictionary2 = new Dictionary<string, int> { { "Hello", 3 }, { "Goodbye", 4 } };
+![Merge](GIFs/Dictionary/merge.gif)
 
-myDictionary1.Merge(myDictionary2);
+### [Enumerable Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/IEnumerableExtensionsSample.dib)
 
-// Results in:
-// { { "Hello", 1 }, { "World", 2 }, { "Goodbye", 4 } }
-
-``` 
-
-### `IEnumerable`
-
-#### `DistinctPreserveOrder()`
+`DistinctPreserveOrder()`
 
 This emits an enumerable of the distinct items in the target, preserving their original ordering.
 
-For example.
+![DistinctPreserveOrder()](GIFs/Enumerable/DistinctPreserveOrder.gif)
 
-```csharp
-var list = new List<int> { 1, 2, 3, 2, 4, 5, 6, 3 };
-var result = list.DistinctPreserveOrder();
-
-// Results in:
-// { 1, 2, 3, 4, 5, 6 }
-```
-
-#### `DistinctBy()`
+`DistinctBy()`
 
 This allows you to provide a function to provide the value for equality comparison for each item.
 
-```csharp
-class SomeType
-{
-  public string Prop1 { get; set; }
-  public int Prop2 { get; set; }
-}
+![DistinctBy()](GIFs/Enumerable/DistinctBy.gif)
 
-var list = new List<SomeType> { new SomeType { Prop1 = "Hello", Prop2 = 1 }, new SomeType { Prop1 = "Hello", Prop2 = 3 }, new SomeType { Prop1 = "World", Prop2 = 1 } };
-var result = list.DistinctBy(i => i.Prop1);
+ `Concatenate()`
 
-// Results in:
-// { {"Hello", 1}, {"World", 1} }
-```
+This gives you the ability to concatenate multiple enumerables, using the params pattern.
 
-#### `Concatenate()`
+![Concatenate()](GIFs/Enumerable/Concatenate.gif)
 
-This gives you the ability to concatenate mutiple enumerables, using the params pattern.
-
-```csharp
-var list = new List<int> { 1, 2, 3 };
-var list2 = new List<int> { 4, 5, 6 };
-var list3 = new List<int> { 7, 8, 9 };
-var list4 = new List<int> { 10, 11, 12 };
-
-list.Concatenate(list2, list3, list4);
-
-// Results in: 
-// { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }
-```
-#### `HasMinimumCount()`
+ `HasMinimumCount()`
 
 This determines whether the enumerable has at least a given number of items in it.
 
-```csharpa
-var list = new List<int> { 1, 2, 3 };
-list.HasMinimumCount(3); // true
-list.HasMinimumCount(4); // false
-```
+![HasMinimumCount](GIFs/Enumerable/HasMinimumCount.gif)
 
-#### `AllAndAtLeastOne()`
+ `AllAndAtLeastOne()`
 This is an efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
 
-```csharp
-var list = new List<int> { 1, 2, 3 };
-var list2 = new List<int>();
+![AllAndAtLeastOne](GIFs/Enumerable/AllAndAtLeastOne.gif)
 
-list.AllAndAtLeastOne(i => i <= 3); // true
-list.AllAndAtLeastOne(i => i <= 2); // false
-list2.AllAndAtLeastOne(i => i <= 2); // false
-```
+### Lambda Expression Extensions 
 
-### `LambdaExpression`
-
-#### `GetMemberExpression()`
-This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
-
-#### `GetPropertyName()`
+ `ExtractPropertyName()`
 This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`
 
-### ListExtensions
+![ExtractPropertyName](GIFs/LambdaExpression/ExtractPropertyName.gif)
 
-#### `RemoveAll()`
+ `GetMemberExpression()`
+This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
+
+![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
+
+### [List Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ListExtensionsSample.dib)
+
+ `RemoveAll()`
 This removes all items from a list that match a predicate.
 
-```csharp
-var list = new List<int> { 1, 2, 3, 4, 5, 6 };
-list.RemoveAll(i => i < 3);
+![RemoveAll](GIFs/List/RemoveAll.gif)
 
-// The list now contains:
-// { 3, 4, 5, 6 }
-```
-
-### String
+### [String Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/StringExtensionsSample.dib)
 
 - Get as a stream in various encodings
 - Base64 encode/decode (with or without URL safety)
 - Reverse
 - To camel case
 
-### Task
+`AsBase64()`
+
+Convert the provided string to a base 64 representation of its byte representation in a particular encoding.
+
+![AsBase64](GIFs/String/AsBase64.gif)
+
+`Base64UrlEncode()`
+
+Convert the provided string to a base 64 representation of its byte representation in the UTF8 encoding, with a URL-safe representation.
+
+![Base64UrlEncode()](GIFs/String/Base64UrlEncode.gif)
+
+`Base64UrlDecode()`
+
+Convert the provided string from a base 64 representation of its byte representation in the UTF8 encoding with a URL-safe representation.
+
+![Base64UrlDecode()](GIFs/String/Base64UrlDecode.gif)
+
+`AsStream()`
+
+Provide a stream over the string in the specified encoding.
+
+![AsStream()](GIFs/String/AsStream.gif)
+
+`EscapeContentType()`
+
+Escape a content type string.
+
+![EscapeContentType()](GIFs/String/EscapeContentType.gif)
+
+`FromBase64()`
+
+Decode a string from a base64-encoded byte array with the specified text encoding.
+
+![FromBase64()](GIFs/String/fromBase64.gif)
+
+`GetGraphemeClusters()`
+
+Enumerate the grapheme clusters in a string.
+
+![GetGraphemeClusters()](GIFs/String/GetGraphemeClusters.gif)
+
+`Reverse()`
+
+Reverse the string.
+
+![Reverse()](GIFs/String/Reverse.gif)
+
+`UnescapeContentType()`
+
+Unescape a content type string.
+
+![UnescapeContentType()](GIFs/String/UnescapeContentType.gif)
+
+`ToCamelCase()`
+
+Convert a string to camel case from pascal case.
+
+![ToCamelCase()](GIFs/String/ToCamelCase.gif)
+
+### Task Extensions
 
 - Casts `Task`/`Task<?>` to `Task<T>` result type with or without a cast of the actual result value
 
-### Traversals
+`CastWithConversion()`
+
+![CastWithConversion()](GIFs\Task\CastWithConversion.gif)
+
+### Traversal Extensions
 
 Various `ForEach` extensions, including:
 
@@ -219,6 +192,76 @@ Various `ForEach` extensions, including:
 - aggregating and delaying exceptions until the end of the traversal
 - with indexing
 - until predicates are true/false
+
+ `ForEachAsync()`
+
+ Execute an async action for each item in the enumerable.
+
+ ![ForEachAsync](GIFs/Traversal/ForEachAsync.gif)
+
+ `ForEachAtIndex()`
+
+ Execute an action for each item in the enumerable with the index of the item in the enumerable.
+
+ ![ForEachAtIndex()](GIFs/Traversal/ForEachAtIndex.gif)
+
+ `ForEachAtIndexAsync()`
+
+Execute an async action for each item in the enumerable, in turn, with the index of the item in the enumerable.
+
+ ![ForEachAtIndexAsync()](GIFs/Traversal/ForEachAtIndexAsync.gif)
+
+ `ForEachFailEnd()`
+
+ Execute an action for each item in the enumerable. 
+
+ ![ForEachFailEnd()](GIFs/Traversal/ForEachFailEnd.gif)
+
+ `ForEachFailEndAsync()`
+
+ Execute an async action for each item in the enumerable.
+ 
+ Returns a task which completes when the enumeration has completed.
+
+ If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
+
+ ![ForEachFailEndAsync()](GIFs/Traversal/ForEachFailEndAsync.gif)
+
+ `ForEachUntilFalse()`
+
+ Execute an action for each item in the enumerable.
+
+ Returns false if the enumeration returned early, otherwise true.
+
+ ![ForEachUntilFalse()](GIFs/Traversal/ForEachUntilFalse.gif)
+
+ `ForEachUntilFalseAsync()`
+
+ Execute an async action for each item in the enumerable.
+
+ A task which completes False if the enumeration returned early, otherwise true.
+
+ ![ForEachUntilFalseAsync()](GIFs/Traversal/ForEachUntilFalseAsync.gif)
+
+ `ForEachUntilTrue()`
+
+ Execute an action for each item in the enumerable.
+
+ Returns true if the action terminated early, otherwise false.
+
+ ![ForEachUntilTrue()](GIFs/Traversal/ForEachUntilTrue.gif)
+
+ `ForEachUntilTrueAsync()`
+
+ Execute an async action for each item in the enumerable.
+
+ A task which completes True if the action terminated early, otherwise false.
+
+ ![ForEachUntilTrueAsync()](GIFs/Traversal/ForEachUntilTrueAsync.gif)
+
+## Contributing
+
+This project has adopted a code of conduct adapted from the [Contributor Covenant](http://contributor-covenant.org/) to clarify expected behavior in our community. This code of conduct has been [adopted by many other projects](http://contributor-covenant.org/adopters/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#110;&#100;&#106;&#105;&#110;&#046;&#099;&#111;&#109;](&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#110;&#100;&#106;&#105;&#110;&#046;&#099;&#111;&#109;) with any additional questions or comments.
 
 ## Licenses
 
@@ -239,10 +282,6 @@ We produce two free weekly newsletters; [Azure Weekly](https://azureweekly.info)
 Keep up with everything that's going on at endjin via our [blog](https://blogs.endjin.com/), follow us on [Twitter](https://twitter.com/endjin), or [LinkedIn](https://www.linkedin.com/company/1671851/).
 
 Our other Open Source projects can be found on [GitHub](https://endjin.com/open-source)
-
-## Code of conduct
-
-This project has adopted a code of conduct adapted from the [Contributor Covenant](http://contributor-covenant.org/) to clarify expected behavior in our community. This code of conduct has been [adopted by many other projects](http://contributor-covenant.org/adopters/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#110;&#100;&#106;&#105;&#110;&#046;&#099;&#111;&#109;](&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#101;&#110;&#100;&#106;&#105;&#110;&#046;&#099;&#111;&#109;) with any additional questions or comments.
 
 ## IP Maturity Matrix (IMM)
 
