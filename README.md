@@ -261,9 +261,9 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
  ### [TaskEx](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TaskExSample.dib)
 
- Provides a single method: `TaskEx.WhenAllMany()`
+ A class that provides a single static method: `TaskEx.WhenAllMany()`
 
- `TaskEx.WhenAllMany`
+ `TaskEx.WhenAllMany()`
 
  Passes the elements of a sequence to a callback that projects each element to a `Task<IEnumerable<T>>` and flattens the sequences produced by the resulting tasks into one `Task<IList<T>>`.
 
