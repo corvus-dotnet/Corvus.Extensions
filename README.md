@@ -90,7 +90,7 @@ This is an efficient implementation of `enum.Any() && enum.All(predicate)` that 
 
 ![AllAndAtLeastOne](GIFs/Enumerable/AllAndAtLeastOne.gif)
 
-### Lambda Expression Extensions 
+### [Lambda Expression Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/LambdaExpressionExtensionsSample.dib)
 
  `ExtractPropertyName()`
 This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`
@@ -176,7 +176,7 @@ Convert a string to camel case from pascal case.
 
 ![ToCamelCase()](GIFs/String/ToCamelCase.gif)
 
-### Task Extensions
+### [Task Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TaskExtensionsSample.dib)
 
 - Casts `Task`/`Task<?>` to `Task<T>` result type with or without a cast of the actual result value
 
@@ -184,7 +184,7 @@ Convert a string to camel case from pascal case.
 
 ![CastWithConversion()](GIFs\Task\CastWithConversion.gif)
 
-### Traversal Extensions
+### [Traversal Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TraversalExtensionsSample.dib)
 
 Various `ForEach` extensions, including:
 
@@ -258,6 +258,14 @@ Execute an async action for each item in the enumerable, in turn, with the index
  A task which completes True if the action terminated early, otherwise false.
 
  ![ForEachUntilTrueAsync()](GIFs/Traversal/ForEachUntilTrueAsync.gif)
+
+ ### [TaskEx](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TaskExSample.dib)
+
+ Provides a single method: `TaskEx.WhenAllMany()`
+
+ `TaskEx.WhenAllMany`
+
+ Passes the elements of a sequence to a callback that projects each element to a `Task<IEnumerable<T>>` and flattens the sequences produced by the resulting tasks into one `Task<IList<T>>`.
 
 ## Contributing
 
