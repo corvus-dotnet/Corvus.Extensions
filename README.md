@@ -88,7 +88,10 @@ This determines whether the enumerable has at least a given number of items in i
 ![HasMinimumCount](GIFs/Enumerable/HasMinimumCount.gif)
 
  `AllAndAtLeastOne()`
-This is an efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
+
+This is an efficient implementation of the combination of the built-in LINQ operators [Any()](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.any?view=net-6.0) & [`All()`](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.all?view=net-6.0) that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
+
+This method is also useful because of the counterintuitive behavior of `All()` with empty collections, whereby `items.All()` returns true if `items` is an empty collection. `items.AllAndAtLeastOne()` returns false if `items` is an empty collection, as one of the examples below shows.
 
 ![AllAndAtLeastOne](GIFs/Enumerable/AllAndAtLeastOne.gif)
 
