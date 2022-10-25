@@ -65,6 +65,8 @@ The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics,
 
 This emits an enumerable of the distinct items in the target, preserving their original ordering.
 
+The built-in LINQ operator [`Distinct`](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0#system-linq-enumerable-distinct-1(system-collections-generic-ienumerable((-0)))) can be used to return the distinct elements from a sequence. However, the [documentation](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0#system-linq-enumerable-distinct-1(system-collections-generic-ienumerable((-0)))) makes no guarantee about preserving the original ordering of the elements. 
+
 ![DistinctPreserveOrder()](GIFs/Enumerable/DistinctPreserveOrder.gif)
 
 `DistinctBy()`
