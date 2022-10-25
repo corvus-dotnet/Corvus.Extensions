@@ -255,9 +255,9 @@ This is useful when cleaning up Azure resources that were set up for testing pur
 
  `ForEachUntilFalseAsync()`
 
- Execute an async action for each item in the enumerable.
+Execute an async action for each item in the enumerable.
 
- A task which completes False if the enumeration returned early, otherwise true.
+Returns a task whose result is False if the enumeration returned early, otherwise returns true.
 
  ![ForEachUntilFalseAsync()](GIFs/Traversal/ForEachUntilFalseAsync.gif)
 
