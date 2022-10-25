@@ -97,19 +97,22 @@ This method is also useful because of the counterintuitive behavior of `All()` w
 
 ### [Lambda Expression Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/LambdaExpressionExtensionsSample.dib)
 
- `ExtractPropertyName()`
+`ExtractPropertyName()`
+
 This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`
 
 ![ExtractPropertyName](GIFs/LambdaExpression/ExtractPropertyName.gif)
 
- `GetMemberExpression()`
+`GetMemberExpression()`
+
 This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
 
 ![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
 
 ### [List Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ListExtensionsSample.dib)
 
- `RemoveAll()`
+`RemoveAll()`
+
 This removes all items from a list that match a predicate.
 
 ![RemoveAll](GIFs/List/RemoveAll.gif)
