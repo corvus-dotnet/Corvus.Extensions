@@ -273,7 +273,7 @@ Returns a task whose result is False if the enumeration returned early, otherwis
 
  Execute an async action for each item in the enumerable.
 
- A task which completes True if the action terminated early, otherwise false.
+Returns a task whose result is True if the action terminated early, otherwise returns False.
 
  ![ForEachUntilTrueAsync()](GIFs/Traversal/ForEachUntilTrueAsync.gif)
 
