@@ -166,6 +166,10 @@ Decode a string from a base64-encoded byte array with the specified text encodin
 
 Enumerate the grapheme clusters in a string.
 
+This method is a wrapper around [StringInfo.GetTextElementEnumerator](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.stringinfo.gettextelementenumerator?view=net-7.0), which returns an enumerator that iterates through the text elements of a string. `GetGraphemeClusters()` returns an `IEnumerable<string>`, meaning the functionality can be used with LINQ.
+
+You can think of `GetGraphemeClusters()` as enumerating through the "logical characters" in a string.
+
 ![GetGraphemeClusters()](GIFs/String/GetGraphemeClusters.gif)
 
 `Reverse()`
