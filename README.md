@@ -227,7 +227,11 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
  `ForEachFailEnd()`
 
- Execute an action for each item in the enumerable. 
+Execute an action for each item in the enumerable.
+
+If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
+
+This is useful when cleaning up Azure resources that were set up for testing purposes, for example. It makes sure that even if one step fails, the process doesn't stop, as this would mean that some potentially expensive resources aren't deleted.  
 
  ![ForEachFailEnd()](GIFs/Traversal/ForEachFailEnd.gif)
 
