@@ -107,6 +107,8 @@ This extracts a property name from a lambda expression, throwing if that express
 
 This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
 
+This allows a more direct expression of the expectation that an expression has this particular form. It allows us to avoid cluttering up the code with exception throwing, which can improve readability.
+
 ![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
 
 ### [List Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ListExtensionsSample.dib)
