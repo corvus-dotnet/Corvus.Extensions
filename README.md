@@ -196,7 +196,7 @@ Convert a string to camel case from pascal case.
 
 `CastWithConversion()`
 
-![CastWithConversion()](GIFs\Task\CastWithConversion.gif)
+![CastWithConversion()](GIFs/Task/CastWithConversion.gif)
 
 ### [Traversal Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TraversalExtensionsSample.dib)
 
