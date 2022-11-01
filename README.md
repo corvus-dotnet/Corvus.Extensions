@@ -65,6 +65,8 @@ The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics,
 
 This emits an enumerable of the distinct items in the target, preserving their original ordering.
 
+The built-in LINQ operator [`Distinct`](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0#system-linq-enumerable-distinct-1(system-collections-generic-ienumerable((-0)))) can be used to return the distinct elements from a sequence. However, the [documentation](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0#system-linq-enumerable-distinct-1(system-collections-generic-ienumerable((-0)))) makes no guarantee about preserving the original ordering of the elements. 
+
 ![DistinctPreserveOrder()](GIFs/Enumerable/DistinctPreserveOrder.gif)
 
 `DistinctBy()`
@@ -86,25 +88,33 @@ This determines whether the enumerable has at least a given number of items in i
 ![HasMinimumCount](GIFs/Enumerable/HasMinimumCount.gif)
 
  `AllAndAtLeastOne()`
-This is an efficient implementation of `enum.Any() && enum.All(predicate)` that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
+
+This is an efficient implementation of the combination of the built-in LINQ operators [Any()](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.any?view=net-6.0) & [`All()`](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.all?view=net-6.0) that avoids starting the enumeration twice. It determines if the collection is non-empty, and that every element also matches some predicate.
+
+This method is also useful because of the counterintuitive behavior of `All()` with empty collections, whereby `items.All()` returns true if `items` is an empty collection. `items.AllAndAtLeastOne()` returns false if `items` is an empty collection, as one of the examples below shows.
 
 ![AllAndAtLeastOne](GIFs/Enumerable/AllAndAtLeastOne.gif)
 
-### Lambda Expression Extensions 
+### [Lambda Expression Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/LambdaExpressionExtensionsSample.dib)
 
- `ExtractPropertyName()`
+`ExtractPropertyName()`
+
 This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`
 
 ![ExtractPropertyName](GIFs/LambdaExpression/ExtractPropertyName.gif)
 
- `GetMemberExpression()`
+`GetMemberExpression()`
+
 This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the body is not a `MemberExpression`.
+
+This allows a more direct expression of the expectation that an expression has this particular form. It allows us to avoid cluttering up the code with exception throwing, which can improve readability.
 
 ![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
 
 ### [List Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ListExtensionsSample.dib)
 
- `RemoveAll()`
+`RemoveAll()`
+
 This removes all items from a list that match a predicate.
 
 ![RemoveAll](GIFs/List/RemoveAll.gif)
@@ -156,6 +166,10 @@ Decode a string from a base64-encoded byte array with the specified text encodin
 
 Enumerate the grapheme clusters in a string.
 
+This method is a wrapper around [StringInfo.GetTextElementEnumerator](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.stringinfo.gettextelementenumerator?view=net-7.0), which returns an enumerator that iterates through the text elements of a string. `GetGraphemeClusters()` returns an `IEnumerable<string>`, meaning the functionality can be used with LINQ.
+
+You can think of `GetGraphemeClusters()` as enumerating through the "logical characters" in a string.
+
 ![GetGraphemeClusters()](GIFs/String/GetGraphemeClusters.gif)
 
 `Reverse()`
@@ -176,15 +190,15 @@ Convert a string to camel case from pascal case.
 
 ![ToCamelCase()](GIFs/String/ToCamelCase.gif)
 
-### Task Extensions
+### [Task Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TaskExtensionsSample.dib)
 
 - Casts `Task`/`Task<?>` to `Task<T>` result type with or without a cast of the actual result value
 
 `CastWithConversion()`
 
-![CastWithConversion()](GIFs\Task\CastWithConversion.gif)
+![CastWithConversion()](GIFs/Task/CastWithConversion.gif)
 
-### Traversal Extensions
+### [Traversal Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TraversalExtensionsSample.dib)
 
 Various `ForEach` extensions, including:
 
@@ -213,7 +227,11 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
  `ForEachFailEnd()`
 
- Execute an action for each item in the enumerable. 
+Execute an action for each item in the enumerable.
+
+If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
+
+This is useful when cleaning up Azure resources that were set up for testing purposes, for example. It makes sure that even if one step fails, the process doesn't stop, as this would mean that some potentially expensive resources aren't deleted.  
 
  ![ForEachFailEnd()](GIFs/Traversal/ForEachFailEnd.gif)
 
@@ -237,9 +255,9 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
  `ForEachUntilFalseAsync()`
 
- Execute an async action for each item in the enumerable.
+Execute an async action for each item in the enumerable.
 
- A task which completes False if the enumeration returned early, otherwise true.
+Returns a task whose result is False if the enumeration returned early, otherwise returns true.
 
  ![ForEachUntilFalseAsync()](GIFs/Traversal/ForEachUntilFalseAsync.gif)
 
@@ -255,9 +273,19 @@ Execute an async action for each item in the enumerable, in turn, with the index
 
  Execute an async action for each item in the enumerable.
 
- A task which completes True if the action terminated early, otherwise false.
+Returns a task whose result is True if the action terminated early, otherwise returns False.
 
  ![ForEachUntilTrueAsync()](GIFs/Traversal/ForEachUntilTrueAsync.gif)
+
+ ### [TaskEx](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TaskExSample.dib)
+
+ A class that provides a single static method: `TaskEx.WhenAllMany()`
+
+ `TaskEx.WhenAllMany()`
+
+ Passes the elements of a sequence to a callback that projects each element to a `Task<IEnumerable<T>>` and flattens the sequences produced by the resulting tasks into one `Task<IList<T>>`.
+
+  ![ForEachUntilTrue()](GIFs/TaskEx/WhenAllMany.gif)
 
 ## Contributing
 
