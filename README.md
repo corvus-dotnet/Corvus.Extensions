@@ -33,33 +33,33 @@ dotnet add package Corvus.Extensions --version 1.1.4
 The `CastTo` method used to be necessary to avoid boxing in certain generic conversion cases.
 The .NET framework can now determine when boxing is not necessary, so `CastTo` is no longer necessary, hence why we're not including an example for it.
 
-### [Collection Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ICollectionExtensionsSample.dib)
+### [Collection Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/ICollectionExtensionsSample.dib)
 
 An `AddRange()` extension for `ICollection<T>`
 
-![AddRange()](GIFs/Collection/addRange.gif)
+![AddRange()](Documentation/Examples/GIFs/Collection/addRange.gif)
 
-### [Dictionary Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/DictionaryExtensionsSample.dib) 
+### [Dictionary Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/DictionaryExtensionsSample.dib) 
  
 `AddIfNotExists()`
 
 Adds a value to a key, if the key does not already exist.
 
-![AddIfNotExists()](GIFs/Dictionary/AddIfNotExists.gif)
+![AddIfNotExists()](Documentation/Examples/GIFs/Dictionary/AddIfNotExists.gif)
 
 `ReplaceIfExists()`
 
 Replaces a value in a key, but only if the key already exists.
 
-![ReplaceIfExists](GIFs/Dictionary/ReplaceIfExists.gif)
+![ReplaceIfExists](Documentation/Examples/GIFs/Dictionary/ReplaceIfExists.gif)
 
 `Merge()` 
 
 The union of two dictionaries. Note that this uses `AddIfNotExists()` semantics, so the values in the first dictionary will be preserved.
 
-![Merge](GIFs/Dictionary/merge.gif)
+![Merge](Documentation/Examples/GIFs/Dictionary/merge.gif)
 
-### [Enumerable Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/IEnumerableExtensionsSample.dib)
+### [Enumerable Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/IEnumerableExtensionsSample.dib)
 
 `DistinctPreserveOrder()`
 
@@ -67,25 +67,25 @@ This emits an enumerable of the distinct items in the target, preserving their o
 
 The built-in LINQ operator [`Distinct`](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0#system-linq-enumerable-distinct-1(system-collections-generic-ienumerable((-0)))) can be used to return the distinct elements from a sequence. However, the [documentation](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0#system-linq-enumerable-distinct-1(system-collections-generic-ienumerable((-0)))) makes no guarantee about preserving the original ordering of the elements. 
 
-![DistinctPreserveOrder()](GIFs/Enumerable/DistinctPreserveOrder.gif)
+![DistinctPreserveOrder()](Documentation/Examples/GIFs/Enumerable/DistinctPreserveOrder.gif)
 
 `DistinctBy()`
 
 This allows you to provide a function to provide the value for equality comparison for each item.
 
-![DistinctBy()](GIFs/Enumerable/DistinctBy.gif)
+![DistinctBy()](Documentation/Examples/GIFs/Enumerable/DistinctBy.gif)
 
  `Concatenate()`
 
 This gives you the ability to concatenate multiple enumerables, using the params pattern.
 
-![Concatenate()](GIFs/Enumerable/Concatenate.gif)
+![Concatenate()](Documentation/Examples/GIFs/Enumerable/Concatenate.gif)
 
  `HasMinimumCount()`
 
 This determines whether the enumerable has at least a given number of items in it.
 
-![HasMinimumCount](GIFs/Enumerable/HasMinimumCount.gif)
+![HasMinimumCount](Documentation/Examples/GIFs/Enumerable/HasMinimumCount.gif)
 
  `AllAndAtLeastOne()`
 
@@ -93,15 +93,15 @@ This is an efficient implementation of the combination of the built-in LINQ oper
 
 This method is also useful because of the counterintuitive behavior of `All()` with empty collections, whereby `items.All()` returns true if `items` is an empty collection. `items.AllAndAtLeastOne()` returns false if `items` is an empty collection, as one of the examples below shows.
 
-![AllAndAtLeastOne](GIFs/Enumerable/AllAndAtLeastOne.gif)
+![AllAndAtLeastOne](Documentation/Examples/GIFs/Enumerable/AllAndAtLeastOne.gif)
 
-### [Lambda Expression Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/LambdaExpressionExtensionsSample.dib)
+### [Lambda Expression Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/LambdaExpressionExtensionsSample.dib)
 
 `ExtractPropertyName()`
 
 This extracts a property name from a lambda expression, throwing if that expression is not a `MemberExpression`
 
-![ExtractPropertyName](GIFs/LambdaExpression/ExtractPropertyName.gif)
+![ExtractPropertyName](Documentation/Examples/GIFs/LambdaExpression/ExtractPropertyName.gif)
 
 `GetMemberExpression()`
 
@@ -109,17 +109,17 @@ This extracts a `MemberExpression` from a `LambdaExpression`, throwing if the bo
 
 This allows a more direct expression of the expectation that an expression has this particular form. It allows us to avoid cluttering up the code with exception throwing, which can improve readability.
 
-![GetMemberExpression](GIFs/LambdaExpression/GetMemberExpression.gif)
+![GetMemberExpression](Documentation/Examples/GIFs/LambdaExpression/GetMemberExpression.gif)
 
-### [List Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/ListExtensionsSample.dib)
+### [List Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/ListExtensionsSample.dib)
 
 `RemoveAll()`
 
 This removes all items from a list that match a predicate.
 
-![RemoveAll](GIFs/List/RemoveAll.gif)
+![RemoveAll](Documentation/Examples/GIFs/List/RemoveAll.gif)
 
-### [String Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/StringExtensionsSample.dib)
+### [String Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/StringExtensionsSample.dib)
 
 - Get as a stream in various encodings
 - Base64 encode/decode (with or without URL safety)
@@ -130,37 +130,37 @@ This removes all items from a list that match a predicate.
 
 Convert the provided string to a base 64 representation of its byte representation in a particular encoding.
 
-![AsBase64](GIFs/String/AsBase64.gif)
+![AsBase64](Documentation/Examples/GIFs/String/AsBase64.gif)
 
 `Base64UrlEncode()`
 
 Convert the provided string to a base 64 representation of its byte representation in the UTF8 encoding, with a URL-safe representation.
 
-![Base64UrlEncode()](GIFs/String/Base64UrlEncode.gif)
+![Base64UrlEncode()](Documentation/Examples/GIFs/String/Base64UrlEncode.gif)
 
 `Base64UrlDecode()`
 
 Convert the provided string from a base 64 representation of its byte representation in the UTF8 encoding with a URL-safe representation.
 
-![Base64UrlDecode()](GIFs/String/Base64UrlDecode.gif)
+![Base64UrlDecode()](Documentation/Examples/GIFs/String/Base64UrlDecode.gif)
 
 `AsStream()`
 
 Provide a stream over the string in the specified encoding.
 
-![AsStream()](GIFs/String/AsStream.gif)
+![AsStream()](Documentation/Examples/GIFs/String/AsStream.gif)
 
 `EscapeContentType()`
 
 Escape a content type string.
 
-![EscapeContentType()](GIFs/String/EscapeContentType.gif)
+![EscapeContentType()](Documentation/Examples/GIFs/String/EscapeContentType.gif)
 
 `FromBase64()`
 
 Decode a string from a base64-encoded byte array with the specified text encoding.
 
-![FromBase64()](GIFs/String/fromBase64.gif)
+![FromBase64()](Documentation/Examples/GIFs/String/fromBase64.gif)
 
 `GetGraphemeClusters()`
 
@@ -170,35 +170,35 @@ This method is a wrapper around [StringInfo.GetTextElementEnumerator](https://le
 
 You can think of `GetGraphemeClusters()` as enumerating through the "logical characters" in a string.
 
-![GetGraphemeClusters()](GIFs/String/GetGraphemeClusters.gif)
+![GetGraphemeClusters()](Documentation/Examples/GIFs/String/GetGraphemeClusters.gif)
 
 `Reverse()`
 
 Reverse the string.
 
-![Reverse()](GIFs/String/Reverse.gif)
+![Reverse()](Documentation/Examples/GIFs/String/Reverse.gif)
 
 `UnescapeContentType()`
 
 Unescape a content type string.
 
-![UnescapeContentType()](GIFs/String/UnescapeContentType.gif)
+![UnescapeContentType()](Documentation/Examples/GIFs/String/UnescapeContentType.gif)
 
 `ToCamelCase()`
 
 Convert a string to camel case from pascal case.
 
-![ToCamelCase()](GIFs/String/ToCamelCase.gif)
+![ToCamelCase()](Documentation/Examples/GIFs/String/ToCamelCase.gif)
 
-### [Task Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TaskExtensionsSample.dib)
+### [Task Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/TaskExtensionsSample.dib)
 
 - Casts `Task`/`Task<?>` to `Task<T>` result type with or without a cast of the actual result value
 
 `CastWithConversion()`
 
-![CastWithConversion()](GIFs/Task/CastWithConversion.gif)
+![CastWithConversion()](Documentation/Examples/GIFs/Task/CastWithConversion.gif)
 
-### [Traversal Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TraversalExtensionsSample.dib)
+### [Traversal Extensions](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/TraversalExtensionsSample.dib)
 
 Various `ForEach` extensions, including:
 
@@ -211,19 +211,19 @@ Various `ForEach` extensions, including:
 
  Execute an async action for each item in the enumerable.
 
- ![ForEachAsync](GIFs/Traversal/ForEachAsync.gif)
+ ![ForEachAsync](Documentation/Examples/GIFs/Traversal/ForEachAsync.gif)
 
  `ForEachAtIndex()`
 
  Execute an action for each item in the enumerable with the index of the item in the enumerable.
 
- ![ForEachAtIndex()](GIFs/Traversal/ForEachAtIndex.gif)
+ ![ForEachAtIndex()](Documentation/Examples/GIFs/Traversal/ForEachAtIndex.gif)
 
  `ForEachAtIndexAsync()`
 
 Execute an async action for each item in the enumerable, in turn, with the index of the item in the enumerable.
 
- ![ForEachAtIndexAsync()](GIFs/Traversal/ForEachAtIndexAsync.gif)
+ ![ForEachAtIndexAsync()](Documentation/Examples/GIFs/Traversal/ForEachAtIndexAsync.gif)
 
  `ForEachFailEnd()`
 
@@ -233,7 +233,7 @@ If any operation fails, then the enumeration is continued to the end when an Agg
 
 This is useful when cleaning up Azure resources that were set up for testing purposes, for example. It makes sure that even if one step fails, the process doesn't stop, as this would mean that some potentially expensive resources aren't deleted.  
 
- ![ForEachFailEnd()](GIFs/Traversal/ForEachFailEnd.gif)
+ ![ForEachFailEnd()](Documentation/Examples/GIFs/Traversal/ForEachFailEnd.gif)
 
  `ForEachFailEndAsync()`
 
@@ -243,7 +243,7 @@ This is useful when cleaning up Azure resources that were set up for testing pur
 
  If any operation fails, then the enumeration is continued to the end when an Aggregate Exception is thrown containing the exceptions thrown by any failed operations.
 
- ![ForEachFailEndAsync()](GIFs/Traversal/ForEachFailEndAsync.gif)
+ ![ForEachFailEndAsync()](Documentation/Examples/GIFs/Traversal/ForEachFailEndAsync.gif)
 
  `ForEachUntilFalse()`
 
@@ -251,7 +251,7 @@ This is useful when cleaning up Azure resources that were set up for testing pur
 
  Returns false if the enumeration returned early, otherwise true.
 
- ![ForEachUntilFalse()](GIFs/Traversal/ForEachUntilFalse.gif)
+ ![ForEachUntilFalse()](Documentation/Examples/GIFs/Traversal/ForEachUntilFalse.gif)
 
  `ForEachUntilFalseAsync()`
 
@@ -259,7 +259,7 @@ Execute an async action for each item in the enumerable.
 
 Returns a task whose result is False if the enumeration returned early, otherwise returns true.
 
- ![ForEachUntilFalseAsync()](GIFs/Traversal/ForEachUntilFalseAsync.gif)
+ ![ForEachUntilFalseAsync()](Documentation/Examples/GIFs/Traversal/ForEachUntilFalseAsync.gif)
 
  `ForEachUntilTrue()`
 
@@ -267,7 +267,7 @@ Returns a task whose result is False if the enumeration returned early, otherwis
 
  Returns true if the action terminated early, otherwise false.
 
- ![ForEachUntilTrue()](GIFs/Traversal/ForEachUntilTrue.gif)
+ ![ForEachUntilTrue()](Documentation/Examples/GIFs/Traversal/ForEachUntilTrue.gif)
 
  `ForEachUntilTrueAsync()`
 
@@ -275,9 +275,9 @@ Returns a task whose result is False if the enumeration returned early, otherwis
 
 Returns a task whose result is True if the action terminated early, otherwise returns False.
 
- ![ForEachUntilTrueAsync()](GIFs/Traversal/ForEachUntilTrueAsync.gif)
+ ![ForEachUntilTrueAsync()](Documentation/Examples/GIFs/Traversal/ForEachUntilTrueAsync.gif)
 
- ### [TaskEx](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Corvus.Extensions.Samples/TaskExSample.dib)
+ ### [TaskEx](https://github.com/corvus-dotnet/Corvus.Extensions/blob/main/Documentation/Examples/TaskExSample.dib)
 
  A class that provides a single static method: `TaskEx.WhenAllMany()`
 
@@ -285,7 +285,7 @@ Returns a task whose result is True if the action terminated early, otherwise re
 
  Passes the elements of a sequence to a callback that projects each element to a `Task<IEnumerable<T>>` and flattens the sequences produced by the resulting tasks into one `Task<IList<T>>`.
 
-  ![ForEachUntilTrue()](GIFs/TaskEx/WhenAllMany.gif)
+  ![ForEachUntilTrue()](Documentation/Examples/GIFs/TaskEx/WhenAllMany.gif)
 
 ## Contributing
 
