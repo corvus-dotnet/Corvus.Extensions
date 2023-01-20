@@ -21,6 +21,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  BUILDVAR_DotNetTestLogger: trx;logFileName=${{ github.workspace}}/test-results.trx
+
 jobs:
   build:
     uses: endjin/Endjin.RecommendedPractices.GitHubActions/.github/workflows/scripted-build-pipeline.yml@main
