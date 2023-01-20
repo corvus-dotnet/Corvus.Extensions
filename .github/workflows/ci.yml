@@ -22,7 +22,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BUILDVAR_DotNetTestLogger: trx;logFileName=${{ github.workspace}}/test-results.trx
+  # setup multiple test loggers
+  BUILDVAR_DotNetTestLoggers: '["trx;logFileName=test-results.trx", "GitHubActions"]'
 
 jobs:
   build:
