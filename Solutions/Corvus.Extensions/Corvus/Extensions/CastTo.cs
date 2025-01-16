@@ -8,11 +8,11 @@ namespace Corvus.Extensions
     using System.Linq.Expressions;
 
     /// <summary>
-    /// Class to cast to a sepcified type.
+    /// Class to cast to a specified type.
     /// </summary>
     /// <typeparam name="T">Target type.</typeparam>
     /// <remarks>
-    /// The original code was derived from a StackOverlow answer here https://stackoverflow.com/a/23391746.
+    /// The original code was derived from a StackOverflow answer here https://stackoverflow.com/a/23391746.
     /// </remarks>
     public static class CastTo<T>
     {
@@ -31,15 +31,15 @@ namespace Corvus.Extensions
             return Cache<TSource>.Caster(s);
         }
 
-        private static class Cache<TSsource>
+        private static class Cache<TSource>
         {
-            public static readonly Func<TSsource, T> Caster = Get();
+            public static readonly Func<TSource, T> Caster = Get();
 
-            private static Func<TSsource, T> Get()
+            private static Func<TSource, T> Get()
             {
-                ParameterExpression p = Expression.Parameter(typeof(TSsource));
+                ParameterExpression p = Expression.Parameter(typeof(TSource));
                 UnaryExpression c = Expression.ConvertChecked(p, typeof(T));
-                return Expression.Lambda<Func<TSsource, T>>(c, p).Compile();
+                return Expression.Lambda<Func<TSource, T>>(c, p).Compile();
             }
         }
     }

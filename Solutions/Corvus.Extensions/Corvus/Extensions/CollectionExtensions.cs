@@ -4,6 +4,7 @@
 
 namespace Corvus.Extensions
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -20,15 +21,8 @@ namespace Corvus.Extensions
         /// <param name="items">The items to add.</param>
         public static void AddRange<T>(this ICollection<T> destination, IEnumerable<T> items)
         {
-            if (destination is null)
-            {
-                throw new System.ArgumentNullException(nameof(destination));
-            }
-
-            if (items is null)
-            {
-                throw new System.ArgumentNullException(nameof(items));
-            }
+            ArgumentNullException.ThrowIfNull(destination);
+            ArgumentNullException.ThrowIfNull(items);
 
             if (destination == items)
             {

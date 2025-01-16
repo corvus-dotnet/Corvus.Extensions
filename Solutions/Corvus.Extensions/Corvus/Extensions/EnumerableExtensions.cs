@@ -21,10 +21,7 @@ namespace Corvus.Extensions
         /// <returns>An enumerable of the distinct items in the enumerable.</returns>
         public static IEnumerable<T> DistinctPreserveOrder<T>(this IEnumerable<T> list)
         {
-            if (list is null)
-            {
-                throw new ArgumentNullException(nameof(list));
-            }
+            ArgumentNullException.ThrowIfNull(list);
 
             return Enumerate();
 
@@ -50,18 +47,11 @@ namespace Corvus.Extensions
         /// <typeparam name="T">The type of items in the enumerable.</typeparam>
         /// <param name="first">The first enumerable.</param>
         /// <param name="lists">Second and subsequent items.</param>
-        /// <returns>An enumerable which concatenates the prvovided lists.</returns>
+        /// <returns>An enumerable which concatenates the provided lists.</returns>
         public static IEnumerable<T> Concatenate<T>(this IEnumerable<T> first, params IEnumerable<T>[] lists)
         {
-            if (first is null)
-            {
-                throw new ArgumentNullException(nameof(first));
-            }
-
-            if (lists is null)
-            {
-                throw new ArgumentNullException(nameof(lists));
-            }
+            ArgumentNullException.ThrowIfNull(first);
+            ArgumentNullException.ThrowIfNull(lists);
 
             return Enumerate();
 
@@ -91,10 +81,7 @@ namespace Corvus.Extensions
         /// <returns>True if the enumerable contains at least this number of items.</returns>
         public static bool HasMinimumCount<T>(this IEnumerable<T> enumerable, int count)
         {
-            if (enumerable is null)
-            {
-                throw new ArgumentNullException(nameof(enumerable));
-            }
+            ArgumentNullException.ThrowIfNull(enumerable);
 
             if (count < 1)
             {
@@ -130,15 +117,8 @@ namespace Corvus.Extensions
         /// </remarks>
         public static bool AllAndAtLeastOne<T>(this IEnumerable<T> enumerable, Func<T, bool> predicate)
         {
-            if (enumerable is null)
-            {
-                throw new ArgumentNullException(nameof(enumerable));
-            }
-
-            if (predicate is null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
+            ArgumentNullException.ThrowIfNull(enumerable);
+            ArgumentNullException.ThrowIfNull(predicate);
 
             // Logically, this is:
             //  enumerable.Any() && enumerable.All(predicate)
@@ -176,20 +156,13 @@ namespace Corvus.Extensions
         public static IEnumerable<T> DistinctBy<T, TIdentity>(this IEnumerable<T> source, Func<T, TIdentity> identitySelector)
             where TIdentity : notnull
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (identitySelector is null)
-            {
-                throw new ArgumentNullException(nameof(identitySelector));
-            }
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(identitySelector);
 
             return source.Distinct(new DelegateEqualityComparer<T, TIdentity>(identitySelector));
         }
 
-        private class DelegateEqualityComparer<T, TIdentity> : IEqualityComparer<T>
+        private sealed class DelegateEqualityComparer<T, TIdentity> : IEqualityComparer<T>
             where TIdentity : notnull
         {
             private readonly Func<T, TIdentity> identitySelector;
@@ -199,7 +172,7 @@ namespace Corvus.Extensions
                 this.identitySelector = identitySelector;
             }
 
-            public bool Equals(T x, T y) => Equals(this.identitySelector(x), this.identitySelector(y));
+            public bool Equals(T? x, T? y) => Equals(this.identitySelector(x!), this.identitySelector(y!));
 
             public int GetHashCode(T obj) => this.identitySelector(obj).GetHashCode();
         }

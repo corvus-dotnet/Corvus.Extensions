@@ -31,7 +31,7 @@ Scenario: Reverse a string
 Scenario: Reverse a string in arabic (this translates to 'From Wikipedia, the free encyclopedia')
 	Given the string "از ویکی‌پدیا، دانشنامهٔ آزاد"
 	When I reverse the string
-	Then the result should equal "دازآ هٔمانشناد ،ایدپ‌یکیو زا"
+	Then the result should equal "دازآ هٔمانشناد ،ایدپی‌کیو زا"
 
 Scenario: Get a UTF8 stream from a string
 	Given the string "The quick brown fox jumped over the lazy dog"

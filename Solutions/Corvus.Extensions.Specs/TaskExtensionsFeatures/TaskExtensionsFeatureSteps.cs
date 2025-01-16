@@ -8,7 +8,7 @@ namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
     using System.Threading.Tasks;
     using Corvus.Extensions.SpecsTaskExtensionsFeatures.Context;
     using NUnit.Framework;
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class TaskExtensionsFeatureSteps
@@ -33,7 +33,7 @@ namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
         }
 
         [When("I cast the task to an integer")]
-        public async void WhenICastTheTaskToAnInt()
+        public async Task WhenICastTheTaskToAnInt()
         {
             Task sourceTask = this.context.Get<Task>("SourceTask");
 
@@ -59,7 +59,7 @@ namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
         }
 
         [When("I cast the task to a double")]
-        public async void WhenICastTheTaskToAnDouble()
+        public async Task WhenICastTheTaskToAnDouble()
         {
             Task sourceTask = this.context.Get<Task>("SourceTask");
 
@@ -114,7 +114,7 @@ namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
         }
 
         [When("I cast the task to a SimpleParent")]
-        public async void WhenICastTheTaskToASimpleParent()
+        public async Task WhenICastTheTaskToASimpleParent()
         {
             Task<SimpleChild> sourceTask = this.context.Get<Task<SimpleChild>>("SourceTask");
             try
@@ -167,7 +167,7 @@ namespace Corvus.Extensions.SpecsTaskExtensionsFeatures
         }
 
         [Then("the task result should be a SimpleParent")]
-        public async void ThenTheTaskResultShouldBeASimpleParent()
+        public async Task ThenTheTaskResultShouldBeASimpleParent()
         {
             if (this.context.ContainsKey("Result"))
             {

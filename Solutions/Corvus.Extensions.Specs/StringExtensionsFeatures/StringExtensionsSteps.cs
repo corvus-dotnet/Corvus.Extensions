@@ -10,7 +10,7 @@ namespace Corvus.Extensions.Specs.StringExtensionsFeature
     using Corvus.Extensions;
     using Corvus.Extensions.Specs.StringExtensionsFeature.Context;
     using NUnit.Framework;
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class StringExtensionsSteps

@@ -11,7 +11,7 @@ namespace Corvus.Extensions.Specs.TaskExFeatures
     using System.Threading.Tasks;
     using Corvus.Extensions.Tasks;
     using NUnit.Framework;
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class TaskExWhenAllManySteps
@@ -83,6 +83,11 @@ namespace Corvus.Extensions.Specs.TaskExFeatures
         [Then("the results should be ordered by the original collection order")]
         public void ThenTheResultsShouldBeOrderedByTheOriginalCollectionOrder()
         {
+            if (this.result == null)
+            {
+                throw new InvalidOperationException("Result is null");
+            }
+
             IEnumerable<int> groupedResults = this.result.GroupBy(r => r.SourceItem).Select(g => g.Key);
 
             CollectionAssert.AreEqual(this.Collection, groupedResults);
@@ -91,6 +96,11 @@ namespace Corvus.Extensions.Specs.TaskExFeatures
         [Then("for each original item the results should be in the order that the mapping function returned them")]
         public void ThenForEachOriginalItemTheResultsShouldBeInTheOrderThatTheMappingFunctionReturnedThem()
         {
+            if (this.result == null)
+            {
+                throw new InvalidOperationException("Result is null");
+            }
+
             var groupedResults = this.result.GroupBy(r => r.SourceItem).ToDictionary(x => x.Key, x => x.ToList());
             Dictionary<int, IList<(int SourceItem, string Result)>> expectedResults = this.mapperInvocationsAndResults.ToDictionary(x => x.SourceItem, x => x.Result);
 

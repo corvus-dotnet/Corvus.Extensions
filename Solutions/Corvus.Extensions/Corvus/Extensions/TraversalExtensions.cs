@@ -30,15 +30,8 @@ namespace Corvus.Extensions
         /// <returns>A Task which completes when the enumeration is complete.</returns>
         public static async Task ForEachAsync<T>(this IEnumerable<T> items, Func<T, Task> action, CancellationToken cancellationToken = default)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             foreach (T obj in items)
             {
@@ -62,15 +55,8 @@ namespace Corvus.Extensions
         /// </typeparam>
         public static void ForEachAtIndex<T>(this IEnumerable<T> items, Action<T, int> action)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             int i = 0;
 
@@ -97,15 +83,8 @@ namespace Corvus.Extensions
         /// <returns>The task representing the asynchronous action.</returns>
         public static async Task ForEachAtIndexAsync<T>(this IEnumerable<T> items, Func<T, int, Task> action, CancellationToken cancellationToken = default)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             int i = 0;
 
@@ -131,17 +110,10 @@ namespace Corvus.Extensions
         /// <remarks>If any operation fails, then the enumeration is continued to the end when an <see cref="AggregateException"/> is thrown containing the exceptions thrown by any failed operations.</remarks>
         public static void ForEachFailEnd<T>(this IEnumerable<T> items, Action<T> action)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            var exceptions = new List<Exception>();
+            List<Exception> exceptions = [];
 
             foreach (T item in items)
             {
@@ -180,15 +152,8 @@ namespace Corvus.Extensions
         /// <remarks>If any operation fails, then the enumeration is continued to the end when an <see cref="AggregateException"/> is thrown containing the exceptions thrown by any failed operations.</remarks>
         public static async Task ForEachFailEndAsync<T>(this IEnumerable<T> items, Func<T, Task> action, CancellationToken cancellationToken = default)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             var exceptions = new List<Exception>();
 
@@ -228,15 +193,8 @@ namespace Corvus.Extensions
         /// <returns>False if the enumeration returned early, otherwise true.</returns>
         public static bool ForEachUntilFalse<T>(this IEnumerable<T> items, Func<T, bool> action)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             foreach (T item in items)
             {
@@ -265,15 +223,8 @@ namespace Corvus.Extensions
         /// <returns>A Task which completes False if the enumeration returned early, otherwise true.</returns>
         public static async Task<bool> ForEachUntilFalseAsync<T>(this IEnumerable<T> items, Func<T, Task<bool>> action, CancellationToken cancellationToken = default)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             foreach (T obj in items)
             {
@@ -302,15 +253,8 @@ namespace Corvus.Extensions
         /// <returns>True if the action terminated early, otherwise false.</returns>
         public static bool ForEachUntilTrue<T>(this IEnumerable<T> items, Func<T, bool> action)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             foreach (T item in items)
             {
@@ -339,15 +283,8 @@ namespace Corvus.Extensions
         /// <returns>A task which completes True if the action terminated early, otherwise false.</returns>
         public static async Task<bool> ForEachUntilTrueAsync<T>(this IEnumerable<T> items, Func<T, Task<bool>> action, CancellationToken cancellationToken = default)
         {
-            if (items == null)
-            {
-                throw new ArgumentNullException(nameof(items));
-            }
-
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            ArgumentNullException.ThrowIfNull(items);
+            ArgumentNullException.ThrowIfNull(action);
 
             foreach (T obj in items)
             {

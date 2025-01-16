@@ -4,6 +4,7 @@
 
 namespace Corvus.Extensions
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -23,10 +24,7 @@ namespace Corvus.Extensions
         /// <returns>True if the item as added.</returns>
         public static bool AddIfNotExists<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
         {
-            if (dictionary is null)
-            {
-                throw new System.ArgumentNullException(nameof(dictionary));
-            }
+            ArgumentNullException.ThrowIfNull(dictionary);
 
             if (dictionary.ContainsKey(key))
             {
@@ -48,18 +46,10 @@ namespace Corvus.Extensions
         /// <remarks>If a key is already present in the dictionary, then the original value is preserved.</remarks>
         public static IDictionary<TKey, TValue> Merge<TKey, TValue>(this IDictionary<TKey, TValue> that, IDictionary<TKey, TValue> dictionary)
         {
-            if (that is null)
-            {
-                throw new System.ArgumentNullException(nameof(that));
-            }
+            ArgumentNullException.ThrowIfNull(that);
+            ArgumentNullException.ThrowIfNull(dictionary);
 
-            if (dictionary is null)
-            {
-                throw new System.ArgumentNullException(nameof(dictionary));
-            }
-
-            dictionary.Keys.ForEach(
-                key => that.AddIfNotExists(key, dictionary[key]));
+            dictionary.Keys.ForEach(key => that.AddIfNotExists(key, dictionary[key]));
 
             return that;
         }
@@ -75,10 +65,7 @@ namespace Corvus.Extensions
         /// <returns>True if the item was replaced, false if it was added.</returns>
         public static bool ReplaceIfExists<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
         {
-            if (dictionary is null)
-            {
-                throw new System.ArgumentNullException(nameof(dictionary));
-            }
+            ArgumentNullException.ThrowIfNull(dictionary);
 
             if (dictionary.ContainsKey(key))
             {

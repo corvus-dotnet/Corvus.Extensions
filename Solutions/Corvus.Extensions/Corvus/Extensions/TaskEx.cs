@@ -26,19 +26,10 @@ namespace Corvus.Extensions.Tasks
         /// <returns>A fanned out list of T2.</returns>
         public static async Task<IList<T2>> WhenAllMany<T1, T2>(IEnumerable<T1> source, Func<T1, Task<IEnumerable<T2>>> mapper)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(mapper);
 
-            if (mapper is null)
-            {
-                throw new ArgumentNullException(nameof(mapper));
-            }
-
-            return (await Task.WhenAll(
-                source.Select(sourceItem => mapper(sourceItem))).ConfigureAwait(false))
-                .SelectMany(result => result).ToList();
+            return (await Task.WhenAll(source.Select(sourceItem => mapper(sourceItem))).ConfigureAwait(false)).SelectMany(result => result).ToList();
         }
     }
 }
