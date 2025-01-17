@@ -31,15 +31,15 @@ namespace Corvus.Extensions
             return Cache<TSource>.Caster(s);
         }
 
-        private static class Cache<TSsource>
+        private static class Cache<TSource>
         {
-            public static readonly Func<TSsource, T> Caster = Get();
+            public static readonly Func<TSource, T> Caster = Get();
 
-            private static Func<TSsource, T> Get()
+            private static Func<TSource, T> Get()
             {
-                ParameterExpression p = Expression.Parameter(typeof(TSsource));
+                ParameterExpression p = Expression.Parameter(typeof(TSource));
                 UnaryExpression c = Expression.ConvertChecked(p, typeof(T));
-                return Expression.Lambda<Func<TSsource, T>>(c, p).Compile();
+                return Expression.Lambda<Func<TSource, T>>(c, p).Compile();
             }
         }
     }
