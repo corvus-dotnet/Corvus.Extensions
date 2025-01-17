@@ -6,8 +6,7 @@ namespace Corvus.Extensions.Specs.EnumerableExtensionsFeatures
 {
     using System;
     using System.Collections.Generic;
-
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class EnumerableExtensionsSteps

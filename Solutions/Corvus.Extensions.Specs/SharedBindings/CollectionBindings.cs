@@ -6,8 +6,7 @@ namespace Corvus.Extensions.Specs.SharedBindings
 {
     using System.Collections.Generic;
     using System.Linq;
-
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class CollectionBindings

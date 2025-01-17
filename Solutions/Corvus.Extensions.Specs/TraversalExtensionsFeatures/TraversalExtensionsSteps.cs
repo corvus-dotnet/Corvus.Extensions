@@ -10,7 +10,7 @@ namespace Corvus.Extensions.Specs.TraversalExtensionsFeature
     using System.Threading.Tasks;
     using Corvus.Extensions;
     using NUnit.Framework;
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class TraversalExtensionsSteps
@@ -25,9 +25,9 @@ namespace Corvus.Extensions.Specs.TraversalExtensionsFeature
         [Given("the following collections")]
         public void GivenTheFollowingCollections(Table table)
         {
-            IEnumerable<IGrouping<string, TableRow>> collections = table.Rows.GroupBy(r => r["Collection"]);
+            IEnumerable<IGrouping<string, DataTableRow>> collections = table.Rows.GroupBy(r => r["Collection"]);
             var result = new List<List<string>>();
-            foreach (IGrouping<string, TableRow> collection in collections)
+            foreach (IGrouping<string, DataTableRow> collection in collections)
             {
                 result.Add(collection.Select(r => r["Value"]).ToList());
             }
@@ -38,9 +38,9 @@ namespace Corvus.Extensions.Specs.TraversalExtensionsFeature
         [Given("the following dictionaries")]
         public void GivenTheFollowingDictionaries(Table table)
         {
-            IEnumerable<IGrouping<string, TableRow>> dictionaries = table.Rows.GroupBy(r => r["Dictionary"]);
+            IEnumerable<IGrouping<string, DataTableRow>> dictionaries = table.Rows.GroupBy(r => r["Dictionary"]);
             var result = new List<Dictionary<int, int>>();
-            foreach (IGrouping<string, TableRow> dictionary in dictionaries)
+            foreach (IGrouping<string, DataTableRow> dictionary in dictionaries)
             {
                 result.Add(dictionary.Select(r => new { v = int.Parse(r["Value"]), k = int.Parse(r["Key"]) }).ToDictionary(key => key.k, value => value.v));
             }
@@ -51,9 +51,9 @@ namespace Corvus.Extensions.Specs.TraversalExtensionsFeature
         [Given("the following integer collections")]
         public void GivenTheFollowingIntegerCollections(Table table)
         {
-            IEnumerable<IGrouping<string, TableRow>> collections = table.Rows.GroupBy(r => r["Collection"]);
+            IEnumerable<IGrouping<string, DataTableRow>> collections = table.Rows.GroupBy(r => r["Collection"]);
             var result = new List<List<int>>();
-            foreach (IGrouping<string, TableRow> collection in collections)
+            foreach (IGrouping<string, DataTableRow> collection in collections)
             {
                 result.Add(collection.Select(r => int.Parse(r["Value"])).ToList());
             }
