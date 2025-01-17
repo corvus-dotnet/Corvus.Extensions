@@ -8,7 +8,7 @@ namespace Corvus.Extensions.Specs.CollectionExtensionsFeatures
     using System.Collections.Generic;
     using System.Linq;
     using NUnit.Framework;
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class CollectionExtensionsSteps
