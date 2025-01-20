@@ -25,15 +25,6 @@
           "Microsoft.SourceLink.GitHub": "1.1.1"
         }
       },
-      "Reqnroll.Tools.MsBuild.Generation": {
-        "type": "Direct",
-        "requested": "[2.2.1, )",
-        "resolved": "2.2.1",
-        "contentHash": "A8a5dcZXfk3UlRJur9XzkJsBNHr/hwrHEzCYdJe1VUV1/NsN4cPK+S+7DV0haR4sJ2PfDhqds3FOK4rVRNDXmQ==",
-        "dependencies": {
-          "Reqnroll": "[2.2.1]"
-        }
-      },
       "Roslynator.Analyzers": {
         "type": "Direct",
         "requested": "[4.12.10, )",
@@ -220,6 +211,14 @@
           "NUnit": "3.13.1",
           "Reqnroll": "[2.2.1]",
           "Reqnroll.Tools.MsBuild.Generation": "[2.2.1]"
+        }
+      },
+      "Reqnroll.Tools.MsBuild.Generation": {
+        "type": "Transitive",
+        "resolved": "2.2.1",
+        "contentHash": "A8a5dcZXfk3UlRJur9XzkJsBNHr/hwrHEzCYdJe1VUV1/NsN4cPK+S+7DV0haR4sJ2PfDhqds3FOK4rVRNDXmQ==",
+        "dependencies": {
+          "Reqnroll": "[2.2.1]"
         }
       },
       "SpecFlow.Internal.Json": {
